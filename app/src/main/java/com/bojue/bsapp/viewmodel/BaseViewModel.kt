@@ -8,5 +8,5 @@ import android.arch.lifecycle.AndroidViewModel
  * author : sendi
  * description :
  */
-open class BaseViewModel(application: Application) : AndroidViewModel(application) {
+open class BaseViewModel(application: Application) : AndroidViewModel(application) ,IViewModel{
 }
