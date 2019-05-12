@@ -7,28 +7,28 @@
         android:layout_height="wrap_content">
 
         <RadioGroup
-            android:background="#F5F5F5"
-            android:id="@+id/rgBottom"
+            android:background="#e6e6e6"
+            android:id="@+id/rg_bottom"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:orientation="horizontal">
             <RadioButton
-                android:id="@+id/rbSearch"
+                android:id="@+id/rb_order_list"
                 android:drawableTop="@drawable/rb_findneed_selector"
                 style="@style/global_radio_bt_style"
                 />
             <RadioButton
-                android:id="@+id/rbPublish"
+                android:id="@+id/rb_order_publish"
                 android:drawableTop="@drawable/rb_publish_selector"
                 style="@style/global_radio_bt_style"
                 />
             <RadioButton
-                android:id="@+id/rbCommunity"
+                android:id="@+id/rb_community"
                 android:drawableTop="@drawable/rb_community_selector"
                 style="@style/global_radio_bt_style"
                 />
             <RadioButton
-                android:id="@+id/rbPerson"
+                android:id="@+id/rb_myself"
                 android:drawableTop="@drawable/rb_person_selector"
                 style="@style/global_radio_bt_style"
                 />
