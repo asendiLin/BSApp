@@ -65,6 +65,7 @@ class HomeActivity : BaseActivity() {
             }else{
                 transaction.show(toFragment).commit()
             }
+            mCurrentFragment = toFragment
         }
     }
 
