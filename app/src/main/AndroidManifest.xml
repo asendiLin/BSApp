@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".community.PublishCommunityActivity">
         </activity>
+        <activity android:name=".community.PictureActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -34,4 +34,22 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="BottomDialog" parent="@android:style/Theme.Holo.Dialog">
+        <!-- 是否有边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!--是否在悬浮Activity之上  -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--阴影  -->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="android:windowAnimationStyle">@style/dialog_bottom_anim_in_out</item>-->
+    </style>
+    <style name="dialog_bottom_anim_in_out" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
 </resources>
