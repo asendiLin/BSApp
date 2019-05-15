@@ -15,13 +15,10 @@ class PictureActivity : AppCompatActivity() {
 
     private val myTag = "PictureActivity"
 
-    private val mAlbumFiles = ArrayList<AlbumFile>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_picture)
 
-        //TODO:初始化Album
         Album.initialize(AlbumConfig.newBuilder(this)
                 .setAlbumLoader(MediaLoader())
                 .build())
