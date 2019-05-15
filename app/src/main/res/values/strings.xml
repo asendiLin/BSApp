@@ -6,4 +6,17 @@
     <string name="txt_public_endTime">结束时间</string>
     <string name="txt_public_time">1月1日</string>
     <string name="txt_btn_publish">发布</string>
+
+    <string-array name="filter_name_arr">
+        <item>原图</item>
+        <item>怀旧</item>
+        <item>灰度</item>
+        <item>模糊</item>
+        <item>卡通</item>
+        <item>溶解</item>
+        <item>朦胧</item>
+        <item>锐化</item>
+        <item>伽马线</item>
+        <item>素描</item>
+    </string-array>
 </resources>

@@ -4,7 +4,9 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,13 +21,13 @@ import javax.inject.Inject
  * author : sendi
  * description :社区Fragment
  */
-class CommunityFragment : BaseFragment() {
-
+class CommunityFragment : BaseFragment(),View.OnClickListener {
     private lateinit var mRootView : View
+
     private lateinit var mSSCommunity : SwipeStack
-
-
+    private lateinit var mFlbAdd : FloatingActionButton
     private lateinit var mCommunityViewModel :CommunityViewModel
+
 
     private  val mViewModelFactory by lazy {
         Injector.viewModelFactory()
@@ -35,7 +37,8 @@ class CommunityFragment : BaseFragment() {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_community_layout,null,false)
         mSSCommunity = mRootView.findViewById(R.id.ss_community)
         mSSCommunity.adapter = ComunityAdapter(context,ArrayList())
-
+        mFlbAdd = mRootView.findViewById(R.id.fab_add_community)
+        mFlbAdd.setOnClickListener(this)
         return mRootView
     }
 
@@ -45,5 +48,14 @@ class CommunityFragment : BaseFragment() {
         mCommunityViewModel.getCommunityList().observe(this,Observer{list->
             //TODO刷新数据
         })
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.fab_add_community -> {
+                val intent = Intent(requireActivity(),PublishCommunityActivity::class.java)
+                context?.startActivity(intent)
+            }
+        }
     }
 }

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_self_top"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/ctbl_self_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/ToolBarTitleText"
+            app:contentScrim="#42c6c6c6"
+            app:expandedTitleTextAppearance="@style/TransparentText"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
+
+            <ImageView
+                android:id="@+id/iv_self_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/jaygee"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.9"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.9"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="80dp"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="20dp"
+                        >
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/civ_myself_user"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@mipmap/jaygee"
+                            app:civ_border_color="#FFFFFF"
+                            app:civ_border_width="1dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="编辑"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:textSize="16sp"
+                            android:textColor="#FFFFFF"
+                            android:background="@drawable/myself_tv_bg"
+                            />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_myself_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="asendi"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="a free dancer."
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    >
+
+                    <TextView
+                        style="@style/MyselfFragmentItemTV"
+                        android:text="item1"
+                        />
+
+                    <TextView
+                        style="@style/MyselfFragmentItemTV"
+                        android:text="item2"
+                        />
+
+                    <TextView
+                        style="@style/MyselfFragmentItemTV"
+                        android:text="item3"
+                        />
+
+                    <TextView
+                        style="@style/MyselfFragmentItemTV"
+                        android:text="item4"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tb_top"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:src="@mipmap/ic_launcher"
+                    />
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_item_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="item1"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="item2"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="item3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="ite4"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="item5"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="item3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="ite4"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="item5"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="item3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="ite4"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="item5"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="item3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="ite4"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:text="item5"
+                />
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
