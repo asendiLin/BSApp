@@ -2,8 +2,7 @@ package com.bojue.bsapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.bojue.bsapp.community.CommunityFragment
-import com.bojue.bsapp.publish.PublishFragment
+import com.bojue.bsapp.publish.PublishOrderFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fl_content, PublishFragment(),"Publish")
+        transaction.add(R.id.fl_content, PublishOrderFragment(),"Publish")
         transaction.commit()
     }
 }

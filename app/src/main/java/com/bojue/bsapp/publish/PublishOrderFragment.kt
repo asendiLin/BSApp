@@ -1,8 +1,6 @@
 package com.bojue.bsapp.publish
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
 import android.os.Bundle
@@ -14,9 +12,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.inject.Injector
 import com.bojue.core.common.BaseFragment
-import kotlinx.android.synthetic.main.fragment_pulish_layout.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,7 +20,7 @@ import java.util.*
 /**
  * Created by lizheng on 2019/5/12.
  */
-class PublishFragment: BaseFragment(){
+class PublishOrderFragment : BaseFragment(){
 
 
     private lateinit var rootView: View
@@ -36,7 +32,7 @@ class PublishFragment: BaseFragment(){
 
     @SuppressLint("ResourceType")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView =LayoutInflater.from(context).inflate(R.layout.fragment_pulish_layout,null,false)
+        rootView =LayoutInflater.from(context).inflate(R.layout.fragment_pulish_order_layout,null,false)
         val selectedDate = Calendar.getInstance()
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()

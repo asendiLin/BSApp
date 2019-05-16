@@ -1,14 +1,14 @@
 package com.bojue.bsapp.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.widget.RadioGroup
 import com.bojue.bsapp.R
 import com.bojue.bsapp.community.CommunityFragment
 import com.bojue.bsapp.myself.MyselfFragment
+import com.bojue.bsapp.order.OrderListFrgment
+import com.bojue.bsapp.publish.PublishOrderFragment
 import com.bojue.core.common.BaseActivity
-import com.bojue.core.common.BaseFragment
 
 /**
  * 用于存放首页四个tab对应的Fragment
@@ -20,7 +20,7 @@ class HomeActivity : BaseActivity() {
     private var mCurrentIndex = 0
     private var mCurrentFragment : Fragment? = null
 
-    private val mFragments = arrayOf(CommunityFragment(),MyselfFragment())
+    private val mFragments = arrayOf(OrderListFrgment(), PublishOrderFragment(),CommunityFragment(),MyselfFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class HomeActivity : BaseActivity() {
 
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fl_home_content, CommunityFragment(), "COMMUNITY")
+        transaction.add(R.id.fl_home_content, OrderListFrgment(), "HOME")
         transaction.commit()
     }
 
