@@ -15,6 +15,7 @@
             <RadioButton
                 android:id="@+id/rb_order_list"
                 android:drawableTop="@drawable/rb_findneed_selector"
+                android:checked="true"
                 style="@style/global_radio_bt_style"
                 />
             <RadioButton

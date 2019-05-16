@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.bojue.bsapp.app.BSApplication
+import com.bojue.core.component.BaseComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -15,7 +16,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = [ViewModelModule::class])
-interface AppComponent {
+interface AppComponent : BaseComponent {
 
     @Component.Builder
     interface Builder {
@@ -25,7 +26,4 @@ interface AppComponent {
     }
 
     fun inject(application: BSApplication)
-
-
-    fun provideViewModelFactory() : ViewModelProvider.Factory
 }

@@ -28,11 +28,6 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
     private lateinit var mFlbAdd : FloatingActionButton
     private lateinit var mCommunityViewModel :CommunityViewModel
 
-
-    private  val mViewModelFactory by lazy {
-        Injector.viewModelFactory()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_community_layout,null,false)
         mSSCommunity = mRootView.findViewById(R.id.ss_community)

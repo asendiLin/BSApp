@@ -34,10 +34,6 @@ class PublishFragment: BaseFragment(){
     private lateinit var txt_timepicker: TextView
     private lateinit var mPublishViewModel: PublishViewModel
 
-    private val mmViewModelFactory by lazy {
-        Injector.viewModelFactory()
-    }
-
     @SuppressLint("ResourceType")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView =LayoutInflater.from(context).inflate(R.layout.fragment_pulish_layout,null,false)
@@ -98,7 +94,7 @@ class PublishFragment: BaseFragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mPublishViewModel = ViewModelProviders.of(this,mmViewModelFactory).get(PublishViewModel::class.java)
+        mPublishViewModel = ViewModelProviders.of(this,mViewModelFactory).get(PublishViewModel::class.java)
         mPublishViewModel.publishData().observe(this, android.arch.lifecycle.Observer {
 
         })

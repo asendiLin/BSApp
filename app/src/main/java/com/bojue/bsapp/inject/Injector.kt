@@ -2,6 +2,7 @@ package com.bojue.bsapp.inject
 
 import android.app.Application
 import com.bojue.bsapp.app.BSApplication
+import com.bojue.core.component.BaseComponent
 
 /**
  * author: asendi.
@@ -18,8 +19,8 @@ object Injector {
                 .application(application)
                 .build()
         mAppComponent.inject(application)
-    }
 
-    fun viewModelFactory() = mAppComponent.provideViewModelFactory()
+        BaseComponent.instance = mAppComponent
+    }
 
 }
