@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.HomeActivity">
+        <activity
+            android:name=".activity.HomeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,6 +24,8 @@
         <activity android:name=".community.PublishCommunityActivity">
         </activity>
         <activity android:name=".community.PictureActivity">
+        </activity>
+        <activity android:name=".order.OrderDetailActivity">
         </activity>
     </application>
 

@@ -13,7 +13,18 @@ import com.bojue.bsapp.model.OrderModel
  * description:
  */
 class OrderListAdapter(private val mOrderList : List<OrderModel>) : RecyclerView.Adapter<OrderListAdapter.OrderListViewHolder>() {
+
+    private var mOnOrderIntemClickListener : OnOrderIntemClickListener? =null
+
+    fun setOnOrderIntemClickListener(listner : OnOrderIntemClickListener){
+        this.mOnOrderIntemClickListener = listner
+    }
+
     override fun onBindViewHolder(viewHolder: OrderListViewHolder, position: Int) {
+
+        viewHolder.itemView.setOnClickListener {
+            mOnOrderIntemClickListener?.onOrderItemClick(position)
+        }
 
     }
 
@@ -33,5 +44,9 @@ class OrderListAdapter(private val mOrderList : List<OrderModel>) : RecyclerView
 
         }
 
+    }
+
+    interface OnOrderIntemClickListener {
+        fun onOrderItemClick(position: Int)
     }
 }

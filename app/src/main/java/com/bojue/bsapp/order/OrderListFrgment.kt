@@ -1,5 +1,6 @@
 package com.bojue.bsapp.order
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
@@ -30,6 +31,12 @@ class OrderListFrgment : BaseFragment() {
         mOrderListAdapter = OrderListAdapter(ArrayList())
         mRvOrderList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         mRvOrderList.adapter = mOrderListAdapter
+        mOrderListAdapter.setOnOrderIntemClickListener(object : OrderListAdapter.OnOrderIntemClickListener{
+            override fun onOrderItemClick(position: Int) {
+                val intent = Intent(requireActivity(),OrderDetailActivity::class.java)
+                startActivity(intent)
+            }
+        })
         return mRootView
     }
 
