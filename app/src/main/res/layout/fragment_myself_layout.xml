@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:collapsedTitleTextAppearance="@style/ToolBarTitleText"
-            app:contentScrim="#42c6c6c6"
+            app:contentScrim="@color/colorTheme"
             app:expandedTitleTextAppearance="@style/TransparentText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             >

@@ -26,7 +26,6 @@ class PublishOrderFragment : BaseFragment(){
     private lateinit var rootView: View
     private lateinit var pvTime: TimePickerView
     private lateinit var spinnerItems:List<String>
-    private lateinit var spinner: Spinner
     private lateinit var txt_timepicker: TextView
     private lateinit var mPublishViewModel: PublishViewModel
 
@@ -37,26 +36,12 @@ class PublishOrderFragment : BaseFragment(){
         val startDate = Calendar.getInstance()
         val endDate = Calendar.getInstance()
         endDate.set(2019, 11, 31)
-        spinner = rootView.findViewById(R.id.spinner)
+
         txt_timepicker = rootView.findViewById(R.id.txt_timepicker)
         txt_timepicker.text = dateToStrLong(selectedDate.time)
 
         spinnerItems = arrayListOf("1","2","3")
         val spinnerAdapter = ArrayAdapter(context,android.R.layout.simple_spinner_item, spinnerItems)
-        spinner.adapter  = spinnerAdapter
-        /*
-        spinner选择事件
-        */
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
-            }
-
-        }
 
         pvTime = TimePickerBuilder(context, OnTimeSelectListener { date, v ->
             txt_timepicker.text = dateToStrLong(date)

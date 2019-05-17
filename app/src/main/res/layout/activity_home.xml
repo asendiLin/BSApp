@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context="com.bojue.bsapp.activity.HomeActivity">
 
+    <include
+        android:id="@+id/home_layout_title"
+        layout="@layout/common_title_bar"/>
+
     <FrameLayout
         android:id="@+id/fl_home_content"
         android:layout_width="match_parent"
@@ -14,6 +18,11 @@
         android:layout_weight="1"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorBlack"
+        />
     <include layout="@layout/home_bottom_layout"/>
 
 </LinearLayout>
