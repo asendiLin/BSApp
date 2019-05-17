@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     >
 
@@ -24,24 +24,26 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             android:paddingLeft="10dp"
             >
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_user_img"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@mipmap/jaygee"
                 />
+
             <TextView
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="12sp"
                 android:layout_marginLeft="10dp"
                 android:text="jaygee"
+                android:textSize="12sp"
                 />
         </LinearLayout>
 
@@ -49,31 +51,52 @@
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            android:text="have a nice day."
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="have a nice day."
+            android:textColor="#000000"
+            android:textSize="16sp"
             />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
             android:paddingLeft="10dp"
-            android:layout_marginBottom="10dp"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="赞"
+
+            <com.sackcentury.shinebuttonlib.ShineButton
+                android:id="@+id/btn_like"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:btn_color="#8a8a8a"
+                app:btn_fill_color="#ff0101"
+                app:siShape="@raw/heart"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+            <ImageButton
+                android:id="@+id/btn_comment"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:text="分享"
+                android:src="@mipmap/ic_comment"
+                android:background="@null"
+                android:scaleType="center"
                 />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ic_share"
+                android:background="@null"
+                android:scaleType="center"
+                />
+
+
         </LinearLayout>
     </LinearLayout>
 

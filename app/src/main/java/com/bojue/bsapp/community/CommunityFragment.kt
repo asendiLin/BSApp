@@ -31,7 +31,7 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_community_layout,null,false)
         mSSCommunity = mRootView.findViewById(R.id.ss_community)
-        mSSCommunity.adapter = ComunityAdapter(context,ArrayList())
+        mSSCommunity.adapter = ComunityAdapter(requireActivity(),ArrayList())
         mFlbAdd = mRootView.findViewById(R.id.fab_add_community)
         mFlbAdd.setOnClickListener(this)
         return mRootView
