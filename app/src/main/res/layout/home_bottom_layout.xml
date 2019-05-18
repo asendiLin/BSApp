@@ -7,10 +7,10 @@
         android:layout_height="wrap_content">
 
         <RadioGroup
-            android:background="#e6e6e6"
+            android:background="@color/colorWhite"
             android:id="@+id/rg_bottom"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="45dp"
             android:orientation="horizontal">
             <RadioButton
                 android:id="@+id/rb_order_list"

@@ -210,10 +210,11 @@
                 app:cardCornerRadius="8dp"
                 >
                 <LinearLayout
+                    android:id="@+id/ll_course"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp"
+                    android:paddingTop="5dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -221,25 +222,22 @@
                         android:textSize="16sp"
                         android:textColor="#000000"
                         android:text="我的课表"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#b9b9b9"
                         android:layout_marginTop="3dp"
-                        />
-                    <TextView
-                        android:id="@+id/tv_class_notice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="今天有5节课哦"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
                         >
                         <LinearLayout
                             android:layout_width="0dp"
@@ -248,19 +246,15 @@
                             android:orientation="vertical"
                             android:gravity="center"
                             >
+
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="上午"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/ClassTvStyle"
+                                android:background="#fd9e9e"
                                 android:text="高数x1"
                                 />
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/ClassTvStyle"
+                                android:background="#a1c45a"
                                 android:text="大学英语"
                                 />
                         </LinearLayout>
@@ -273,18 +267,13 @@
                             android:gravity="center"
                             >
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="下午"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/ClassTvStyle"
+                                android:background="#68f9c1"
                                 android:text="高数x1"
                                 />
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/ClassTvStyle"
+                                android:background="#8a3cff"
                                 android:text="大学英语"
                                 />
                         </LinearLayout>
@@ -297,18 +286,13 @@
                             android:gravity="center"
                             >
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="晚上"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/ClassTvStyle"
+                                android:background="#f439a3"
                                 android:text="高数x1"
                                 />
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/ClassTvStyle"
+                                android:background="#fae155"
                                 android:text="大学英语"
                                 />
                         </LinearLayout>
@@ -364,6 +348,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="22sp"
+                                android:textColor="@color/colorTheme"
                                 android:text="123"
                                 />
                         </LinearLayout>
@@ -384,6 +369,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="22sp"
+                                android:textColor="@color/colorTheme"
                                 android:text="88"
                                 />
                         </LinearLayout>
@@ -497,8 +483,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="5dp"
-                    android:paddingLeft="5dp"
+                    android:padding="5dp"
                     android:paddingBottom="15dp"
                     >
                     <TextView
@@ -519,7 +504,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textSize="18sp"
-                        android:textColor="#000000"
+                        android:textColor="#484949"
                         android:layout_marginTop="10dp"
                         android:text="放下生活的单子，潇洒过完每一天。"
                         />
