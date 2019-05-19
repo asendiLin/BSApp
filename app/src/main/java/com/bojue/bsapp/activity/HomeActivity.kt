@@ -68,7 +68,8 @@ class HomeActivity : BaseActivity() {
             }
 
             if (!toFragment.isAdded){
-                transaction.add(R.id.fl_home_content,toFragment).commit()
+                transaction.add(R.id.fl_home_content,toFragment)
+                transaction.addToBackStack(null).commit()
             }else{
                 transaction.show(toFragment).commit()
             }

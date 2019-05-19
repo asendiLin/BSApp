@@ -237,7 +237,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="10dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
                         >
                         <LinearLayout
                             android:layout_width="0dp"
@@ -246,15 +247,31 @@
                             android:orientation="vertical"
                             android:gravity="center"
                             >
-
                             <TextView
                                 style="@style/ClassTvStyle"
-                                android:background="#fd9e9e"
                                 android:text="高数x1"
                                 />
                             <TextView
                                 style="@style/ClassTvStyle"
-                                android:background="#a1c45a"
+                                android:text="大学英语"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            >
+                            <TextView
+                                style="@style/ClassTvStyle"
+                                android:text="高数x1"
+                                />
+                            <TextView
+                                style="@style/ClassTvStyle"
                                 android:text="大学英语"
                                 />
                         </LinearLayout>
@@ -268,31 +285,10 @@
                             >
                             <TextView
                                 style="@style/ClassTvStyle"
-                                android:background="#68f9c1"
                                 android:text="高数x1"
                                 />
                             <TextView
                                 style="@style/ClassTvStyle"
-                                android:background="#8a3cff"
-                                android:text="大学英语"
-                                />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            >
-                            <TextView
-                                style="@style/ClassTvStyle"
-                                android:background="#f439a3"
-                                android:text="高数x1"
-                                />
-                            <TextView
-                                style="@style/ClassTvStyle"
-                                android:background="#fae155"
                                 android:text="大学英语"
                                 />
                         </LinearLayout>
