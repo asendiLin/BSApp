@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.filter.FilterNameAdapter
@@ -31,6 +32,7 @@ class ImagePreviewFragment : BaseFragment() {
     private lateinit var mIvPreview: ImageView
     private lateinit var mRvFilters: RecyclerView
     private lateinit var mOriginBitmap: Bitmap
+    private lateinit var mBtnSaveImage : Button
     private val filterType = mapOf(0 to 0,
             1 to GPUImageUtil.SEPIA_FILTER,
             2 to GPUImageUtil.GRAYSCALE_FILTER,
@@ -47,7 +49,12 @@ class ImagePreviewFragment : BaseFragment() {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_image_preview, null, false)
         mIvPreview = mRootView.findViewById(R.id.iv_preview)
         mRvFilters = mRootView.findViewById(R.id.rv_filter_name)
-
+        mBtnSaveImage = mRootView.findViewById(R.id.btn_save_image)
+        mBtnSaveImage.setOnClickListener {
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.remove(this@ImagePreviewFragment)
+            transaction.commit()
+        }
         initPreviewImage()
         initFilterNameList()
         return mRootView

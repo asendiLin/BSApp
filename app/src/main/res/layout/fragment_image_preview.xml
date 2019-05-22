@@ -6,6 +6,16 @@
                 android:orientation="vertical"
     >
 
+    <Button
+        android:id="@+id/btn_save_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="完成"
+        android:textColor="@color/colorWhite"
+        android:layout_alignParentRight="true"
+        />
+
     <ImageView
         android:id="@+id/iv_preview"
         android:layout_width="wrap_content"

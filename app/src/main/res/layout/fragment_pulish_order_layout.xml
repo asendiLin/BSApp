@@ -125,6 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="5dp"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,26 +134,17 @@
                 >
                 <TextView
                     android:id="@+id/tv_order_type1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:padding="5dp"
+                    style="@style/OrderTypeStyle"
                     android:text="跑腿"
                     />
                 <TextView
                     android:id="@+id/tv_order_type2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:padding="5dp"
+                    style="@style/OrderTypeStyle"
                     android:text="代拿"
                     />
                 <TextView
                     android:id="@+id/tv_order_type3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_marginLeft="30dp"
+                    style="@style/OrderTypeStyle"
                     android:text="拼车"
                     />
             </LinearLayout>
@@ -161,29 +153,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="3dp"
                 >
                 <TextView
                     android:id="@+id/tv_order_type4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:padding="5dp"
+                    style="@style/OrderTypeStyle"
                     android:text="互换"
                     />
                 <TextView
                     android:id="@+id/tv_order_type5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:padding="5dp"
+                    style="@style/OrderTypeStyle"
                     android:text="顺风车"
                     />
                 <TextView
                     android:id="@+id/tv_order_type6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_marginLeft="30dp"
+                    style="@style/OrderTypeStyle"
+                    android:text="陪伴"
+                    />
+                <TextView
+                    android:id="@+id/tv_order_type7"
+                    style="@style/OrderTypeStyle"
                     android:text="其他"
                     />
             </LinearLayout>
