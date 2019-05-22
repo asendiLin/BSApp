@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.bojue.bsapp.event.BitmapEvent
+import com.bojue.bsapp.model.BaseResponse
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.viewmodel.BaseViewModel
 import com.bojue.core.event.EventUtil
@@ -28,7 +29,7 @@ class CommunityViewModel @Inject constructor(application: Application,val reposi
         return repository.getCommunityList()
     }
 
-    fun publish(content :String,studentId :Int,pic :String,time:String):LiveData<CommunityModel>{
+    fun publish(content :String,studentId :Int,pic :String,time:String):LiveData<BaseResponse<CommunityModel>>{
         return repository.publish(content, studentId, pic, time)
     }
 

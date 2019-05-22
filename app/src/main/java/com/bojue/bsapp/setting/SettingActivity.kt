@@ -48,6 +48,7 @@ class SettingActivity :BaseActivity(),View.OnClickListener {
                                         loadingDialog.dismiss()
                                         result?.let {
                                             if (result.status == SUCCESS_STATU){
+                                                mTvIdentifyStudent.text = number
                                                 SPUtils.saveString(this@SettingActivity,"number",number)
                                             }else{
                                                 val alertDialog = AlertDialog.Builder(this@SettingActivity).setMessage(result.message).create()

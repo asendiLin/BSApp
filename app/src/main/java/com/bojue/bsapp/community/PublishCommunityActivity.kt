@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -15,8 +16,10 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.bojue.bsapp.R
+import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.util.MediaLoader
+import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig
@@ -27,10 +30,10 @@ class PublishCommunityActivity : BaseActivity() {
     private val myTag = "PublishCommunityFra"
 
     private lateinit var mBtnPhotoSelect: ImageButton
-    private lateinit var mTvBack : TextView
-    private lateinit var mIbSelectImage : ImageButton
-    private lateinit var mIvImage : ImageView
-    private lateinit var mBtnCommunityPublish : Button
+    private lateinit var mTvBack: TextView
+    private lateinit var mIbSelectImage: ImageButton
+    private lateinit var mIvImage: ImageView
+    private lateinit var mBtnCommunityPublish: Button
 
     private val mCommunityViewModel by lazy {
         getViewModel(CommunityViewModel::class.java)
@@ -43,8 +46,19 @@ class PublishCommunityActivity : BaseActivity() {
         mTvBack = findViewById(R.id.tv_nav_title)
         mBtnCommunityPublish = findViewById(R.id.btn_community_publish)
         mBtnCommunityPublish.setOnClickListener {
-            mCommunityViewModel.publish("have a nice day",4,"https://ss0.baidu.com/73x1bjeh1BF3odCf/it/u=1221417934,4154057143%26fm=85%26s=B5D34A32594366D6061B91FB0300B02A","1月1日")
-                    .observe(this,Observer{
+            val loadingDialog=LoadingDialog(this)
+            loadingDialog.show()
+            mCommunityViewModel.publish("have a nice day", 4, "https://ss0.baidu.com/73x1bjeh1BF3odCf/it/u=1221417934,4154057143%26fm=85%26s=B5D34A32594366D6061B91FB0300B02A", "1月1日")
+                    .observe(this, Observer { result ->
+                        loadingDialog.dismiss()
+                        result?.let {
+                            if (result.status == SUCCESS_STATU) {
+                                finish()
+                            }else{
+                                val alertDialog = AlertDialog.Builder(this).setMessage(result.message).create()
+                                alertDialog.show()
+                            }
+                        }
 
                     })
         }
@@ -55,8 +69,8 @@ class PublishCommunityActivity : BaseActivity() {
 
         mCommunityViewModel.bitmapLiveData.observe(this, Observer {
             it?.let {
-                mIbSelectImage.visibility=View.GONE
-                mIvImage.visibility=View.VISIBLE
+                mIbSelectImage.visibility = View.GONE
+                mIvImage.visibility = View.VISIBLE
                 mIvImage.setImageBitmap(it.bitmap)
             }
         })
@@ -129,7 +143,7 @@ class PublishCommunityActivity : BaseActivity() {
     }
 
     private fun startImagePreview(path: String) {
-        val intent = Intent(this,ImagePreviewActivity::class.java)
+        val intent = Intent(this, ImagePreviewActivity::class.java)
         intent.putExtra(PATH, path)
         startActivity(intent)
     }

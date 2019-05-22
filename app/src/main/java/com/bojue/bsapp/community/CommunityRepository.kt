@@ -22,7 +22,7 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
 
     private val mCommunityListLiveData = MutableLiveData<List<CommunityModel>>()
     private val mCommnunityZanLiveData =  MutableLiveData<List<CommunityModel>>()
-    private val mPublishLiveData = MutableLiveData<CommunityModel>()
+    private val mPublishLiveData = MutableLiveData<BaseResponse<CommunityModel>>()
     fun getCommunityList(): LiveData<List<CommunityModel>>{
 
         service.getCommunityList().enqueue(object : Callback<BaseResponse<List<CommunityModel>>>{
@@ -40,7 +40,7 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
 
     fun getSelfCommunityList(){}
 
-    fun publish(content :String,studentId :Int,pic :String,time:String):LiveData<CommunityModel>{
+    fun publish(content :String,studentId :Int,pic :String,time:String):LiveData<BaseResponse<CommunityModel>>{
         service.publish(content, studentId, pic, time).enqueue(object : Callback<BaseResponse<CommunityModel>>{
             override fun onResponse(call: Call<BaseResponse<CommunityModel>>?, response: Response<BaseResponse<CommunityModel>>?) {
                 Log.i(myTag,"onResponse -> ${response?.body()?.status}")

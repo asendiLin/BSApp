@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bojue.bsapp.R
+import com.bojue.bsapp.model.CommunityModel
 import com.sackcentury.shinebuttonlib.ShineButton
 
 /**
@@ -13,7 +14,7 @@ import com.sackcentury.shinebuttonlib.ShineButton
  * data: 2019/5/11.
  * description:
  */
-class ComunityAdapter(private val mActivity: FragmentActivity, private val mCommunityList: ArrayList<CommunityViewModel>)
+class CommunityAdapter(private val mActivity: FragmentActivity, private val mCommunityList: ArrayList<CommunityModel>)
     : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -60,7 +61,7 @@ class ComunityAdapter(private val mActivity: FragmentActivity, private val mComm
     }
 
     override fun getCount(): Int {
-        return mCommunityList.size + 10
+        return mCommunityList.size
     }
 
     inner class CommunityViewHolder {
