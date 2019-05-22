@@ -86,7 +86,6 @@
         android:layout_marginTop="5dp"
         android:layout_gravity="center"
         android:text="图片"
-        android:visibility="gone"
         />
    <ImageView
        android:id="@+id/uv_publish_image"
@@ -95,6 +94,7 @@
        android:layout_gravity="center"
        android:src="@mipmap/jaygee"
        android:layout_marginTop="5dp"
+       android:visibility="gone"
        tool:visibility="visible"
        />
 </LinearLayout>

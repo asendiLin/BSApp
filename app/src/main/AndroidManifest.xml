@@ -15,7 +15,11 @@
         <activity
             android:name=".activity.HomeActivity"
             android:windowSoftInputMode="adjustPan|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".community.PublishCommunityActivity">
         </activity>
@@ -25,18 +29,19 @@
         </activity>
         <activity android:name=".course.CourseActivity">
         </activity>
-        <activity android:name=".login.LoginActivity"
-            android:launchMode="singleTask"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+        <activity
+            android:name=".login.LoginActivity"
+            android:launchMode="singleTask">
         </activity>
-        <activity android:name=".register.RegisterActivity"
-                  android:launchMode="singleTask"
-            >
+        <activity
+            android:name=".register.RegisterActivity"
+            android:launchMode="singleTask">
+        </activity>
+        <activity android:name=".community.ImagePreviewActivity">
+        </activity>
+        <activity android:name=".myself.EditSelfActivity">
+        </activity>
+        <activity android:name=".setting.SettingActivity">
         </activity>
     </application>
 

@@ -7,6 +7,7 @@ import com.bojue.bsapp.myself.MyselfViewModel
 import com.bojue.bsapp.order.OrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
 import com.bojue.bsapp.register.RegisterViewModel
+import com.bojue.bsapp.setting.SettingViewModel
 import com.bojue.bsapp.viewmodel.AppViewModelFactory
 import com.bojue.bsapp.viewmodel.IViewModel
 import com.bojue.bsapp.viewmodel.ViewModelKey
@@ -55,4 +56,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel::class)
     fun registerViewModel(viewModel: RegisterViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingViewModel::class)
+    fun settingViewModel(viewModel: SettingViewModel):IViewModel
 }

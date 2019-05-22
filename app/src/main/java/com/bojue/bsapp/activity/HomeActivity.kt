@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.community.CommunityFragment
 import com.bojue.bsapp.myself.MyselfFragment
-import com.bojue.bsapp.order.OrderListFrgment
+import com.bojue.bsapp.order.OrderListFragment
 import com.bojue.bsapp.publish.PublishOrderFragment
 import com.bojue.core.common.BaseActivity
 
@@ -24,7 +24,7 @@ class HomeActivity : BaseActivity() {
     private var mCurrentIndex = 0
     private var mCurrentFragment : Fragment? = null
 
-    private val mFragments = arrayOf(OrderListFrgment(), PublishOrderFragment(),CommunityFragment(),MyselfFragment())
+    private val mFragments = arrayOf(OrderListFragment(), PublishOrderFragment(),CommunityFragment(),MyselfFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +61,7 @@ class HomeActivity : BaseActivity() {
 
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fl_home_content, OrderListFrgment(), "HOME")
+        transaction.add(R.id.fl_home_content, OrderListFragment(), "HOME")
         transaction.commit()
     }
 
@@ -75,7 +75,7 @@ class HomeActivity : BaseActivity() {
 
             if (!toFragment.isAdded){
                 transaction.add(R.id.fl_home_content,toFragment)
-                transaction.addToBackStack(null).commit()
+                transaction.commit()
             }else{
                 transaction.show(toFragment).commit()
             }

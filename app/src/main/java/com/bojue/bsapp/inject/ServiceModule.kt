@@ -1,10 +1,7 @@
 package com.bojue.bsapp.inject
 
 import com.bojue.bsapp.constance.BASE_URL
-import com.bojue.bsapp.http.api.CommunityService
-import com.bojue.bsapp.http.api.LoginAndRegisterService
-import com.bojue.bsapp.http.api.MyselfService
-import com.bojue.bsapp.http.api.OrderService
+import com.bojue.bsapp.http.api.*
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -25,9 +22,9 @@ class ServiceModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-                .connectTimeout(5, TimeUnit.SECONDS)
-                .readTimeout(5, TimeUnit.SECONDS)
-                .writeTimeout(5, TimeUnit.SECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
                 .build()
     }
 
@@ -63,5 +60,11 @@ class ServiceModule {
     @Singleton
     fun provideMyselfService(retrofit: Retrofit): MyselfService {
         return retrofit.create(MyselfService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingService(retrofit: Retrofit): SettingService {
+        return retrofit.create(SettingService::class.java)
     }
 }

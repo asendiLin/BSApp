@@ -6,7 +6,8 @@ package com.bojue.bsapp.model
  * description:
  */
 data class CommunityModel (val id : Int,
-                           val imgUrl : String,
+                           val pic : String,
                            val content : String,
-                           val username: String,
-                           val userImg : String)
+                           val likes : Int?,
+                           val origin: String?,
+                           val time : String)

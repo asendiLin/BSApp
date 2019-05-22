@@ -4,8 +4,10 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.model.OrderModel
@@ -16,16 +18,22 @@ import com.bojue.core.common.BaseFragment
  * data: 2019/5/16.
  * description:
  */
-class OrderListFrgment : BaseFragment() ,View.OnClickListener{
-    private lateinit var mRootView : View
+class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
+    private val myTag = "OrderListFragment"
 
+    private lateinit var mRootView : View
     private lateinit var mOrderListAdapter : OrderListAdapter
     private lateinit var mFabOrderType : FloatingActionButton
     private lateinit var mRvOrderList : RecyclerView
+    private lateinit var mSrlOrderList:SwipeRefreshLayout
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_order_list,null,false)
         mRvOrderList = mRootView.findViewById(R.id.rv_order_list)
+        mSrlOrderList = mRootView.findViewById(R.id.srl_order_list)
         mFabOrderType = mRootView.findViewById(R.id.fab_order_type)
+        mSrlOrderList.setColorSchemeResources(R.color.colorTheme)
+        mSrlOrderList.setProgressViewOffset(true, 0, 10)
+        mSrlOrderList.setOnRefreshListener(this)
         mFabOrderType.setOnClickListener(this)
         mOrderListAdapter = OrderListAdapter(ArrayList())
         mRvOrderList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
@@ -38,7 +46,6 @@ class OrderListFrgment : BaseFragment() ,View.OnClickListener{
         })
         return mRootView
     }
-
     override fun onClick(v: View?) {
 
         when(v?.id){
@@ -62,8 +69,13 @@ class OrderListFrgment : BaseFragment() ,View.OnClickListener{
         bottomDialog.show()
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+    }
+
+
+    override fun onRefresh() {
+        //TODO refresh
+        Log.i(myTag,"onRefresh ->")
     }
 }

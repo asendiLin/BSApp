@@ -1,6 +1,9 @@
 package com.bojue.bsapp.register
 
 import android.app.Application
+import android.arch.lifecycle.LiveData
+import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.RegisterResponse
 import com.bojue.bsapp.viewmodel.BaseViewModel
 import javax.inject.Inject
 
@@ -12,8 +15,8 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(application: Application, val repository: RegisterRepository)
     : BaseViewModel(application) {
 
-    fun register(username : String, password : String){
-        repository.register(username, password)
+    fun register(username : String, password : String): LiveData<BaseResponse<RegisterResponse>> {
+       return repository.register(username, password)
     }
 
 }

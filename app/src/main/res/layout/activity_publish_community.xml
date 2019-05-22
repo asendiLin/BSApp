@@ -1,10 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/fl_edit_content"
+              android:layout_height="match_parent"
+              xmlns:tool="http://schemas.android.com/tools"
+              android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rl_chat_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@color/colorTheme">
+
+            <TextView
+                android:id="@+id/tv_nav_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:drawableLeft="@mipmap/ic_title_back"
+                />
+
+            <Button
+                android:id="@+id/btn_community_publish"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="发送"
+                android:textColor="@color/colorWhite"
+                />
+        </RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <EditText
+        android:id="@+id/et_community_content"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@android:color/transparent"
+        android:gravity="top|left"
+        android:hint="Say something......"
+        android:lines="4"
+        android:padding="8dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorHint"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_photo_select"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:src="@mipmap/ic_image_add"
+        android:scaleType="centerCrop"
+        />
+    <ImageView
+        android:id="@+id/iv_publish_image"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/jaygee"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        tool:visibility="visible"
+        />
 </LinearLayout>

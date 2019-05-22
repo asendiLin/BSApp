@@ -67,6 +67,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/tv_edit_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="编辑"
@@ -176,11 +177,13 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <ImageButton
+                    android:id="@+id/ib_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@null"
                     android:src="@mipmap/ic_setting"
+                    android:clickable="true"
                     />
             </android.support.v7.widget.Toolbar>
 

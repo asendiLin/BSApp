@@ -1,6 +1,7 @@
 package com.bojue.bsapp.community
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -91,15 +92,18 @@ class PublishCommunityFragment : BaseFragment() {
     }
 
     private fun startImagePreview(path: String) {
-        val previewFragment = ImagePreviewFragment()
-        val args = Bundle()
-        args.putString(PATH, path)
-        previewFragment.arguments = args
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fl_edit_content,previewFragment)
-        transaction.hide(this)
-        transaction.addToBackStack(null)
-        transaction.commitAllowingStateLoss()
+//        val previewFragment = ImagePreviewFragment()
+//        val args = Bundle()
+//        args.putString(PATH, path)
+//        previewFragment.arguments = args
+//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//        transaction.add(R.id.fl_edit_content,previewFragment)
+//        transaction.hide(this)
+//        transaction.addToBackStack(null)
+//        transaction.commitAllowingStateLoss()
+        val intent = Intent(requireActivity(),ImagePreviewActivity::class.java)
+        intent.putExtra(PATH, path)
+        startActivity(intent)
     }
 
 }

@@ -1,6 +1,9 @@
 package com.bojue.bsapp.login
 
 import android.app.Application
+import android.arch.lifecycle.LiveData
+import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.LoginResponse
 import com.bojue.bsapp.viewmodel.BaseViewModel
 import javax.inject.Inject
 
@@ -12,8 +15,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(application: Application, val repository: LoginRepository)
     : BaseViewModel(application) {
 
-    fun login(username: String, password: String) {
-        repository.register(username, password)
+    fun login(username: String, password: String): LiveData<BaseResponse<LoginResponse>> {
+       return repository.login(username, password)
     }
 
 }
