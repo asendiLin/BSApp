@@ -2,6 +2,7 @@ package com.bojue.bsapp.community
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import com.bojue.bsapp.http.api.CommunityService
 import com.bojue.bsapp.model.CommunityModel
 import javax.inject.Inject
 
@@ -10,7 +11,7 @@ import javax.inject.Inject
  * data: 2019/5/12.
  * description:
  */
-class CommunityRepository @Inject constructor() {
+class CommunityRepository @Inject constructor(val service :CommunityService) {
 
     fun getCommunityList(/*待传参数*/): LiveData<List<CommunityModel>>{
 

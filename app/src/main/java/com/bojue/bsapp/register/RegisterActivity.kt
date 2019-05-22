@@ -1,13 +1,13 @@
-package com.bojue.bsapp.activity
+package com.bojue.bsapp.register
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.bojue.bsapp.R
+import com.bojue.bsapp.login.LoginActivity
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 
@@ -32,7 +32,7 @@ class RegisterActivity : BaseActivity(),View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_to_login ->{
-                val intent = Intent(this,LoginActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
             R.id.fab_register ->{

@@ -15,7 +15,7 @@ import javax.inject.Singleton
  * description:
  */
 @Singleton
-@Component(modules = [ViewModelModule::class])
+@Component(modules = [ViewModelModule::class,ServiceModule::class])
 interface AppComponent : BaseComponent {
 
     @Component.Builder

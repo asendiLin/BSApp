@@ -9,5 +9,6 @@ import javax.inject.Inject
  * data: 2019/5/10.
  * description:
  */
-class MyselfViewModel @Inject constructor(application: Application) : BaseViewModel(application){
+class MyselfViewModel @Inject constructor(application: Application,val repository: MyselfRepository)
+    : BaseViewModel(application){
 }

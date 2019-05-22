@@ -13,7 +13,7 @@ import com.bojue.core.common.BaseFragment
  * data: 2019/5/18.
  * description:
  */
-fun FragmentActivity.getViewModel(clazz : Class<BaseViewModel>):IViewModel{
+fun <T : BaseViewModel> FragmentActivity.getViewModel(clazz : Class<T>):T{
     return if (this is BaseActivity){
         ViewModelProviders.of(this,mViewModelFactory).get(clazz)
     }else{
@@ -21,7 +21,7 @@ fun FragmentActivity.getViewModel(clazz : Class<BaseViewModel>):IViewModel{
     }
 }
 
-fun Fragment.getViewModel(clazz : Class<BaseViewModel>):IViewModel{
+fun <T : BaseViewModel> Fragment.getViewModel(clazz : Class<T>):T{
     return if (this is BaseFragment){
         ViewModelProviders.of(this,mViewModelFactory).get(clazz)
     }else{

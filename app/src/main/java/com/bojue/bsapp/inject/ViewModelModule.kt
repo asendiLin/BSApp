@@ -2,8 +2,11 @@ package com.bojue.bsapp.inject
 
 import android.arch.lifecycle.ViewModelProvider
 import com.bojue.bsapp.community.CommunityViewModel
+import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
+import com.bojue.bsapp.order.OrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
+import com.bojue.bsapp.register.RegisterViewModel
 import com.bojue.bsapp.viewmodel.AppViewModelFactory
 import com.bojue.bsapp.viewmodel.IViewModel
 import com.bojue.bsapp.viewmodel.ViewModelKey
@@ -37,4 +40,19 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(PublishViewModel::class)
     fun publishViewModel(viewModel: PublishViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderViewModel::class)
+    fun orderViewModel(viewModel: OrderViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    fun loginViewModel(viewModel: LoginViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegisterViewModel::class)
+    fun registerViewModel(viewModel: RegisterViewModel):IViewModel
 }
