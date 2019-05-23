@@ -3,6 +3,7 @@ package com.bojue.bsapp.inject
 import android.arch.lifecycle.ViewModelProvider
 import com.bojue.bsapp.community.CommunityViewModel
 import com.bojue.bsapp.login.LoginViewModel
+import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
 import com.bojue.bsapp.order.OrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
@@ -61,4 +62,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(SettingViewModel::class)
     fun settingViewModel(viewModel: SettingViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditInfoViewModel::class)
+    fun editInfoViewModel(viewModel: EditInfoViewModel):IViewModel
 }

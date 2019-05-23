@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.model.CommunityModel
+import com.bumptech.glide.Glide
 import com.sackcentury.shinebuttonlib.ShineButton
 
 /**
@@ -29,7 +30,10 @@ class CommunityAdapter(private val mActivity: FragmentActivity, private val mCom
             vh.btnLike = view.findViewById(R.id.btn_like)
             vh.btnComment = view.findViewById(R.id.btn_comment)
             vh.btnShare = view.findViewById(R.id.btn_share)
-
+            vh.tvCommunityContent = view.findViewById(R.id.tv_content)
+            vh.ivCommunityItem = view.findViewById(R.id.iv_community_item)
+            vh.ivUserImage = view.findViewById(R.id.iv_user_img)
+            vh.tvNickname = view.findViewById(R.id.tv_nickname)
             vh.btnLike?.init(mActivity)
 
             view.tag = vh
@@ -37,6 +41,10 @@ class CommunityAdapter(private val mActivity: FragmentActivity, private val mCom
             vh = convertView.tag as CommunityViewHolder
             view = convertView
         }
+        vh.tvCommunityContent?.text = mCommunityList[position].content
+        vh.tvNickname?.text = mCommunityList[position].nickname
+        Glide.with(mActivity).load(mCommunityList[position].pic).into(vh.ivCommunityItem)
+        Glide.with(mActivity).load(mCommunityList[position].icon).into(vh.ivUserImage)
 
         vh.btnLike?.setOnClickListener {
             Toast.makeText(mActivity, "like-->$position", Toast.LENGTH_SHORT).show()

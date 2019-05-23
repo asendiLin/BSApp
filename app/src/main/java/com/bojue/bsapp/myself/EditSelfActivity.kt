@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.bojue.bsapp.R
+import com.bojue.bsapp.ext.getViewModel
 import com.bojue.core.common.BaseActivity
 
 class EditSelfActivity : BaseActivity() , View.OnClickListener{
@@ -13,6 +14,9 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
 
     private lateinit var mBtnComplete : Button
     private lateinit var mTvBack :TextView
+    private val mEditInfoViewModel by lazy {
+        getViewModel(EditInfoViewModel::class.java)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_self)
@@ -28,7 +32,8 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                 finish()
             }
             R.id.btn_complete ->{
-                //TODO:post
+
+                mEditInfoViewModel.editInfo()
             }
 
         }
