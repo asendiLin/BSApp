@@ -11,14 +11,13 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
+import com.bojue.bsapp.util.DateUtils
 import com.bojue.bsapp.util.MediaLoader
+import com.bojue.bsapp.util.SPUtils
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.yanzhenjie.album.Album
@@ -34,6 +33,7 @@ class PublishCommunityActivity : BaseActivity() {
     private lateinit var mIbSelectImage: ImageButton
     private lateinit var mIvImage: ImageView
     private lateinit var mBtnCommunityPublish: Button
+    private lateinit var mEtContent : EditText
 
     private val mCommunityViewModel by lazy {
         getViewModel(CommunityViewModel::class.java)
@@ -45,10 +45,15 @@ class PublishCommunityActivity : BaseActivity() {
         mBtnPhotoSelect = findViewById(R.id.btn_photo_select)
         mTvBack = findViewById(R.id.tv_nav_title)
         mBtnCommunityPublish = findViewById(R.id.btn_community_publish)
+        mEtContent = findViewById(R.id.et_community_content)
         mBtnCommunityPublish.setOnClickListener {
             val loadingDialog=LoadingDialog(this)
             loadingDialog.show()
-            mCommunityViewModel.publish("have a nice day", 4, "https://ss0.baidu.com/73x1bjeh1BF3odCf/it/u=1221417934,4154057143%26fm=85%26s=B5D34A32594366D6061B91FB0300B02A", "1月1日")
+            val content = mEtContent.text.toString()
+            val stuId = SPUtils.getInt(this,"id",-1)?:-1
+            val pic = "https://ss0.baidu.com/73x1bjeh1BF3odCf/it/u=1221417934,4154057143%26fm=85%26s=B5D34A32594366D6061B91FB0300B02A"
+            mCommunityViewModel.publish(content, stuId, pic, DateUtils
+                    .getDate())
                     .observe(this, Observer { result ->
                         loadingDialog.dismiss()
                         result?.let {
@@ -59,7 +64,6 @@ class PublishCommunityActivity : BaseActivity() {
                                 alertDialog.show()
                             }
                         }
-
                     })
         }
         mBtnPhotoSelect.setOnClickListener {
