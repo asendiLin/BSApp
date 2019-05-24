@@ -49,6 +49,7 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                     result.data?.let {
                         UserManager.saveUser(it)
                     }
+                    Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(this,result.message,Toast.LENGTH_SHORT).show()
                 }
