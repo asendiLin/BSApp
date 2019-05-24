@@ -39,7 +39,6 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
         mTvBack.setOnClickListener(this)
 
         mEditInfoViewModel.editInfoLiveData.observe(this, Observer{result ->
-            //TODO:保存用户信息
             mLoadingDialog?.dismiss()
 
             Log.i(myTag,"user = ${result?.data}")

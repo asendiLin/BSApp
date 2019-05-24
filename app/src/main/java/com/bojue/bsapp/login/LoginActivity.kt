@@ -14,8 +14,10 @@ import com.bojue.bsapp.activity.HomeActivity
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.LoginResponse
+import com.bojue.bsapp.model.UserModel
 import com.bojue.bsapp.register.RegisterActivity
 import com.bojue.bsapp.util.SPUtils
+import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 
@@ -68,24 +70,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun saveUserInfo(userInfo: LoginResponse?) {
         userInfo?.let {
-            SPUtils.saveInt(this,"id",userInfo.id)
-            SPUtils.saveString(this,"username",userInfo.username)
-            SPUtils.saveString(this,"password",userInfo.password)
-            userInfo.icon?.let {
-                SPUtils.saveString(this,"icon",userInfo.icon)
-            }
-            userInfo.number?.let {
-                SPUtils.saveString(this,"icon",userInfo.number)
-            }
-            userInfo.phone?.let {
-                SPUtils.saveString(this,"icon",userInfo.phone)
-            }
-            userInfo.signature?.let {
-                SPUtils.saveString(this,"signature",userInfo.signature)
-            }
-            userInfo.classname?.let {
-                SPUtils.saveString(this,"username",userInfo.classname)
-            }
+            val userModel = UserModel(userInfo.id,userInfo.username,userInfo.password,
+                    userInfo.number,userInfo.classname,userInfo.icon,userInfo.nickname,userInfo.phone,userInfo.signature)
+            UserManager.saveUser(userModel)
         }
     }
 }

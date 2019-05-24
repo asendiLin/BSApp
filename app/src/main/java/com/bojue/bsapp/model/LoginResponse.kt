@@ -8,4 +8,5 @@ package com.bojue.bsapp.model
 data class LoginResponse(val username: String, val password: String,
                          val number: String?, val id: Int,
                          val classname: String?, val icon: String?,
-                         val phone: String?, val signature: String?)
+                         val phone: String?, val signature: String?,
+                         val nickname : String?)

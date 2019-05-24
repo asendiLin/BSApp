@@ -8,7 +8,8 @@ package com.bojue.bsapp.model
 data class RegisterResponse (val username:String,val password:String,
                              val number:String?,val id : Int,
                              val classname : String?,val icon :String?,
-                             val phone:String?,val signature:String?)
+                             val phone:String?,val signature:String?,
+                             val nickname:String?)
 //"username": "13420117880",
 //"password": "123",
 //"number": null,//学号
