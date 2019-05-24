@@ -10,8 +10,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import com.bojue.bsapp.R
+import com.bojue.bsapp.event.BitmapEvent
 import com.bojue.bsapp.filter.FilterNameAdapter
 import com.bojue.bsapp.util.GPUImageUtil
+import com.bojue.core.event.EventUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.Target
 import kotlinx.coroutines.experimental.android.UI
@@ -25,6 +27,7 @@ class ImagePreviewActivity : AppCompatActivity() {
     private lateinit var mIvPreview: ImageView
     private lateinit var mRvFilters: RecyclerView
     private lateinit var mOriginBitmap: Bitmap
+    private lateinit var mBitmapWithFilter: Bitmap
     private lateinit var mBtnSaveImage: Button
     private val filterType = mapOf(0 to 0,
             1 to GPUImageUtil.SEPIA_FILTER,
@@ -44,6 +47,8 @@ class ImagePreviewActivity : AppCompatActivity() {
         mRvFilters = findViewById(R.id.rv_filter_name)
         mBtnSaveImage = findViewById(R.id.btn_save_image)
         mBtnSaveImage.setOnClickListener {
+            val bitmapEvent = BitmapEvent(mBitmapWithFilter)
+            EventUtil.post(bitmapEvent)
             finish()
         }
         initPreviewImage()
@@ -56,8 +61,13 @@ class ImagePreviewActivity : AppCompatActivity() {
         val filtersAdapter = FilterNameAdapter(nameList)
         filtersAdapter.setOnClickItemListener(object : FilterNameAdapter.OnClickFilterItemListener {
             override fun onItemClick(position: Int) {
-                val bitmapWithFilter = GPUImageUtil.getBitmapWithFilter(this@ImagePreviewActivity, mOriginBitmap, filterType[position]!!)
-                mIvPreview.setImageBitmap(bitmapWithFilter)
+                if (position == GPUImageUtil.ORIGIN_FILTER){
+                    mIvPreview.setImageBitmap(mOriginBitmap)
+                    mBitmapWithFilter = mOriginBitmap
+                }else{
+                   mBitmapWithFilter = GPUImageUtil.getBitmapWithFilter(this@ImagePreviewActivity, mOriginBitmap, filterType[position]!!)
+                    mIvPreview.setImageBitmap(mBitmapWithFilter)
+                }
             }
         })
         mRvFilters.adapter = filtersAdapter
@@ -73,6 +83,7 @@ class ImagePreviewActivity : AppCompatActivity() {
                             .asBitmap()
                             .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                             .get()
+                    mBitmapWithFilter = mOriginBitmap
                 }
                 asBitmapJob.await()
                 launch(UI) {

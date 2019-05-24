@@ -6,6 +6,6 @@ package com.bojue.bsapp.constance
  * description:
  */
 
-const val BASE_URL="http://192.168.1.112/"
-const val SUCCESS_STATU = 0
+const val BASE_URL="http://192.168.1.103/"
+const val SUCCESS_STATU = 1
 const val FAIL_STATU = -1

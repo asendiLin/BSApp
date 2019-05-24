@@ -5,7 +5,9 @@ import com.bojue.bsapp.community.CommunityViewModel
 import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
+import com.bojue.bsapp.order.OrderDetailViewModel
 import com.bojue.bsapp.order.OrderViewModel
+import com.bojue.bsapp.publish.PublishOrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
 import com.bojue.bsapp.register.RegisterViewModel
 import com.bojue.bsapp.setting.SettingViewModel
@@ -67,4 +69,14 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(EditInfoViewModel::class)
     fun editInfoViewModel(viewModel: EditInfoViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderDetailViewModel::class)
+    fun orderDetailViewModel(viewModel: OrderDetailViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PublishOrderViewModel::class)
+    fun publishOrderViewModel(viewModel: PublishOrderViewModel):IViewModel
 }

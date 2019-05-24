@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
 import com.bojue.bsapp.R
+import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.core.common.BaseFragment
 
@@ -26,6 +27,10 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
     private lateinit var mFabOrderType : FloatingActionButton
     private lateinit var mRvOrderList : RecyclerView
     private lateinit var mSrlOrderList:SwipeRefreshLayout
+    private val mOrderList = ArrayList<OrderModel>()
+    private val mOrderViewModel by lazy {
+        getViewModel(OrderViewModel::class.java)
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_order_list,null,false)
         mRvOrderList = mRootView.findViewById(R.id.rv_order_list)
@@ -35,7 +40,7 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
         mSrlOrderList.setProgressViewOffset(true, 0, 10)
         mSrlOrderList.setOnRefreshListener(this)
         mFabOrderType.setOnClickListener(this)
-        mOrderListAdapter = OrderListAdapter(ArrayList())
+        mOrderListAdapter = OrderListAdapter(mOrderList)
         mRvOrderList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         mRvOrderList.adapter = mOrderListAdapter
         mOrderListAdapter.setOnOrderIntemClickListener(object : OrderListAdapter.OnOrderIntemClickListener{
@@ -46,6 +51,10 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
         })
         return mRootView
     }
+
+
+
+
     override fun onClick(v: View?) {
 
         when(v?.id){
@@ -71,6 +80,8 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        //TODO:获取订单列表
+        mOrderViewModel.getOrderList()
     }
 
 

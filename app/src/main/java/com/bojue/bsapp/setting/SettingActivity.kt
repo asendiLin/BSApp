@@ -11,12 +11,14 @@ import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.util.SPUtils
 import com.bojue.bsapp.widget.IdentifyDialog
 import com.bojue.bsapp.widget.LoadingDialog
+import com.bojue.bsapp.widget.SettingUrlDialog
 import com.bojue.core.common.BaseActivity
 
 class SettingActivity :BaseActivity(),View.OnClickListener {
 
     private lateinit var mTvBack : TextView
     private lateinit var mTvIdentifyStudent :TextView
+    private lateinit var mTvSettingUrl :TextView
 
     private val mSettingViewModel by lazy {
         getViewModel(SettingViewModel::class.java)
@@ -26,6 +28,8 @@ class SettingActivity :BaseActivity(),View.OnClickListener {
         setContentView(R.layout.activity_setting)
         mTvBack = findViewById(R.id.tv_nav_title)
         mTvIdentifyStudent =findViewById(R.id.tv_identify_student)
+        mTvSettingUrl = findViewById(R.id.tv_setting_url)
+        mTvSettingUrl.setOnClickListener(this)
         mTvBack.setOnClickListener(this)
         mTvIdentifyStudent.setOnClickListener(this)
     }
@@ -60,6 +64,11 @@ class SettingActivity :BaseActivity(),View.OnClickListener {
                     }
                 })
                 identifyDialog.show()
+            }
+
+            R.id.tv_setting_url ->{
+                val urlDialog = SettingUrlDialog(this)
+                urlDialog.show()
             }
         }
     }

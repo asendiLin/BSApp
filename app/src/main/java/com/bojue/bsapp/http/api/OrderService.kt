@@ -6,4 +6,15 @@ package com.bojue.bsapp.http.api
  * description:
  */
 interface OrderService {
+
+    fun getOrderList(){}
+
+    fun getOrderDetail(){}
+
+    fun acceptOrder(){}
+
+    fun cancelOrder(){}
+
+    fun publishOrder(){}
+
 }

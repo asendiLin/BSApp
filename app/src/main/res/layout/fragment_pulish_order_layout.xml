@@ -29,7 +29,7 @@
             android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/edit_phone"
+            android:id="@+id/et_phone_number"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginRight="20dp"
@@ -61,7 +61,7 @@
             android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/edit_pay"
+            android:id="@+id/et_pay"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginRight="20dp"
@@ -193,7 +193,7 @@
         android:background="#939292"
         />
     <EditText
-        android:id="@+id/edit_content"
+        android:id="@+id/et_detail_content"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
@@ -204,7 +204,7 @@
         />
 </LinearLayout>
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_publish"
+        android:id="@+id/btn_order_publish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

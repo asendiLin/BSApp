@@ -11,7 +11,7 @@ import android.content.SharedPreferences
 object SPUtils {
 
     private var mSharedPreference: SharedPreferences? = null
-    private const val NAME = "user_info"
+    private const val NAME = "common_info"
     fun saveString(context: Context, key: String, value: String) {
         if (mSharedPreference == null) {
             mSharedPreference = context.getSharedPreferences(NAME, Context.MODE_PRIVATE)

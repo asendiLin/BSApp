@@ -10,7 +10,7 @@ import jp.co.cyberagent.android.gpuimage.*
  * description:
  */
 object GPUImageUtil {
-
+    const val ORIGIN_FILTER =0
     const val SEPIA_FILTER = 1//怀旧
     const val GRAYSCALE_FILTER = 2//灰度
     const val GAUSSIAN_BLUR_FILTER = 3//高斯模糊

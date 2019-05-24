@@ -1,7 +1,9 @@
 package com.bojue.bsapp.http.api
 
 import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.UserModel
 import retrofit2.Call
+import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 import java.util.*
@@ -14,7 +16,11 @@ import java.util.*
 interface MyselfService {
 
     @FormUrlEncoded
-    @POST("")
-    fun editInfo() :Call<BaseResponse<Any?>>
+    @POST("Student/saveInfo.action")
+    fun editInfo(@Field("id") stuId: Int, @Field("username") username: String,
+                 @Field("password") password: String, @Field("number") number: String,
+                 @Field("classname") classname: String, @Field("icon") icon: String,
+                 @Field("nickname") nickname: String, @Field("phone") phone: String,
+                 @Field("signature") signature:String): Call<BaseResponse<UserModel>>
 
 }

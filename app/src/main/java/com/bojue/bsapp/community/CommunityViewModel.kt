@@ -25,7 +25,7 @@ class CommunityViewModel @Inject constructor(application: Application,val reposi
         EventUtil.register(this)
     }
 
-    fun getCommunityList(): LiveData<List<CommunityModel>> {
+    fun getCommunityList(): LiveData<BaseResponse<List<CommunityModel>>>{
         return repository.getCommunityList()
     }
 

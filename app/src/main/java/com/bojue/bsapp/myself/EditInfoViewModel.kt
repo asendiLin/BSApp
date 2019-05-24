@@ -3,6 +3,7 @@ package com.bojue.bsapp.myself
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.UserModel
 import com.bojue.bsapp.viewmodel.BaseViewModel
 import javax.inject.Inject
 
@@ -14,9 +15,14 @@ import javax.inject.Inject
 class EditInfoViewModel @Inject constructor(application: Application,val repository: EditInfoRepository)
     : BaseViewModel(application) {
 
-    fun editInfo(): LiveData<BaseResponse<Any?>> {
+    val  editInfoLiveData = repository.editInfoLiveData
 
-        return repository.editInfo()
+    fun editInfo(stuId: Int,  username: String,
+                 password: String,  number: String?,
+                 classname: String?,  icon: String?,
+                 nickname: String?,  phone: String?,
+                 signature: String?) {
+      repository.editInfo(stuId, username, password, number, classname, icon, nickname, phone, signature)
     }
 
 }

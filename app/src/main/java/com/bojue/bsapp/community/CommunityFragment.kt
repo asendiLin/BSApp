@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.bojue.bsapp.R
+import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseFragment
@@ -30,6 +32,7 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
     private lateinit var mCommunityListAdapter : CommunityAdapter
     private val mCommunityList = ArrayList<CommunityModel>()
     private var mLoadingDialog : LoadingDialog? = null
+    private val mRemoveCommunityList = ArrayList<CommunityModel>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_community_layout,null,false)
         mSSCommunity = mRootView.findViewById(R.id.ss_community)
@@ -37,9 +40,11 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
         mSSCommunity.adapter = mCommunityListAdapter
         mSSCommunity.setListener(object : SwipeStack.SwipeStackListener{
             override fun onViewSwipedToLeft(position: Int) {
+                mRemoveCommunityList.add(mCommunityList[position])
             }
 
             override fun onViewSwipedToRight(position: Int) {
+                mRemoveCommunityList.add(mCommunityList[position])
             }
 
             override fun onStackEmpty() {
@@ -62,22 +67,30 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mCommunityViewModel = ViewModelProviders.of(this,mViewModelFactory).get(CommunityViewModel::class.java)
-        mCommunityViewModel.getCommunityList().observe(this,Observer{list->
+        mCommunityViewModel.getCommunityList().observe(this,Observer{result->
             mLoadingDialog?.let { dialog->
                 if (dialog.isShowing){
                     dialog.dismiss()
                 }
             }
-            list?.let {
-                mCommunityList.clear()
-                if (list.isNotEmpty()){
-                    mBtnRelaod.visibility = View.VISIBLE
-                }else{
-                    mBtnRelaod.visibility = View.GONE
-                    mCommunityList.addAll(list)
-                    mCommunityListAdapter.notifyDataSetChanged()
+            if (result?.status == SUCCESS_STATU){
+                val communityList = result.data
+                communityList?.let {
+                    mCommunityList.removeAll(mRemoveCommunityList)
+                    mRemoveCommunityList.clear()
+                    if (communityList.isEmpty()){
+                        mBtnRelaod.visibility = View.VISIBLE
+                    }else{
+                        mBtnRelaod.visibility = View.GONE
+                        mCommunityList.addAll(communityList)
+                        mCommunityListAdapter.notifyDataSetChanged()
+                    }
                 }
+            }else{
+                Toast.makeText(requireContext(),result?.message,Toast.LENGTH_SHORT).show()
+                mBtnRelaod.visibility = View.VISIBLE
             }
+
         })
     }
 

@@ -11,6 +11,7 @@ import com.bojue.bsapp.myself.MyselfFragment
 import com.bojue.bsapp.order.OrderListFragment
 import com.bojue.bsapp.publish.PublishOrderFragment
 import com.bojue.core.common.BaseActivity
+import com.bojue.core.common.BaseFragment
 
 /**
  * 用于存放首页四个tab对应的Fragment
@@ -24,7 +25,7 @@ class HomeActivity : BaseActivity() {
     private var mCurrentIndex = 0
     private var mCurrentFragment : Fragment? = null
 
-    private val mFragments = arrayOf(OrderListFragment(), PublishOrderFragment(),CommunityFragment(),MyselfFragment())
+    private val mFragments = arrayOf<BaseFragment>(OrderListFragment(), PublishOrderFragment(),CommunityFragment(),MyselfFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

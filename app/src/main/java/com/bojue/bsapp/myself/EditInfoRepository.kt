@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.bojue.bsapp.http.api.MyselfService
 import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.UserModel
 import javax.inject.Inject
 
 /**
@@ -13,11 +14,17 @@ import javax.inject.Inject
  */
 class EditInfoRepository @Inject constructor(val service : MyselfService) {
 
-    val mEditInfoLiveData = MutableLiveData<BaseResponse<Any?>>()
+    val editInfoLiveData = MutableLiveData<BaseResponse<UserModel>>()
 
-    fun editInfo(): LiveData<BaseResponse<Any?>> {
+    fun editInfo( stuId: Int,  username: String,
+                  password: String,  number: String?,
+                  classname: String?,  icon: String?,
+                  nickname: String?,  phone: String?,
+                  signature: String?): LiveData<BaseResponse<UserModel>> {
 
-        return mEditInfoLiveData
+
+
+        return editInfoLiveData
     }
 
 }

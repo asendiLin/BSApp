@@ -13,12 +13,4 @@ class OrderViewModel @Inject constructor(application: Application,val repository
     : BaseViewModel(application) {
 
     fun getOrderList(){}
-
-    fun getOrderDetail(){}
-
-    fun acceptOrder(){}
-
-    fun cancelOrder(){}
-
-    fun publishOrder(){}
 }

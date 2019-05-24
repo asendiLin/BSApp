@@ -1,7 +1,10 @@
 package com.bojue.bsapp.inject
 
+import android.app.Application
+import android.content.Context
 import com.bojue.bsapp.constance.BASE_URL
 import com.bojue.bsapp.http.api.*
+import com.bojue.bsapp.util.SPUtils
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -30,11 +33,11 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(client: OkHttpClient): Retrofit {
+    fun provideRetrofit(client: OkHttpClient,application : Application): Retrofit {
         return Retrofit.Builder()
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BASE_URL)
+                    .baseUrl(SPUtils.getString(application,"url","http://192.168.1.103/"))
                 .build()
     }
 
@@ -66,5 +69,11 @@ class ServiceModule {
     @Singleton
     fun provideSettingService(retrofit: Retrofit): SettingService {
         return retrofit.create(SettingService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommonService(retrofit: Retrofit): CommonService {
+        return retrofit.create(CommonService::class.java)
     }
 }
