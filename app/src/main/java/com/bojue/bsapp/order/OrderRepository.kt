@@ -1,6 +1,9 @@
 package com.bojue.bsapp.order
 
+import android.arch.lifecycle.MutableLiveData
 import com.bojue.bsapp.http.api.OrderService
+import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.OrderModel
 import javax.inject.Inject
 
 /**
@@ -9,7 +12,16 @@ import javax.inject.Inject
  * description:
  */
 class OrderRepository @Inject constructor(val service : OrderService) {
-    fun getOrderList(){}
+
+    private val mOrderListLiveData = MutableLiveData<BaseResponse<List<OrderModel>>>()
+    private val mOrderDetailLiveData = MutableLiveData<BaseResponse<OrderModel>>()
+    private val mAcceptOrderLiveData = MutableLiveData<BaseResponse<Any>>()
+    private val mCancelOrderLiveData = MutableLiveData<BaseResponse<Any>>()
+    private val mPublishOrderLiveData = MutableLiveData<BaseResponse<Any>>()
+
+    fun getOrderList(){
+
+    }
 
     fun getOrderDetail(){}
 

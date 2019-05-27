@@ -21,7 +21,7 @@ class EditInfoRepository @Inject constructor(val service : MyselfService) {
                   classname: String?,  icon: String?,
                   nickname: String?,  phone: String?,
                   signature: String?): LiveData<BaseResponse<UserModel>> {
-
+        service.editInfo(stuId,username,password,number,classname,icon,nickname,phone,signature)
 
 
         return editInfoLiveData

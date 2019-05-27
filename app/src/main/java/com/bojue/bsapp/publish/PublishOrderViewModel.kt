@@ -12,5 +12,5 @@ import javax.inject.Inject
  */
 class PublishOrderViewModel @Inject constructor(application: Application,val repository: OrderRepository)
     :BaseViewModel(application) {
-    fun publishOrder(){}
+    fun publishOrder(content :String,stuId:Int,type:Int,phone:String,price:Float){}
 }

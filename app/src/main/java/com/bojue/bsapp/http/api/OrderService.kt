@@ -1,5 +1,9 @@
 package com.bojue.bsapp.http.api
 
+import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.OrderModel
+import retrofit2.Call
+
 /**
  * author: asendi.
  * data: 2019/5/22.
@@ -7,14 +11,14 @@ package com.bojue.bsapp.http.api
  */
 interface OrderService {
 
-    fun getOrderList(){}
+    fun getOrderList():Call<BaseResponse<List<OrderModel>>>
 
-    fun getOrderDetail(){}
+    fun getOrderDetail()
 
-    fun acceptOrder(){}
+    fun acceptOrder():Call<BaseResponse<Any>>
 
-    fun cancelOrder(){}
+    fun cancelOrder():Call<BaseResponse<Any>>
 
-    fun publishOrder(){}
+    fun publishOrder():Call<BaseResponse<Any>>
 
 }

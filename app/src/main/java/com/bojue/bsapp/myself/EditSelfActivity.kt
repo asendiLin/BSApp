@@ -6,16 +6,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
+import com.bumptech.glide.Glide
 
 class EditSelfActivity : BaseActivity() , View.OnClickListener{
     private val myTag = "EditSelfActivity"
@@ -24,6 +22,7 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
     private lateinit var mTvBack :TextView
     private lateinit var mEtNickname : EditText
     private lateinit var mEtSignature : EditText
+    private lateinit var mIvUserIcon : ImageView
     private  var mLoadingDialog : LoadingDialog? = null
     private val mEditInfoViewModel by lazy {
         getViewModel(EditInfoViewModel::class.java)
@@ -31,12 +30,8 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_self)
-        mBtnComplete = findViewById(R.id.btn_complete)
-        mTvBack = findViewById(R.id.tv_nav_title)
-        mEtNickname = findViewById(R.id.et_nickname)
-        mEtSignature = findViewById(R.id.et_signature)
 
-        mTvBack.setOnClickListener(this)
+        initView()
 
         mEditInfoViewModel.editInfoLiveData.observe(this, Observer{result ->
             mLoadingDialog?.dismiss()
@@ -54,6 +49,20 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                 }
             }
         })
+    }
+
+    private fun initView() {
+        mBtnComplete = findViewById(R.id.btn_complete)
+        mTvBack = findViewById(R.id.tv_nav_title)
+        mEtNickname = findViewById(R.id.et_nickname)
+        mEtSignature = findViewById(R.id.et_signature)
+        mIvUserIcon = findViewById(R.id.iv_user_icon)
+
+        mTvBack.setOnClickListener(this)
+        val user = UserManager.getUser()
+        mEtNickname.setText(user.nickname?:"")
+        mEtSignature.setText(user.signature?:"")
+        Glide.with(this).load(user.icon).into(mIvUserIcon)
     }
 
     override fun onClick(v: View?) {

@@ -88,7 +88,7 @@
 
 
                     <TextView
-                        android:id="@+id/tv_myself_username"
+                        android:id="@+id/tv_myself_nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -99,6 +99,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_myself_signature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"

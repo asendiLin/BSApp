@@ -18,9 +18,9 @@ interface MyselfService {
     @FormUrlEncoded
     @POST("Student/saveInfo.action")
     fun editInfo(@Field("id") stuId: Int, @Field("username") username: String,
-                 @Field("password") password: String, @Field("number") number: String,
-                 @Field("classname") classname: String, @Field("icon") icon: String,
-                 @Field("nickname") nickname: String, @Field("phone") phone: String,
-                 @Field("signature") signature:String): Call<BaseResponse<UserModel>>
+                 @Field("password") password: String, @Field("number") number: String?,
+                 @Field("classname") classname: String?, @Field("icon") icon: String?,
+                 @Field("nickname") nickname: String?, @Field("phone") phone: String?,
+                 @Field("signature") signature:String?): Call<BaseResponse<UserModel>>
 
 }
