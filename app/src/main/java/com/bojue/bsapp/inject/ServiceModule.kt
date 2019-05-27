@@ -37,7 +37,7 @@ class ServiceModule {
         return Retrofit.Builder()
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(SPUtils.getString(application,"url","http://192.168.1.103/"))
+                    .baseUrl(SPUtils.getString(application,"base_url", BASE_URL))
                 .build()
     }
 

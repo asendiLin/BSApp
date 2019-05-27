@@ -45,7 +45,7 @@
         android:id="@+id/tv_identify_student"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="学生认证：201588888888"
+        tools:text="学生认证：201588888888"
         android:gravity="center_vertical"
         android:textSize="16sp"
         android:layout_marginTop="12dp"
@@ -61,7 +61,7 @@
         android:id="@+id/tv_phone_number"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="手机号码：13420117889"
+        tools:text="手机号码：13420117889"
         android:gravity="center_vertical"
         android:textSize="16sp"
         />
@@ -74,7 +74,7 @@
     android:id="@+id/tv_clear_cache"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:text="清理缓存：16M"
+    tools:text="清理缓存：16M"
     android:gravity="center_vertical"
     android:textSize="16sp"
     />

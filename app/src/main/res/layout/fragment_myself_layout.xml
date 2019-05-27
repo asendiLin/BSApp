@@ -117,12 +117,14 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/ll_doing_count"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         >
                         <TextView
+                            android:id="@+id/tv_doing_count"
                             style="@style/MyselfFragmentItemTV"
                             android:text="12"
                             />
@@ -133,12 +135,14 @@
                             />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/ll_complete_count"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         >
                         <TextView
+                            android:id="@+id/tv_complete_count"
                             style="@style/MyselfFragmentItemTV"
                             android:text="8"
                             />
@@ -150,12 +154,14 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_cancel_count"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         >
                         <TextView
+                            android:id="@+id/tv_cancel_count"
                             style="@style/MyselfFragmentItemTV"
                             android:text="0"
                             />

@@ -36,6 +36,12 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
     private lateinit var mIvUserIcon: ImageView
     private lateinit var mTvNickname: TextView
     private lateinit var mTvSignature: TextView
+    private lateinit var mTvDoingCount :TextView
+    private lateinit var mTvCancelCount :TextView
+    private lateinit var mTvCompleteCount :TextView
+    private lateinit var mLlDoingCount : LinearLayout
+    private lateinit var mLlCancelCount : LinearLayout
+    private lateinit var mLlCompleteCount : LinearLayout
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_myself_layout, null, false)
         mTbTop = mRootView.findViewById(R.id.tb_top)
@@ -47,6 +53,12 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
         mIvUserIcon = mRootView.findViewById(R.id.civ_myself_user)
         mTvNickname = mRootView.findViewById(R.id.tv_myself_nickname)
         mTvSignature = mRootView.findViewById(R.id.tv_myself_signature)
+        mTvDoingCount = mRootView.findViewById(R.id.tv_doing_count)
+        mTvCompleteCount = mRootView.findViewById(R.id.tv_complete_count)
+        mTvCancelCount = mRootView.findViewById(R.id.tv_cancel_count)
+        mLlDoingCount = mRootView.findViewById(R.id.ll_doing_count)
+        mLlCompleteCount = mRootView.findViewById(R.id.ll_complete_count)
+        mLlCancelCount = mRootView.findViewById(R.id.ll_cancel_count)
 
         val user = UserManager.getUser()
         mTvNickname.text = user.nickname
@@ -56,6 +68,10 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
         mIbSetting.setOnClickListener(this)
         mTvEditInfo.setOnClickListener(this)
         mLLCourse.setOnClickListener(this)
+        mLlDoingCount.setOnClickListener(this)
+        mLlCancelCount.setOnClickListener(this)
+        mLlCompleteCount.setOnClickListener(this)
+
         (activity as AppCompatActivity).setSupportActionBar(mTbTop)
         mCtlTop.title = "sendi"
 
@@ -75,6 +91,15 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
             R.id.ib_setting -> {
                 val intent = Intent(requireContext(), SettingActivity::class.java)
                 startActivity(intent)
+            }
+            R.id.ll_doing_count ->{
+
+            }
+            R.id.ll_cancel_count ->{
+
+            }
+            R.id.ll_complete_count ->{
+
             }
         }
     }
