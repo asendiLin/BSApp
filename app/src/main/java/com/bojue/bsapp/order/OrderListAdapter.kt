@@ -1,18 +1,23 @@
 package com.bojue.bsapp.order
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.model.OrderModel
+import com.bumptech.glide.Glide
 
 /**
  * author: asendi.
  * data: 2019/5/16.
  * description:
  */
-class OrderListAdapter(private val mOrderList : List<OrderModel>) : RecyclerView.Adapter<OrderListAdapter.OrderListViewHolder>() {
+class OrderListAdapter(private val mOrderList : List<OrderModel>,private val mContext:Context)
+    : RecyclerView.Adapter<OrderListAdapter.OrderListViewHolder>() {
 
     private var mOnOrderIntemClickListener : OnOrderIntemClickListener? =null
 
@@ -21,7 +26,15 @@ class OrderListAdapter(private val mOrderList : List<OrderModel>) : RecyclerView
     }
 
     override fun onBindViewHolder(viewHolder: OrderListViewHolder, position: Int) {
+        val orderModel = mOrderList[position]
 
+        viewHolder.tvUserNickname.text = orderModel.student?.nickname
+        Glide.with(mContext).load(orderModel.student?.icon).into(viewHolder.ivUserIcon)
+        viewHolder.tvEndDate.text = orderModel.time
+        viewHolder.tvContent.text = orderModel.content
+        viewHolder.tvEndDate.text = orderModel.time
+        viewHolder.tvAddress.text = orderModel.address
+        viewHolder.tvPrice.text = orderModel.money.toString()
         viewHolder.itemView.setOnClickListener {
             mOnOrderIntemClickListener?.onOrderItemClick(position)
         }
@@ -29,7 +42,7 @@ class OrderListAdapter(private val mOrderList : List<OrderModel>) : RecyclerView
     }
 
     override fun getItemCount(): Int {
-       return 12
+       return mOrderList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): OrderListViewHolder {
@@ -40,8 +53,19 @@ class OrderListAdapter(private val mOrderList : List<OrderModel>) : RecyclerView
 
     class OrderListViewHolder : RecyclerView.ViewHolder{
 
+        val ivUserIcon : ImageView
+        val tvUserNickname :TextView
+        val tvEndDate : TextView
+        val tvContent : TextView
+        val tvAddress : TextView
+        val tvPrice : TextView
         constructor(itemView:View):super(itemView){
-
+            ivUserIcon = itemView.findViewById(R.id.img_user_pic)
+            tvUserNickname = itemView.findViewById(R.id.tv_nickname)
+            tvEndDate = itemView.findViewById(R.id.txt_date)
+            tvContent = itemView.findViewById(R.id.txt_content)
+            tvAddress = itemView.findViewById(R.id.txt_address)
+            tvPrice = itemView.findViewById(R.id.txt_price)
         }
 
     }

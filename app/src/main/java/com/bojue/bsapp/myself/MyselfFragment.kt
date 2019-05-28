@@ -13,7 +13,12 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bojue.bsapp.constance.CANCEL_ORDER
+import com.bojue.bsapp.constance.COMPLETE_ORDER
+import com.bojue.bsapp.constance.DOING_ORDER
+import com.bojue.bsapp.constance.HISTORY_ORDER_TYPE
 import com.bojue.bsapp.course.CourseActivity
+import com.bojue.bsapp.order.OrderHistoryActivity
 import com.bojue.bsapp.setting.SettingActivity
 import com.bojue.bsapp.util.UserManager
 import com.bumptech.glide.Glide
@@ -93,13 +98,19 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.ll_doing_count ->{
-
+                val intent = Intent(requireContext(),OrderHistoryActivity::class.java)
+                intent.putExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
+                startActivity(intent)
             }
             R.id.ll_cancel_count ->{
-
+                val intent = Intent(requireContext(),OrderHistoryActivity::class.java)
+                intent.putExtra(HISTORY_ORDER_TYPE, CANCEL_ORDER)
+                startActivity(intent)
             }
             R.id.ll_complete_count ->{
-
+                val intent = Intent(requireContext(),OrderHistoryActivity::class.java)
+                intent.putExtra(HISTORY_ORDER_TYPE, COMPLETE_ORDER)
+                startActivity(intent)
             }
         }
     }

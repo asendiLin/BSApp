@@ -2,10 +2,12 @@ package com.bojue.bsapp.inject
 
 import android.arch.lifecycle.ViewModelProvider
 import com.bojue.bsapp.community.CommunityViewModel
+import com.bojue.bsapp.community.MyselfCommunityViewModel
 import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
 import com.bojue.bsapp.order.OrderDetailViewModel
+import com.bojue.bsapp.order.OrderHistoryViewModel
 import com.bojue.bsapp.order.OrderViewModel
 import com.bojue.bsapp.publish.PublishOrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
@@ -79,4 +81,14 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(PublishOrderViewModel::class)
     fun publishOrderViewModel(viewModel: PublishOrderViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderHistoryViewModel::class)
+    fun orderHistoryViewModel(viewModel: OrderHistoryViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MyselfCommunityViewModel::class)
+    fun selfCommunityViewModel(viewModel: MyselfCommunityViewModel):IViewModel
 }

@@ -29,7 +29,7 @@
         <item>陪伴</item>
         <item>其他</item>
     </string-array>
-    
+
     <string name="student_identify">学生认证：%1$s</string>
     <string name="phone_number">手机号码：%1$s</string>
     <string name="clear_cache">清理缓存：%1$s M</string>

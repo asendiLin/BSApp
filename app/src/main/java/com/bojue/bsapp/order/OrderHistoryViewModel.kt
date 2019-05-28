@@ -5,17 +5,18 @@ import android.arch.lifecycle.LiveData
 import com.bojue.bsapp.model.BaseResponse
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.viewmodel.BaseViewModel
+import com.yanzhenjie.album.mvp.BaseView
 import javax.inject.Inject
 
 /**
  * author: asendi.
- * data: 2019/5/22.
+ * data: 2019/5/28.
  * description:
  */
-class OrderViewModel @Inject constructor(application: Application,val repository : OrderRepository)
+class OrderHistoryViewModel @Inject constructor(application: Application,val repository: OrderRepository)
     : BaseViewModel(application) {
 
-    fun getOrderList(type :Int):LiveData<BaseResponse<List<OrderModel>>>{
-        return repository.getOrderList(type)
+    fun getHistoryOrderList(orderType : Int,stuId :Int): LiveData<BaseResponse<List<OrderModel>>> {
+        return repository.getHistoryOrderList(orderType, stuId)
     }
 }

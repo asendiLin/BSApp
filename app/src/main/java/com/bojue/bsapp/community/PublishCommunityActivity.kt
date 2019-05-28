@@ -63,7 +63,7 @@ class PublishCommunityActivity : BaseActivity() {
             mBitmap?.let {
                 mUploadPicManager.uploadPic(this,it,object : UploadPicManager.OnUploadPicListener{
                     override fun onSuccess(path: String) {
-                        pic = SPUtils.getString(this@PublishCommunityActivity,"url","http://192.168.1.103/")+path
+                        pic = path
                         mCommunityViewModel.publish(content, stuId, pic, DateUtils
                                 .getDate())
                                 .observe(this@PublishCommunityActivity, Observer { result ->

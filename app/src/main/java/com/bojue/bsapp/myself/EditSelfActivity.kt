@@ -58,6 +58,7 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
         mEtSignature = findViewById(R.id.et_signature)
         mIvUserIcon = findViewById(R.id.iv_user_icon)
 
+        mBtnComplete.setOnClickListener(this)
         mTvBack.setOnClickListener(this)
         val user = UserManager.getUser()
         mEtNickname.setText(user.nickname?:"")

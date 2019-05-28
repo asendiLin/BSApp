@@ -1,6 +1,7 @@
 package com.bojue.bsapp.publish
 
 import android.app.Application
+import android.arch.lifecycle.LiveData
 import com.bojue.bsapp.order.OrderRepository
 import com.bojue.bsapp.viewmodel.BaseViewModel
 import javax.inject.Inject
@@ -12,5 +13,11 @@ import javax.inject.Inject
  */
 class PublishOrderViewModel @Inject constructor(application: Application,val repository: OrderRepository)
     :BaseViewModel(application) {
-    fun publishOrder(content :String,stuId:Int,type:Int,phone:String,price:Float){}
+
+    val publishLiveData = repository.publishOrderLiveData
+
+    fun publishOrder(content :String,stuId:Int,type:Int,phone:String,
+                     price:Int,endDate : String,address:String){
+        repository.publishOrder(content, stuId, type, phone, price, endDate, address)
+    }
 }

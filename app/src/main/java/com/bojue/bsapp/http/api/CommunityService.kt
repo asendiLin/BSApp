@@ -23,4 +23,6 @@ interface CommunityService {
 
     @POST("Treehole/findTreehole.action")
     fun getCommunityList():Call<BaseResponse<List<CommunityModel>>>
+
+    fun getSelfCommunityList():Call<BaseResponse<List<CommunityModel>>>
 }

@@ -1,11 +1,13 @@
 package com.bojue.bsapp.publish
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,10 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
 import com.bojue.bsapp.R
+import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.ext.getViewModel
+import com.bojue.bsapp.util.UserManager
+import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,14 +30,9 @@ import java.util.*
  */
 class PublishOrderFragment : BaseFragment(),View.OnClickListener{
 
-    private val mOriginType = 0
-    private val paotui =1
-    private val daina =2
-    private val pinche =3
-    private val huhuan =4
-    private val shunfengche =5
-    private val peiban =6
-    private val other =7
+    private val myTag = "PublishOrderFragment"
+
+
 
     private lateinit var rootView: View
     private lateinit var pvTime: TimePickerView
@@ -51,8 +51,11 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
     private lateinit var mEtPay :EditText
     private lateinit var mEtDetailContent :EditText
 
+    private val mLoadingDialog by lazy {
+        LoadingDialog(requireActivity())
+    }
 
-    private var mCurrentType = mOriginType
+    private var mCurrentType = originType
     private  val  mPublishViewModel by lazy { 
         getViewModel(PublishOrderViewModel::class.java)
     }
@@ -122,20 +125,39 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       
+
+        mPublishViewModel.publishLiveData.observe(this, Observer {result ->
+            Log.i(myTag,"result-> $result")
+            if (mLoadingDialog.isShowing){
+                mLoadingDialog.dismiss()
+            }
+            result?.let {
+                if (result.status == SUCCESS_STATU){
+                    Toast.makeText(requireContext(),"发布成功",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(requireContext(),result.message,Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
+
+        })
 
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_order_publish ->{
+                mLoadingDialog.show()
+                val stuId = if(UserManager.getUser().stuId == 0) 4 else UserManager.getUser().stuId
                 val phoneNumber = mEtPhoneNumber.text.toString()
-                val pay = mEtPay.text.toString()
+                val pay = mEtPay.text.toString().toInt()
                 val date = txt_timepicker.text.toString()
                 val orderDetail = mEtDetailContent.text.toString()
-                val loaction = "广东海洋大学"
-                //TODO:发布订单
-                mPublishViewModel.publishOrder()
+                val location = "广东海洋大学"
+
+                mPublishViewModel.publishOrder(orderDetail,stuId,mCurrentType,phoneNumber,
+                        pay,date,location)
             }
             R.id.tv_order_type1 ->{
                 showSelectedType(paotui)
@@ -174,27 +196,27 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
             }
             daina ->{
                 mTvType2.background = getNormalBackground()
-                mTvType1.setTextColor(R.color.colorBlack)
+                mTvType2.setTextColor(R.color.colorBlack)
             }
             pinche ->{
                 mTvType3.background = getNormalBackground()
-                mTvType1.setTextColor(R.color.colorBlack)
+                mTvType3.setTextColor(R.color.colorBlack)
             }
             huhuan ->{
                 mTvType4.background = getNormalBackground()
-                mTvType1.setTextColor(R.color.colorBlack)
+                mTvType4.setTextColor(R.color.colorBlack)
             }
             shunfengche ->{
                 mTvType5.background = getNormalBackground()
-                mTvType1.setTextColor(R.color.colorBlack)
+                mTvType5.setTextColor(R.color.colorBlack)
             }
             peiban ->{
                 mTvType6.background = getNormalBackground()
-                mTvType1.setTextColor(R.color.colorBlack)
+                mTvType6.setTextColor(R.color.colorBlack)
             }
             other ->{
                 mTvType7.background = getNormalBackground()
-                mTvType1.setTextColor(R.color.colorBlack)
+                mTvType7.setTextColor(R.color.colorBlack)
             }
         }
         
@@ -205,27 +227,27 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
             }
             daina ->{
                 mTvType2.background = getSelectedBackground()
-                mTvType1.setTextColor(R.color.colorTheme)
+                mTvType2.setTextColor(R.color.colorTheme)
             }
             pinche ->{
                 mTvType3.background = getSelectedBackground()
-                mTvType1.setTextColor(R.color.colorTheme)
+                mTvType3.setTextColor(R.color.colorTheme)
             }
             huhuan ->{
                 mTvType4.background = getSelectedBackground()
-                mTvType1.setTextColor(R.color.colorTheme)
+                mTvType4.setTextColor(R.color.colorTheme)
             }
             shunfengche ->{
                 mTvType5.background = getSelectedBackground()
-                mTvType1.setTextColor(R.color.colorTheme)
+                mTvType5.setTextColor(R.color.colorTheme)
             }
             peiban ->{
                 mTvType6.background = getSelectedBackground()
-                mTvType1.setTextColor(R.color.colorTheme)
+                mTvType6.setTextColor(R.color.colorTheme)
             }
             other ->{
                 mTvType7.background = getSelectedBackground()
-                mTvType1.setTextColor(R.color.colorTheme)
+                mTvType7.setTextColor(R.color.colorTheme)
             }
         }
         mCurrentType = type
@@ -239,7 +261,7 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
     }
     
     @SuppressLint("SimpleDateFormat")
-    fun dateToStrLong(date:Date): String {
+    fun dateToStrLong(date: Date): String {
         val formatter = SimpleDateFormat("MM月dd日")
         val dateString = formatter.format(date)
         return dateString
