@@ -16,8 +16,8 @@ import javax.inject.Inject
 class MyselfCommunityViewModel @Inject constructor(application: Application,val repository: CommunityRepository)
     : BaseViewModel(application) {
 
-    fun getCommunityList() : LiveData<BaseResponse<List<CommunityModel>>>{
-        return repository.getSelfCommunityList()
+    fun getCommunityList(username : String) : LiveData<BaseResponse<List<CommunityModel>>>{
+        return repository.getSelfCommunityList(username)
     }
 
 }

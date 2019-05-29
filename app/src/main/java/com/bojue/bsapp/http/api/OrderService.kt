@@ -27,7 +27,7 @@ interface OrderService {
 
     @FormUrlEncoded
     @POST("Orders/deleteById.action")
-    fun deleteOrder(@Field("id") id : Int):Call<BaseResponse<Any>>
+    fun deleteOrder(@Field("id") id : Int):Call<BaseResponse<String>>
 
     /**
      * status=1&id=10&studentId=3 接单
@@ -36,7 +36,7 @@ interface OrderService {
      */
     @FormUrlEncoded
     @POST("Orders/setStatus.action")
-    fun changeOrderStatus(@Field("status") status :Int ,@Field("id") id:Int,@Field("studentId") stuId:Int):Call<BaseResponse<Any>>
+    fun changeOrderStatus(@Field("status") status :Int ,@Field("id") id:Int,@Field("studentId") stuId:Int):Call<BaseResponse<String>>
 
     @FormUrlEncoded
     @POST("Orders/publish.action")

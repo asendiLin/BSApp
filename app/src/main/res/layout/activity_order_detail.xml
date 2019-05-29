@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
     >
 
@@ -22,22 +23,22 @@
             >
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_user_pic"
+                android:id="@+id/iv_user_pic"
                 android:layout_width="@dimen/space_xxl"
                 android:layout_height="@dimen/space_xxl"
                 android:layout_marginBottom="@dimen/space_m"
                 android:layout_marginTop="@dimen/space_s"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/jaygee"
+                tools:src="@mipmap/jaygee"
                 />
 
             <TextView
-                android:id="@+id/txt_user_name"
+                android:id="@+id/tv_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="12dp"
-                android:text="eyergirl"
+                tools:text="eyergirl"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/txt_m"
                 />
@@ -45,34 +46,16 @@
 
 
         <TextView
-            android:id="@+id/txt_phone_number"
+            android:id="@+id/tv_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:drawableLeft="@mipmap/ic_phone"
             android:gravity="center"
-            android:text="13420118899"
+            tools:text="13420118899"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/txt_m"
             />
-
-
-        <LinearLayout
-            style="@style/need_detail_ll_style"
-            >
-
-            <TextView
-                style="@style/need_detail_txt_style"
-                android:text="开始时间："
-                />
-
-            <TextView
-                android:id="@+id/txt_start_time"
-                style="@style/need_detail_txt_style"
-                android:layout_marginLeft="@dimen/space_s"
-                android:text="1月2日"
-                />
-        </LinearLayout>
 
         <LinearLayout
             style="@style/need_detail_ll_style"
@@ -84,10 +67,10 @@
                 />
 
             <TextView
-                android:id="@+id/txt_end_time"
+                android:id="@+id/tv_end_time"
                 style="@style/need_detail_txt_style"
                 android:layout_marginLeft="@dimen/space_s"
-                android:text="1月10日"
+                tools:text="1月10日"
                 />
         </LinearLayout>
 
@@ -99,15 +82,42 @@
             />
 
         <TextView
-            android:id="@+id/txt_content"
+            android:id="@+id/tv_order_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_m"
-            android:text="今天要出门，可以来借我去校门口吗？我会恩感谢你的。"
+            tools:text="今天要出门，可以来借我去校门口吗？我会恩感谢你的。"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/txt_m"
             />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/space_ss"
+                android:layout_height="@dimen/space_ss"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_position"/>
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                android:background="@drawable/detail_ll_bg"
+                android:paddingBottom="@dimen/space_xxs"
+                android:paddingLeft="@dimen/space_s"
+                android:paddingRight="@dimen/space_s"
+                android:paddingTop="@dimen/space_xxs"
+                tools:text="广东海洋大学"
+                android:textSize="@dimen/txt_s"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,10 +138,10 @@
                 />
 
             <TextView
-                android:id="@+id/txt_price"
+                android:id="@+id/tv_order__price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10"
+                tools:text="10"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/txt_m"
                 android:textStyle="bold"
@@ -153,12 +163,12 @@
         android:id="@+id/btn_order_accept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="接单"
-        android:background="@color/colorTheme"
-        android:textColor="@color/colorWhite"
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
         android:layout_marginTop="30dp"
+        android:background="@color/colorTheme"
+        android:text="接单"
+        android:textColor="@color/colorWhite"
         />
 
 </LinearLayout>

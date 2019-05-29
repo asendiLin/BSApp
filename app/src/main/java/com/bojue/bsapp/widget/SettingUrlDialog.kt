@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.bojue.bsapp.R
+import com.bojue.bsapp.constance.BASE_URL
+import com.bojue.bsapp.constance.BASE_URL_KEY
 import com.bojue.bsapp.util.SPUtils
 
 /**
@@ -24,15 +26,16 @@ class SettingUrlDialog(private val mContext: Context)
         setContentView(R.layout.dialog_settiing)
         setCanceledOnTouchOutside(false)
         mEtUrl = findViewById(R.id.et_url)
+        mEtUrl.setText(SPUtils.getString(context, BASE_URL_KEY, BASE_URL))
         mBtnSave = findViewById(R.id.btn_save)
         mBtnSave.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btn_identify -> {
+            R.id.btn_save -> {
                 val url = mEtUrl.text.toString()
-                SPUtils.saveString(mContext,"base_url", url)
+                SPUtils.saveString(mContext, BASE_URL_KEY, url)
                 dismiss()
             }
         }

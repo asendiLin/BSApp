@@ -3,6 +3,7 @@ package com.bojue.bsapp.inject
 import android.arch.lifecycle.ViewModelProvider
 import com.bojue.bsapp.community.CommunityViewModel
 import com.bojue.bsapp.community.MyselfCommunityViewModel
+import com.bojue.bsapp.course.CourseViewModel
 import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
@@ -91,4 +92,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(MyselfCommunityViewModel::class)
     fun selfCommunityViewModel(viewModel: MyselfCommunityViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CourseViewModel::class)
+    fun courseViewModel(viewModel: CourseViewModel):IViewModel
 }

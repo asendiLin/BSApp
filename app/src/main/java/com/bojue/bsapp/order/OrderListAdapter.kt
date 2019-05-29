@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.model.OrderModel
+import com.bojue.bsapp.util.ShowImageUtil
 import com.bumptech.glide.Glide
 
 /**
@@ -29,7 +30,7 @@ class OrderListAdapter(private val mOrderList : List<OrderModel>,private val mCo
         val orderModel = mOrderList[position]
 
         viewHolder.tvUserNickname.text = orderModel.student?.nickname
-        Glide.with(mContext).load(orderModel.student?.icon).into(viewHolder.ivUserIcon)
+        ShowImageUtil.showImage(mContext,viewHolder.ivUserIcon,orderModel.student?.icon)
         viewHolder.tvEndDate.text = orderModel.time
         viewHolder.tvContent.text = orderModel.content
         viewHolder.tvEndDate.text = orderModel.time

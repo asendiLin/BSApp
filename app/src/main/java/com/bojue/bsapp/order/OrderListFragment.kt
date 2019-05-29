@@ -52,7 +52,8 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
         mOrderListAdapter.setOnOrderIntemClickListener(object : OrderListAdapter.OnOrderIntemClickListener{
             override fun onOrderItemClick(position: Int) {
                 val intent = Intent(requireActivity(),OrderDetailActivity::class.java)
-                startActivity(intent)
+                intent.putExtra(ORDER_DETAIL,mOrderList[position])
+                requireContext().startActivity(intent)
             }
         })
         return mRootView

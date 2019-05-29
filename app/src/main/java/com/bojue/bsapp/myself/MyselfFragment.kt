@@ -1,6 +1,9 @@
 package com.bojue.bsapp.myself
 
+import android.app.Dialog
+import android.arch.lifecycle.Observer
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
@@ -8,20 +11,23 @@ import android.support.v7.widget.Toolbar
 import com.bojue.bsapp.R
 import com.bojue.core.common.BaseFragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.*
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import com.bojue.bsapp.constance.CANCEL_ORDER
-import com.bojue.bsapp.constance.COMPLETE_ORDER
-import com.bojue.bsapp.constance.DOING_ORDER
-import com.bojue.bsapp.constance.HISTORY_ORDER_TYPE
+import android.widget.*
+import com.bojue.bsapp.community.MyselfCommunityActivity
+import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.course.CourseActivity
+import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.order.OrderHistoryActivity
 import com.bojue.bsapp.setting.SettingActivity
+import com.bojue.bsapp.util.ShowImageUtil
+import com.bojue.bsapp.util.UploadPicManager
 import com.bojue.bsapp.util.UserManager
+import com.bojue.bsapp.widget.LoadingDialog
 import com.bumptech.glide.Glide
+import com.yanzhenjie.album.Album
+import com.yanzhenjie.album.api.widget.Widget
+import java.io.File
 
 
 /**
@@ -30,8 +36,9 @@ import com.bumptech.glide.Glide
  * description:
  */
 class MyselfFragment : BaseFragment(), View.OnClickListener {
-    private lateinit var mRootView: View
+    private val myTag = "MyselfFragment"
 
+    private lateinit var mRootView: View
     private lateinit var mTbTop: Toolbar
     private lateinit var mAblTop: AppBarLayout
     private lateinit var mCtlTop: CollapsingToolbarLayout
@@ -47,6 +54,15 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
     private lateinit var mLlDoingCount : LinearLayout
     private lateinit var mLlCancelCount : LinearLayout
     private lateinit var mLlCompleteCount : LinearLayout
+    private lateinit var mLlMyselfCommunity : LinearLayout
+
+    private val mLoadingDialog by lazy {
+        LoadingDialog(requireActivity())
+    }
+
+    private val mMyselfViewModel by lazy {
+        getViewModel(MyselfViewModel::class.java)
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_myself_layout, null, false)
         mTbTop = mRootView.findViewById(R.id.tb_top)
@@ -64,11 +80,11 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
         mLlDoingCount = mRootView.findViewById(R.id.ll_doing_count)
         mLlCompleteCount = mRootView.findViewById(R.id.ll_complete_count)
         mLlCancelCount = mRootView.findViewById(R.id.ll_cancel_count)
-
+        mLlMyselfCommunity = mRootView.findViewById(R.id.ll_myself_community)
         val user = UserManager.getUser()
         mTvNickname.text = user.nickname
         mTvSignature.text = user.signature
-        Glide.with(this).load(user.icon).into(mIvUserIcon)
+        ShowImageUtil.showImage(this,mIvUserIcon,user.icon)
 
         mIbSetting.setOnClickListener(this)
         mTvEditInfo.setOnClickListener(this)
@@ -76,11 +92,17 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
         mLlDoingCount.setOnClickListener(this)
         mLlCancelCount.setOnClickListener(this)
         mLlCompleteCount.setOnClickListener(this)
+        mIvUserIcon.setOnClickListener(this)
+        mLlMyselfCommunity.setOnClickListener(this)
 
         (activity as AppCompatActivity).setSupportActionBar(mTbTop)
-        mCtlTop.title = "sendi"
+        mCtlTop.title = UserManager.getUser().nickname
 
         return mRootView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onClick(v: View?) {
@@ -112,8 +134,11 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
                 intent.putExtra(HISTORY_ORDER_TYPE, COMPLETE_ORDER)
                 startActivity(intent)
             }
+            R.id.ll_myself_community ->{
+                val intent = Intent(requireActivity(),MyselfCommunityActivity::class.java)
+                requireActivity().startActivity(intent)
+            }
         }
     }
-
 
 }

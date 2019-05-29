@@ -7,9 +7,15 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.bojue.bsapp.R
+import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.util.DateUtils
 import com.bojue.bsapp.util.PrefUtils
 import com.bojue.core.common.BaseActivity
+import android.arch.lifecycle.Observer
+import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.bojue.bsapp.model.CourseModel
+import com.bojue.bsapp.util.CourseUtil
+import com.bojue.bsapp.widget.LoadingDialog
 import java.util.*
 
 class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedListener,View.OnClickListener {
@@ -24,6 +30,12 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
     private lateinit var mWeekSpinner: Spinner
     private lateinit var mWeekDayAdapter: WeekDayAdapter
     private lateinit var mWeekArr: ArrayList<String>
+
+
+    private val mCourseViewModel by lazy {
+        getViewModel(CourseViewModel::class.java)
+    }
+
     /**
      * 课程页面的button引用，6行7列
      */
@@ -59,29 +71,54 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
 
     private fun initCourseTable() {
 
-        findViewById<Button>( lessons[0][3]).setBackgroundResource(getRandomBgRes())
-        findViewById<Button>( lessons[0][3]).text = "智能商务 \n 第二教学楼B3305"
+        val loadindDialog = LoadingDialog(this)
+        loadindDialog.show()
 
-        findViewById<Button>( lessons[3][1]).setBackgroundResource(getRandomBgRes())
-        findViewById<Button>( lessons[3][1]).text = "RFID技术及应用 \n 第二教学楼B3503"
+        mCourseViewModel.courseLiveData.observe(this,Observer { result ->
+            loadindDialog.dismiss()
 
-        findViewById<Button>( lessons[2][2]).setBackgroundResource(getRandomBgRes())
-        findViewById<Button>( lessons[2][2]).text = "物联网工程 \n 第二教学楼B4305"
+            if (result?.status == SUCCESS_STATU){
 
-        findViewById<Button>( lessons[3][2]).setBackgroundResource(getRandomBgRes())
-        findViewById<Button>( lessons[3][2]).text = "移动通信与移动技术 \n 第二教学楼B3304"
+                showCourse(result.data)
 
-        findViewById<Button>( lessons[2][5]).setBackgroundResource(getRandomBgRes())
-        findViewById<Button>( lessons[2][5]).text = "移动通信与移动技术 \n 第二教学楼B3304"
+            }else{
+                Toast.makeText(this,"获取课表数据失败",Toast.LENGTH_SHORT).show()
+            }
 
-        findViewById<Button>( lessons[3][5]).setBackgroundResource(getRandomBgRes())
-        findViewById<Button>( lessons[3][5]).text = "物联网工程 \n 第二教学楼B4305"
+        })
 
-//        for (row in 0..4){
-//            for (col in 0..6){
-//                findViewById<Button>( lessons[row][col]).setBackgroundResource(getRandomBgRes())
-//            }
-//        }
+        getCourseData()
+
+
+    }
+
+    private fun getCourseData() {
+        val number = "201511671118"
+        val password = "xs5201314"
+        mCourseViewModel.getCourses(number,password)
+    }
+
+    private fun showCourse(data: List<CourseModel>?) {
+        data?.forEach { course ->
+
+            var week = course.week
+            val section = CourseUtil.getsSection(course)
+            val name = course.name
+            val classroom = course.classroom
+            val isCurrentWeek  = CourseUtil.isCurrentWeekHas(course.period,mSelectWeekNum)
+            Log.i(myTag,"isCurrentWeek -> $isCurrentWeek,mSelectWeekNum-> $mSelectWeekNum")
+            if (week == 7){
+                week =0
+            }
+
+            Log.i(myTag,"week = $week section= $section")
+            findViewById<Button>(lessons[section][week]).text = "$name\n$classroom"
+            if (isCurrentWeek){
+                findViewById<Button>(lessons[section][week]).background = resources.getDrawable(getRandomBgRes())
+            } else{
+                findViewById<Button>(lessons[section][week]).background = resources.getDrawable(R.drawable.kb0)
+            }
+        }
     }
 
     private fun initWeekSpinner() {
@@ -109,9 +146,7 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
     }
 
     private fun clickSelectCurrWeekNum() {
-//        if (mCurrWeekNum == 0) {
-//            return
-//        }
+
         val num = arrayOfNulls<String>(25)
         for (i in 0..24) {
             num[i] = "第" + (i + 1).toString() + "周"
@@ -154,6 +189,7 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         Log.i(myTag, "onItemSelected select item $position")
         mSelectWeekNum = position+1
+        getCourseData()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

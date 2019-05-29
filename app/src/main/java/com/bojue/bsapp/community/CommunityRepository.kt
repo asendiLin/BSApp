@@ -49,7 +49,27 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
         return mCommunityListLiveData
     }
 
-    fun getSelfCommunityList(): LiveData<BaseResponse<List<CommunityModel>>>{
+    fun getSelfCommunityList(username :String): LiveData<BaseResponse<List<CommunityModel>>>{
+
+        service.getSelfCommunityList(username).enqueue(object :Callback<BaseResponse<List<CommunityModel>>>{
+            override fun onFailure(call: Call<BaseResponse<List<CommunityModel>>>?, t: Throwable?) {
+                Log.i(myTag,"onFailure -> ${t?.message}")
+                mSelfCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",100))
+            }
+
+            override fun onResponse(call: Call<BaseResponse<List<CommunityModel>>>?, response: Response<BaseResponse<List<CommunityModel>>>?) {
+                Log.i(myTag,"onResponse -> ${response?.body()}")
+                response?.let {
+                    if (response.isSuccessful){
+                        mSelfCommunityListLiveData.postValue(response.body())
+                    }else {
+                        mSelfCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU,response.errorBody().string(),100))
+                    }
+                }
+            }
+        }
+        )
+
         return mSelfCommunityListLiveData
     }
 

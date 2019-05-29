@@ -15,10 +15,7 @@ import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
-import com.bojue.bsapp.util.DateUtils
-import com.bojue.bsapp.util.MediaLoader
-import com.bojue.bsapp.util.SPUtils
-import com.bojue.bsapp.util.UploadPicManager
+import com.bojue.bsapp.util.*
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.yanzhenjie.album.Album
@@ -57,15 +54,14 @@ class PublishCommunityActivity : BaseActivity() {
             loadingDialog.show()
 
             val content = mEtContent.text.toString()
-            val stuId = SPUtils.getInt(this,"id",4)?:4
+            val stuId = UserManager.getUser().stuId
             var pic = ""
 
             mBitmap?.let {
                 mUploadPicManager.uploadPic(this,it,object : UploadPicManager.OnUploadPicListener{
                     override fun onSuccess(path: String) {
                         pic = path
-                        mCommunityViewModel.publish(content, stuId, pic, DateUtils
-                                .getDate())
+                        mCommunityViewModel.publish(content, stuId, pic, DateUtils.getDate())
                                 .observe(this@PublishCommunityActivity, Observer { result ->
                                     loadingDialog.dismiss()
                                     result?.let {
@@ -100,15 +96,8 @@ class PublishCommunityActivity : BaseActivity() {
                 mBitmap = it.bitmap
             }
         })
-
-        initAlbum()
     }
 
-    private fun initAlbum() {
-        Album.initialize(AlbumConfig.newBuilder(this)
-                .setAlbumLoader(MediaLoader())
-                .build())
-    }
 
     private fun showBottomDialog() {
         val bottomDialog = Dialog(this, R.style.BottomDialog)

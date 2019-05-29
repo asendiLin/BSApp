@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.BASE_URL
+import com.bojue.bsapp.constance.BASE_URL_KEY
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.util.SPUtils
@@ -39,7 +40,7 @@ class SettingActivity :BaseActivity(),View.OnClickListener {
         mTvIdentifyStudent.text = getString(R.string.student_identify,"${user.number}")
         mTvPhoneNumber.text = getString(R.string.phone_number,"${user.phone}")
         mTvClearCache.text = getString(R.string.clear_cache,"16.6")
-        mTvSettingUrl.text = SPUtils.getString(this,"base_url", BASE_URL)
+        mTvSettingUrl.text = SPUtils.getString(this, BASE_URL_KEY, BASE_URL)
         mTvSettingUrl.setOnClickListener(this)
         mTvBack.setOnClickListener(this)
         mTvIdentifyStudent.setOnClickListener(this)

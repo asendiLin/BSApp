@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -28,6 +30,17 @@ android {
         arguments {
             arg('eventBusIndex', 'com.bojue.core.event.EventBusIndexCore')
         }
+    }
+
+    greendao {
+        //版本号，升级时可配置
+        schemaVersion 1
+        //生成的DAO，DaoMaster和DaoSession的包路径。默认与表实体所在的包路径相同
+
+        //生成的DAO，DaoMaster和DaoSession的加密包路径。默认与表实体所在的包路径相同
+        daoPackage 'com.bojue.bs.db'
+        //生成源文件的路径。默认源文件目录是在build目录中的(build/generated/source/greendao)
+        targetGenDir 'src/main/java'
     }
 }
 
@@ -83,4 +96,6 @@ dependencies {
 
     implementation 'com.sackcentury:shinebutton:0.2.0'
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+
+    implementation 'org.greenrobot:greendao:3.2.0'
 }

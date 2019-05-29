@@ -1,19 +1,28 @@
 package com.bojue.bsapp.myself
 
+import android.app.Dialog
 import android.arch.lifecycle.Observer
+import android.graphics.BitmapFactory
 import android.graphics.drawable.RippleDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
+import com.bojue.bsapp.util.ShowImageUtil
+import com.bojue.bsapp.util.UploadPicManager
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.bumptech.glide.Glide
+import com.yanzhenjie.album.Album
+import com.yanzhenjie.album.api.widget.Widget
 
 class EditSelfActivity : BaseActivity() , View.OnClickListener{
     private val myTag = "EditSelfActivity"
@@ -23,7 +32,10 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
     private lateinit var mEtNickname : EditText
     private lateinit var mEtSignature : EditText
     private lateinit var mIvUserIcon : ImageView
-    private  var mLoadingDialog : LoadingDialog? = null
+    private lateinit var mRlUserIcon : RelativeLayout
+    private val mLoadingDialog by lazy {
+        LoadingDialog(this)
+    }
     private val mEditInfoViewModel by lazy {
         getViewModel(EditInfoViewModel::class.java)
     }
@@ -34,7 +46,7 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
         initView()
 
         mEditInfoViewModel.editInfoLiveData.observe(this, Observer{result ->
-            mLoadingDialog?.dismiss()
+            mLoadingDialog.dismiss()
 
             Log.i(myTag,"user = ${result?.data}")
 
@@ -57,13 +69,15 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
         mEtNickname = findViewById(R.id.et_nickname)
         mEtSignature = findViewById(R.id.et_signature)
         mIvUserIcon = findViewById(R.id.iv_user_icon)
+        mRlUserIcon = findViewById(R.id.rl_user_icon)
 
         mBtnComplete.setOnClickListener(this)
         mTvBack.setOnClickListener(this)
+        mRlUserIcon.setOnClickListener(this)
         val user = UserManager.getUser()
         mEtNickname.setText(user.nickname?:"")
         mEtSignature.setText(user.signature?:"")
-        Glide.with(this).load(user.icon).into(mIvUserIcon)
+        ShowImageUtil.showImage(this,mIvUserIcon,user.icon)
     }
 
     override fun onClick(v: View?) {
@@ -73,19 +87,105 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                 finish()
             }
             R.id.btn_complete ->{
-                if (mLoadingDialog == null){
-                    mLoadingDialog = LoadingDialog(this)
-                    mLoadingDialog?.show()
-                }
+                mLoadingDialog.show()
                 val nickname = mEtNickname.text.toString()
                 val signature = mEtSignature.text.toString()
                 val user =UserManager.getUser()
                 user.nickname = nickname
                 user.signature = signature
-                mEditInfoViewModel.editInfo(user.stuId,user.username,user.password,
-                        user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
+                if (user.stuId == 0){
+                    mEditInfoViewModel.editInfo(4,user.username,user.password,
+                            user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
+                }else{
+                    mEditInfoViewModel.editInfo(user.stuId,user.username,user.password,
+                            user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
+                }
+            }
+            R.id.rl_user_icon ->{
+                showBottomDialog()
+            }
+        }
+    }
+
+
+    private fun showBottomDialog() {
+        val bottomDialog = Dialog(this, R.style.BottomDialog)
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_select_bottom, null, false)
+        val tvAlbum = view.findViewById<TextView>(R.id.tv_album)
+        val tvCamera = view.findViewById<TextView>(R.id.tv_camera)
+        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+        val titleWidget = Widget.newDarkBuilder(this)
+                .title("相册")
+                .build()
+        tvAlbum.setOnClickListener {
+            Album.image(this) // Image selection.
+                    .singleChoice()
+                    .widget(titleWidget)
+                    .camera(true)
+                    .columnCount(4)
+                    .onResult { albumFileList ->
+                        albumFileList.listIterator().forEach {
+                            Log.i(myTag, "path : ${it.path}")
+                            uploadPic(it.path)
+                        }
+                    }
+                    .onCancel { cancel ->
+                    }
+                    .start()
+            if (bottomDialog.isShowing) {
+                bottomDialog.dismiss()
+            }
+        }
+
+        tvCamera.setOnClickListener {
+            Album.camera(this)
+                    .image()
+                    .onResult { path ->
+                        Log.i(myTag, "path : $path")
+                        uploadPic(path)
+                    }
+                    .start()
+            if (bottomDialog.isShowing) {
+                bottomDialog.dismiss()
+            }
+        }
+
+        tvCancel.setOnClickListener {
+            if (bottomDialog.isShowing) {
+                bottomDialog.dismiss()
+            }
+        }
+
+        bottomDialog.setContentView(view)
+        val window = bottomDialog.window
+        window.setGravity(Gravity.BOTTOM)
+        val params = window.attributes
+        params.width = WindowManager.LayoutParams.MATCH_PARENT
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT
+        window.attributes = params
+        bottomDialog.show()
+    }
+
+    private fun uploadPic(path: String) {
+        val bitmap = BitmapFactory.decodeFile(path)
+        UploadPicManager().uploadPic(this,bitmap,object : UploadPicManager.OnUploadPicListener{
+            override fun onSuccess(path: String) {
+                val user = UserManager.getUser()
+                user.icon = path
+                if (user.stuId == 0){
+                    mEditInfoViewModel.editInfo(4,user.username,user.password,
+                            user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
+                }else{
+                    mEditInfoViewModel.editInfo(user.stuId,user.username,user.password,
+                            user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
+                }
             }
 
-        }
+            override fun onFail(message: String) {
+                runOnUiThread {
+                    Toast.makeText(this@EditSelfActivity,message,Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 }

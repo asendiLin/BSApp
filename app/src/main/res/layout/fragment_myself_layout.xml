@@ -11,6 +11,7 @@
         android:id="@+id/abl_self_top"
         android:layout_width="match_parent"
         android:layout_height="260dp"
+
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
 
@@ -18,21 +19,22 @@
             android:id="@+id/ctbl_self_top"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorTheme"
             app:collapsedTitleTextAppearance="@style/ToolBarTitleText"
             app:contentScrim="@color/colorTheme"
             app:expandedTitleTextAppearance="@style/TransparentText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             >
 
-            <ImageView
-                android:id="@+id/iv_self_background"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/jaygee"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.9"
-                />
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_self_background"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--android:src="@mipmap/jaygee"-->
+                <!--app:layout_collapseMode="parallax"-->
+                <!--app:layout_collapseParallaxMultiplier="0.9"-->
+                <!--/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -313,6 +315,7 @@
                 app:cardCornerRadius="8dp"
                 android:layout_marginTop="15dp">
                 <LinearLayout
+                    android:id="@+id/ll_myself_community"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"

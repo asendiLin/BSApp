@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
 import com.bojue.bsapp.R
+import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
+import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
 
 class MyselfCommunityActivity : BaseActivity() {
@@ -29,8 +33,17 @@ class MyselfCommunityActivity : BaseActivity() {
     }
 
     private fun initData() {
-        mCommunityViewModel.getCommunityList().observe(this, Observer {result ->
+//        val username = UserManager.getUser().username
+        val username = "13420117889"
+        mCommunityViewModel.getCommunityList(username).observe(this, Observer {result ->
             Log.i(myTag,"result - > $result")
+            if (result?.status == SUCCESS_STATU){
+                result.data?.let { data ->
+                    mCommunityList.addAll(data)
+                }
+            }else{
+                Toast.makeText(this,"获取动态列表失败",Toast.LENGTH_SHORT).show()
+            }
         })
     }
 
@@ -39,5 +52,8 @@ class MyselfCommunityActivity : BaseActivity() {
         mRvCommunityList.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         mCommunityListAdapter = MySelfCommunityAdapter(mCommunityList,this)
         mRvCommunityList.adapter = mCommunityListAdapter
+        val tvTitle = findViewById<TextView>(R.id.tv_title_content)
+        tvTitle.text = "我的动态"
+
     }
 }

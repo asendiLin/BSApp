@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.BASE_URL
+import com.bojue.bsapp.constance.BASE_URL_KEY
 import com.bojue.bsapp.model.CommunityModel
+import com.bojue.bsapp.util.SPUtils
 import com.bumptech.glide.Glide
 import com.sackcentury.shinebuttonlib.ShineButton
 
@@ -44,7 +46,7 @@ class CommunityAdapter(private val mActivity: FragmentActivity, private val mCom
         }
         vh.tvCommunityContent?.text = mCommunityList[position].content
         vh.tvNickname?.text = mCommunityList[position].nickname
-        Glide.with(mActivity).load("$BASE_URL${mCommunityList[position].pic}").into(vh.ivCommunityItem)
+        Glide.with(mActivity).load("${SPUtils.getString(mActivity, BASE_URL_KEY, BASE_URL)}${mCommunityList[position].pic}").into(vh.ivCommunityItem)
         Glide.with(mActivity).load(mCommunityList[position].icon).into(vh.ivUserImage)
 
         vh.btnLike?.setOnClickListener {

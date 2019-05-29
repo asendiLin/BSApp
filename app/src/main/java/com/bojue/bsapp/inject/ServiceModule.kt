@@ -26,8 +26,8 @@ class ServiceModule {
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(15, TimeUnit.SECONDS)
-                .writeTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(25, TimeUnit.SECONDS)
+                .writeTimeout(25, TimeUnit.SECONDS)
                 .build()
     }
 
@@ -75,5 +75,11 @@ class ServiceModule {
     @Singleton
     fun provideCommonService(retrofit: Retrofit): CommonService {
         return retrofit.create(CommonService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCourseService(retrofit: Retrofit): CourseService {
+        return retrofit.create(CourseService::class.java)
     }
 }

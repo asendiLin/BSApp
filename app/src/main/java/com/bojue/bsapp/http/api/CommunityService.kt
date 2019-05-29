@@ -24,5 +24,7 @@ interface CommunityService {
     @POST("Treehole/findTreehole.action")
     fun getCommunityList():Call<BaseResponse<List<CommunityModel>>>
 
-    fun getSelfCommunityList():Call<BaseResponse<List<CommunityModel>>>
+    @FormUrlEncoded
+    @POST("Student/getMyTreehole.action")
+    fun getSelfCommunityList(@Field("username")username :String):Call<BaseResponse<List<CommunityModel>>>
 }

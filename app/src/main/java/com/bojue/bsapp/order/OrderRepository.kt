@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.bojue.bsapp.constance.DOING_ORDER
 import com.bojue.bsapp.constance.FAIL_STATU
+import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.http.api.OrderService
 import com.bojue.bsapp.model.BaseResponse
 import com.bojue.bsapp.model.OrderModel
@@ -28,9 +29,9 @@ class OrderRepository @Inject constructor(val service : OrderService) {
     private val mAcceptOrderLiveData = MutableLiveData<BaseResponse<Any>>()
     private val mCancelOrderLiveData = MutableLiveData<BaseResponse<Any>>()
 
-    private val mChangeOrderStatusLiveData = MutableLiveData<BaseResponse<Any>>()
+    val changeOrderStatusLiveData = MutableLiveData<BaseResponse<String>>()
     val publishOrderLiveData = MutableLiveData<BaseResponse<Any>>()
-
+    val deleteOrderLiveData = MutableLiveData<BaseResponse<String>>()
     fun getOrderList(type : Int): LiveData<BaseResponse<List<OrderModel>>> {
 
         service.getOrderList(type).enqueue(object : Callback<BaseResponse<List<OrderModel>>>{
@@ -56,19 +57,25 @@ class OrderRepository @Inject constructor(val service : OrderService) {
         return mOrderListLiveData
     }
 
-    fun changeOrderStatus( status :Int ,id:Int,stuId:Int):LiveData<BaseResponse<Any>>{
+    fun changeOrderStatus( status :Int ,id:Int,stuId:Int):LiveData<BaseResponse<String>>{
 
-        service.changeOrderStatus(status,id,stuId).enqueue(object : Callback<BaseResponse<Any>>{
-            override fun onFailure(call: Call<BaseResponse<Any>>?, t: Throwable?) {
+        service.changeOrderStatus(status,id,stuId).enqueue(object : Callback<BaseResponse<String>>{
+            override fun onFailure(call: Call<BaseResponse<String>>?, t: Throwable?) {
                 Log.i(myTag,"onFailure -> ${t?.message}")
+                changeOrderStatusLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",0))
             }
 
-            override fun onResponse(call: Call<BaseResponse<Any>>?, response: Response<BaseResponse<Any>>?) {
+            override fun onResponse(call: Call<BaseResponse<String>>?, response: Response<BaseResponse<String>>?) {
                 Log.i(myTag,"onResponse -> ${response?.body()}")
+                if (response?.isSuccessful == true){
+                    changeOrderStatusLiveData.postValue(response.body())
+                }else{
+                    changeOrderStatusLiveData.postValue(BaseResponse(null, FAIL_STATU,"数据获取失败",0))
+                }
             }
         })
 
-        return mChangeOrderStatusLiveData
+        return changeOrderStatusLiveData
     }
 
     fun getHistoryOrderList(orderType : Int,stuId :Int):LiveData<BaseResponse<List<OrderModel>>>{
@@ -97,9 +104,29 @@ class OrderRepository @Inject constructor(val service : OrderService) {
         return mHistoryOrderListLiveData
     }
 
-    fun acceptOrder(){}
+    fun acceptOrder(){
+    }
 
-    fun cancelOrder(){}
+    fun deleteOrder(id :Int):LiveData<BaseResponse<String>>{
+        service.deleteOrder(id).enqueue(object : Callback<BaseResponse<String>>{
+            override fun onFailure(call: Call<BaseResponse<String>>?, t: Throwable?) {
+                Log.i(myTag,"onFailure -> ${t?.message}")
+                deleteOrderLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",0))
+            }
+
+            override fun onResponse(call: Call<BaseResponse<String>>?, response: Response<BaseResponse<String>>?) {
+                Log.i(myTag,"onResponse-> ${response?.body()}")
+                if (response?.isSuccessful == true){
+                    deleteOrderLiveData.postValue(response.body())
+                }else{
+                    deleteOrderLiveData.postValue(BaseResponse(null, FAIL_STATU,"数据请求出错",0))
+                }
+
+            }
+        })
+
+        return deleteOrderLiveData
+    }
 
     fun publishOrder(content :String,stuId:Int,type:Int,phone:String,
                      price:Int,endDate : String,address:String){
