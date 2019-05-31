@@ -65,7 +65,7 @@ class OrderDetailActivity : BaseActivity() {
         mToolbar.navigationIcon =resources.getDrawable(R.mipmap.ic_title_back)
         mToolbar.setNavigationOnClickListener { finish() }
         mBtnOrderAccept.setOnClickListener {
-            mLoadingDialog.show()
+
             acceptOrder(DOING_ORDER,mOrderModel.id,UserManager.getUser().id)
         }
         mTvTitle.text = "订单详情"
@@ -87,7 +87,11 @@ class OrderDetailActivity : BaseActivity() {
             ToastUtil.showShort(this,"通过学生认证后才能发布订单")
             return
         }
-       mOrderDetailViewModel.acceptOrder(status, id, stuId).observe(this , Observer { result->
+        if (UserManager.getUser().phone.isNullOrEmpty()){
+            ToastUtil.showShort(this,"您还没有设置手机号码哦")
+        }
+        mLoadingDialog.show()
+        mOrderDetailViewModel.acceptOrder(status, id, stuId).observe(this , Observer { result->
            if (mLoadingDialog.isShowing){
                mLoadingDialog.dismiss()
            }

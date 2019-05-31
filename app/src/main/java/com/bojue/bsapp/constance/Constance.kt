@@ -5,7 +5,8 @@ package com.bojue.bsapp.constance
  * data: 2019/5/22.
  * description:
  */
-const val DEFAULT_URL = "http://192.168.1.105/"
+const val DEFAULT_URL = "http://119.23.78.201/"
+//const val DEFAULT_URL = "http://192.168.1.105/"
 
 var BASE_URL= DEFAULT_URL
 const val SUCCESS_STATU = 1
@@ -23,6 +24,8 @@ const val BASE_URL_KEY = "base_url"
 const val COMMUNITY_LIST = "communityList"
 
 const val UNKNOW_USER = -1
+
+const val POSITION = "position"
 
  val originType = 0
  val paotui =1

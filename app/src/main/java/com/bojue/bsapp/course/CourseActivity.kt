@@ -23,23 +23,29 @@ import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import java.util.*
 
-class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedListener,View.OnClickListener {
+class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedListener, View.OnClickListener {
     private val myTag = "CourseActivity"
 
     private var mCurrWeekNum = 0
     private var mSelectWeekNum = 0
 
-    private lateinit var mTvTitleNav : TextView
-    private lateinit var mIbWeekSetting : ImageButton
+    private lateinit var mTvTitleNav: TextView
+    private lateinit var mIbWeekSetting: ImageButton
 
     private lateinit var mWeekSpinner: Spinner
     private lateinit var mWeekDayAdapter: WeekDayAdapter
     private lateinit var mWeekArr: ArrayList<String>
 
+    private var cFlag = false
+
     private var mPassword = ""
 
     private val mCourseViewModel by lazy {
         getViewModel(CourseViewModel::class.java)
+    }
+
+    private val mLoadingDialog by lazy {
+        LoadingDialog(this)
     }
 
     /**
@@ -77,42 +83,41 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
 
     private fun initCourseTable() {
 
-        val loadindDialog = LoadingDialog(this)
-        loadindDialog.show()
+        mCourseViewModel.courseLiveData.observe(this, Observer { result ->
+            mLoadingDialog.dismiss()
 
-        mCourseViewModel.courseLiveData.observe(this,Observer { result ->
-            loadindDialog.dismiss()
-
-            if (result?.status == SUCCESS_STATU){
+            if (result?.status == SUCCESS_STATU) {
 
                 showCourse(result.data)
 
-            }else{
-                Toast.makeText(this,"获取课表数据失败",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "获取课表数据失败", Toast.LENGTH_SHORT).show()
             }
 
         })
 
-        if (CourseUtil.shouldRefresh(this)){
+        if (CourseUtil.isShouldLoad()) {
             showPasswordDialog()
-        }else{
-            getCourseData(mPassword,UserManager.getUser().number!!)
+        } else {
+            getCourseData(mPassword, UserManager.getUser().number!!)
         }
     }
 
     private fun showPasswordDialog() {
         val bottomDialog = Dialog(this, R.style.BottomDialog)
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_input_password, null, false)
-        val btnPassword= view.findViewById<Button>(R.id.btn_get_password)
+        val btnPassword = view.findViewById<Button>(R.id.btn_get_password)
         val etPassword = view.findViewById<EditText>(R.id.et_password)
-        btnPassword.setOnClickListener{
+        btnPassword.setOnClickListener {
             val password = etPassword.text.toString()
             val user = UserManager.getUser()
-            getCourseData(password,user.number!!)
+            Log.i(myTag, "password $password number ${user.number}")
+            getCourseData(password, user.number!!)
+            bottomDialog.dismiss()
         }
         bottomDialog.setContentView(view)
         val window = bottomDialog.window
-        window.setGravity(Gravity.BOTTOM)
+        window.setGravity(Gravity.CENTER)
         val params = window.attributes
         params.width = WindowManager.LayoutParams.MATCH_PARENT
         params.height = WindowManager.LayoutParams.WRAP_CONTENT
@@ -120,8 +125,9 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
         bottomDialog.show()
     }
 
-    private fun getCourseData(password:String,number :String) {
-        mCourseViewModel.getCourses(number,password)
+    private fun getCourseData(password: String, number: String) {
+        mLoadingDialog.show()
+        mCourseViewModel.getCourses(number, password)
     }
 
     private fun showCourse(data: List<CourseModel>?) {
@@ -131,17 +137,17 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
             val section = CourseUtil.getsSection(course)
             val name = course.name
             val classroom = course.classroom
-            val isCurrentWeek  = CourseUtil.isCurrentWeekHas(course.period,mSelectWeekNum)
-            Log.i(myTag,"isCurrentWeek -> $isCurrentWeek,mSelectWeekNum-> $mSelectWeekNum")
-            if (week == 7){
-                week =0
+            val isCurrentWeek = CourseUtil.isCurrentWeekHas(course.period, mSelectWeekNum)
+            Log.i(myTag, "isCurrentWeek -> $isCurrentWeek,mSelectWeekNum-> $mSelectWeekNum")
+            if (week == 7) {
+                week = 0
             }
 
-            Log.i(myTag,"week = $week section= $section")
+            Log.i(myTag, "week = $week section= $section")
             findViewById<Button>(lessons[section][week]).text = "$name\n$classroom"
-            if (isCurrentWeek){
+            if (isCurrentWeek) {
                 findViewById<Button>(lessons[section][week]).background = resources.getDrawable(getRandomBgRes())
-            } else{
+            } else {
                 findViewById<Button>(lessons[section][week]).background = resources.getDrawable(R.drawable.kb0)
             }
         }
@@ -185,12 +191,12 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
             }
             PrefUtils.setBeginTime(this, DateUtils.countBeginTime(Calendar.getInstance(), which + 1))
 
-            refreshCourseTable(which+1)
+            refreshCourseTable(which + 1)
         })
         builder.create().show()
     }
 
-    private fun refreshCourseTable(selectCurrWeek : Int) {
+    private fun refreshCourseTable(selectCurrWeek: Int) {
         mCurrWeekNum = selectCurrWeek
         mWeekSpinner.setSelection(mCurrWeekNum - 1)
         mWeekDayAdapter.notifyDataSetChanged()
@@ -202,29 +208,36 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
 
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.tv_nav_title ->{
+        when (v?.id) {
+            R.id.tv_nav_title -> {
                 finish()
             }
             R.id.ib_week_setting -> {
-               clickSelectCurrWeekNum()
+                clickSelectCurrWeekNum()
             }
         }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         Log.i(myTag, "onItemSelected select item $position")
-        mSelectWeekNum = position+1
-        getCourseData(mPassword,UserManager.getUser().number!!)
+        mSelectWeekNum = position + 1
+        if (!cFlag) {
+            cFlag = true
+            if (!CourseUtil.isShouldLoad()){
+                getCourseData(mPassword, UserManager.getUser().number!!)
+            }
+        }else{
+            getCourseData(mPassword, UserManager.getUser().number!!)
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 
-    private fun getRandomBgRes(): Int{
+    private fun getRandomBgRes(): Int {
         val random = Random()
         val index = random.nextInt(25)
-        Log.i(myTag,"getRandomBgRes index -> $index")
+        Log.i(myTag, "getRandomBgRes index -> $index")
         return bg[index]
     }
 }

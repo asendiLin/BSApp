@@ -44,6 +44,12 @@ object UserManager {
         userEdit.apply()
     }
 
+    fun clearUser(){
+        val userEdit = mUserSP.edit()
+        userEdit.putInt(ID,UNKNOW_USER)
+        userEdit.apply()
+    }
+
     fun getUser():UserModel {
         val id = mUserSP.getInt(ID, UNKNOW_USER)
         val username = mUserSP.getString(USERNAME,"")

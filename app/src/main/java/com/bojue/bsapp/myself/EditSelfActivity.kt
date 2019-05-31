@@ -55,6 +55,7 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                         EventUtil.post(it)
                     }
                     Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show()
+                    finish()
                 }else{
                     Toast.makeText(this,result.message,Toast.LENGTH_SHORT).show()
                 }
@@ -93,13 +94,8 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                 Log.i(myTag,"edit info user-> $user")
                 user.nickname = nickname
                 user.signature = signature
-                if (user.id == 0){
-                    mEditInfoViewModel.editInfo(user.id,user.username,user.password,
+                mEditInfoViewModel.editInfo(user.id,user.username,user.password,
                             user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
-                }else{
-                    mEditInfoViewModel.editInfo(user.id,user.username,user.password,
-                            user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
-                }
             }
             R.id.rl_user_icon ->{
                 showBottomDialog()

@@ -81,6 +81,11 @@ object CourseUtil {
         return count
     }
 
+    fun isShouldLoad():Boolean{
+        val list = mDaoSession.courseEntityDao.loadAll()
+        return list.size == 0
+    }
+
     fun saveCourseList(courseList:List<CourseModel>){
         val gson = Gson()
         courseList.forEach {data ->

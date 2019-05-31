@@ -28,7 +28,7 @@ class CourseRepository @Inject constructor(val service : CourseService,val appli
     val courseLiveData = MutableLiveData<BaseResponse<List<CourseModel>>>()
 
     fun getCourseList(number:String, password:String){
-        if (CourseUtil.shouldRefresh(application)){
+        if (CourseUtil.isShouldLoad()){
             getCoursesFormRemote(number, password)
         }else{
             getCoursesFormLocal()

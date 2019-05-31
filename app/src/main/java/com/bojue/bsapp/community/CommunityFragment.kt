@@ -50,21 +50,25 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
         mSSCommunity.adapter = mCommunityListAdapter
         mSSCommunity.setListener(object : SwipeStack.SwipeStackListener{
             override fun onViewSwipedToLeft(position: Int) {
+                Log.i(myTag,"position -> $position")
 //                mRemoveCommunityList.add(mCommunityList[position])
             }
 
             override fun onViewSwipedToRight(position: Int) {
+                Log.i(myTag,"position -> $position")
 //                mRemoveCommunityList.add(mCommunityList[position])
             }
 
             override fun onStackEmpty() {
+                Log.i(myTag,"position ->onStackEmpty")
                 mBtnRelaod.visibility = View.VISIBLE
             }
         })
 
         mCommentDialog.setClickSendCommentCallback { position, content ->
             mLoadingDialog?.show()
-            mCommunityViewModel.publishComment(content,mCommunityList[position].studentId,mCommunityList[position].id)
+            Log.i(myTag,"publish  -> ${mCommunityList[position].id}")
+            mCommunityViewModel.publishComment(content,UserManager.getUser().id,mCommunityList[position].id)
         }
 
         mCommunityListAdapter.setOnClickListener(object : CommunityAdapter.OnClickItemListener{
@@ -77,8 +81,9 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
             }
 
             override fun comment(position: Int) {
+                Log.i(myTag,"comment  id -> ${mCommunityList[position].id}")
                 mCommunityViewModel.getCommentList(mCommunityList[position].id)
-                mCommentDialog.show(requireFragmentManager(),COMMENT_DIALOG_TAG)
+                mCommentDialog.show(requireFragmentManager(),COMMENT_DIALOG_TAG,position)
             }
         })
         mFlbAdd = mRootView.findViewById(R.id.fab_add_community)

@@ -18,6 +18,7 @@ import android.widget.*
 import com.bojue.bsapp.community.MyselfCommunityActivity
 import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.course.CourseActivity
+import com.bojue.bsapp.event.SettingEvent
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.model.UserModel
@@ -212,6 +213,15 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
         mTvNickname.text = user.nickname
         mTvSignature.text = user.signature
         ShowImageUtil.showImage(this, mIvUserIcon, user.icon)
+    }
+
+    @Subscribe
+    fun onSettingEvent(event : SettingEvent){
+        when(event.type){
+            SettingEvent.COURSE ->{
+                mTvCourseStatus.text = "您已通过学生认证，赶快查询课表吧！"
+            }
+        }
     }
 
 }

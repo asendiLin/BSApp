@@ -9,12 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.*
+import com.bojue.bsapp.event.RefreshEvent
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.ShowImageUtil
 import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
+import com.bojue.core.event.EventUtil
 
 class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
@@ -36,6 +38,8 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var mOrderDetail: OrderModel
 
+    private var mPosition = 0
+
     private val mLoadingDialog by lazy {
         LoadingDialog(this)
     }
@@ -53,6 +57,7 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
     private fun initData() {
         mOrderDetail = intent.getParcelableExtra(ORDER_DETAIL)
+        mPosition = intent.getIntExtra(POSITION,0)
         val type = intent.getIntExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
         showDetail(mOrderDetail, type)
 
@@ -63,6 +68,7 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
             }
 
             if (result?.status == SUCCESS_STATU){
+                EventUtil.post(RefreshEvent(mPosition))
                 finish()
             }else{
                 ToastUtil.showShort(this,"${result?.message}")
@@ -75,6 +81,7 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
                 mLoadingDialog.dismiss()
             }
             if (result?.status == SUCCESS_STATU){
+                EventUtil.post(RefreshEvent(mPosition))
                 finish()
             }else{
                 ToastUtil.showShort(this,"${result?.message}")

@@ -12,11 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.*
+import com.bojue.bsapp.event.RefreshEvent
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
+import com.bojue.core.event.EventUtil
+import org.greenrobot.eventbus.Subscribe
 
 class OrderHistoryActivity : BaseActivity() {
 
@@ -42,6 +45,7 @@ class OrderHistoryActivity : BaseActivity() {
         val historyType = intent.getIntExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
         mOrderType = historyType
         initDate(historyType)
+        EventUtil.register(this)
     }
 
     private fun initDate(historyType: Int) {
@@ -56,6 +60,10 @@ class OrderHistoryActivity : BaseActivity() {
                     mOrderList.addAll(list)
                 }
                 mOrderListAdapter.notifyDataSetChanged()
+                if (mOrderList.size == 0){
+                    mBtnReload.visibility = View.VISIBLE
+                    mBtnReload.text = "没有订单啦"
+                }
             } else {
                 mBtnReload.visibility = View.VISIBLE
                 mRvOrderList.visibility = View.GONE
@@ -86,6 +94,7 @@ class OrderHistoryActivity : BaseActivity() {
                 val intent = Intent(this@OrderHistoryActivity,OrderHistoryDetailActivity::class.java)
                 intent.putExtra(ORDER_DETAIL,mOrderList[position])
                 intent.putExtra(HISTORY_ORDER_TYPE,mOrderType)
+                intent.putExtra(POSITION , position)
                 startActivity(intent)
             }
         })
@@ -102,6 +111,23 @@ class OrderHistoryActivity : BaseActivity() {
             val stuId = UserManager.getUser().id
             mHistoryViewModel.getHistoryOrderList(type, stuId)
         }
-
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventUtil.unregister(this)
+    }
+
+    @Subscribe
+    fun onRefreshEvent(event : RefreshEvent){
+        val position = event.position
+        mOrderList.removeAt(position)
+        mOrderListAdapter.notifyDataSetChanged()
+
+        if (mOrderList.size == 0){
+            mBtnReload.visibility = View.VISIBLE
+            mBtnReload.text = "没有订单啦"
+        }
+    }
+
 }

@@ -24,7 +24,7 @@ class SettingRepository @Inject constructor(val service: SettingService) {
 
         service.indentyfy(username, number, password).enqueue(object :Callback<BaseResponse<String>>{
             override fun onResponse(call: Call<BaseResponse<String>>?, response: Response<BaseResponse<String>>?) {
-                Log.i(myTag,"onResponse -> status=${response?.body()?.status}")
+                Log.i(myTag,"onResponse -> status=${response?.body()}")
 
                 if (response?.isSuccessful == true){
                     identifyLiveData.postValue(response.body())

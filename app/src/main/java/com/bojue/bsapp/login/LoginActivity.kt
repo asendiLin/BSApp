@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import com.bojue.bsapp.R
@@ -30,6 +31,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_activity)
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         mEtUsername = findViewById(R.id.et_login_username)
         mEtPassword = findViewById(R.id.et_login_password)
         mBtnToRegister = findViewById(R.id.btn_to_register)
