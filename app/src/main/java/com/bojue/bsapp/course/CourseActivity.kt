@@ -1,6 +1,7 @@
 package com.bojue.bsapp.course
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +13,13 @@ import com.bojue.bsapp.util.DateUtils
 import com.bojue.bsapp.util.PrefUtils
 import com.bojue.core.common.BaseActivity
 import android.arch.lifecycle.Observer
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.WindowManager
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.model.CourseModel
 import com.bojue.bsapp.util.CourseUtil
+import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import java.util.*
 
@@ -31,6 +36,7 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
     private lateinit var mWeekDayAdapter: WeekDayAdapter
     private lateinit var mWeekArr: ArrayList<String>
 
+    private var mPassword = ""
 
     private val mCourseViewModel by lazy {
         getViewModel(CourseViewModel::class.java)
@@ -87,14 +93,34 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
 
         })
 
-        getCourseData()
-
-
+        if (CourseUtil.shouldRefresh(this)){
+            showPasswordDialog()
+        }else{
+            getCourseData(mPassword,UserManager.getUser().number!!)
+        }
     }
 
-    private fun getCourseData() {
-        val number = "201511671118"
-        val password = "xs5201314"
+    private fun showPasswordDialog() {
+        val bottomDialog = Dialog(this, R.style.BottomDialog)
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_input_password, null, false)
+        val btnPassword= view.findViewById<Button>(R.id.btn_get_password)
+        val etPassword = view.findViewById<EditText>(R.id.et_password)
+        btnPassword.setOnClickListener{
+            val password = etPassword.text.toString()
+            val user = UserManager.getUser()
+            getCourseData(password,user.number!!)
+        }
+        bottomDialog.setContentView(view)
+        val window = bottomDialog.window
+        window.setGravity(Gravity.BOTTOM)
+        val params = window.attributes
+        params.width = WindowManager.LayoutParams.MATCH_PARENT
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT
+        window.attributes = params
+        bottomDialog.show()
+    }
+
+    private fun getCourseData(password:String,number :String) {
         mCourseViewModel.getCourses(number,password)
     }
 
@@ -189,7 +215,7 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         Log.i(myTag, "onItemSelected select item $position")
         mSelectWeekNum = position+1
-        getCourseData()
+        getCourseData(mPassword,UserManager.getUser().number!!)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

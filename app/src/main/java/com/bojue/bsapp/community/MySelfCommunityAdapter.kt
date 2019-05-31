@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.util.ShowImageUtil
+import com.bojue.bsapp.util.UserManager
 import com.bumptech.glide.Glide
 
 /**
@@ -28,11 +29,13 @@ class MySelfCommunityAdapter constructor(private val mCommunityList : ArrayList<
 
     override fun onBindViewHolder(viewHolder: MySelfCommunityViewHolder, position: Int) {
         val communityViewModel = mCommunityList[position]
-        ShowImageUtil.showImage(mContext,viewHolder.ivComunityIcon,communityViewModel.icon)
+        val icon = UserManager.getUser().icon
+        val nickname = UserManager.getUser().nickname
+        ShowImageUtil.showImage(mContext,viewHolder.ivComunityIcon,icon)
         ShowImageUtil.showImage(mContext,viewHolder.ivComunityImage,communityViewModel.pic)
 //        Glide.with(mContext).load(communityViewModel.icon).into(viewHolder.ivComunityIcon)
 //        Glide.with(mContext).load(communityViewModel.pic).into(viewHolder.ivComunityImage)
-        viewHolder.tvCommunityNickname.text = communityViewModel.nickname
+        viewHolder.tvCommunityNickname.text = nickname
         viewHolder.tvComunityContent.text = communityViewModel.content
         viewHolder.tvCommunityZan.text = "(${communityViewModel.likes})"
         viewHolder.tvDeleteCommunity.setOnClickListener {

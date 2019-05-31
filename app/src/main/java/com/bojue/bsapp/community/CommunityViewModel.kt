@@ -21,16 +21,31 @@ class CommunityViewModel @Inject constructor(application: Application,val reposi
 
     val bitmapLiveData = MutableLiveData<BitmapEvent>()
 
+    val zanLiveData = repository.commnunityZanLiveData
+    val commentLiveData = repository.commentListLiveData
+    val publishCommentLiveData = repository.publishCommentListLiveData
     init {
         EventUtil.register(this)
     }
 
-    fun getCommunityList(): LiveData<BaseResponse<List<CommunityModel>>>{
-        return repository.getCommunityList()
+    fun getCommunityList(stuId:Int): LiveData<BaseResponse<List<CommunityModel>>>{
+        return repository.getCommunityList(stuId)
     }
 
     fun publish(content :String,studentId :Int,pic :String,time:String):LiveData<BaseResponse<CommunityModel>>{
         return repository.publish(content, studentId, pic, time)
+    }
+
+    fun postZan(id :Int,stuId : Int){
+        repository.postLike(id, stuId)
+    }
+
+    fun getCommentList(id :Int){
+        repository.getCommentList(id)
+    }
+
+    fun publishComment(content:String,stuId:Int,origin:Int){
+        repository.publishComment(content, stuId, origin)
     }
 
     @Subscribe

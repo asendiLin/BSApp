@@ -2,6 +2,7 @@ package com.bojue.bsapp.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.bojue.bsapp.constance.UNKNOW_USER
 import com.bojue.bsapp.model.UserModel
 
 /**
@@ -31,7 +32,7 @@ object UserManager {
 
     fun saveUser(userModel: UserModel) {
         val userEdit = mUserSP.edit()
-        userEdit.putInt(ID,userModel.stuId)
+        userEdit.putInt(ID,userModel.id)
         userEdit.putString(USERNAME,userModel.username)
         userEdit.putString(PASSWORD,userModel.password)
         userEdit.putString(NUMBER,userModel.number)
@@ -44,15 +45,15 @@ object UserManager {
     }
 
     fun getUser():UserModel {
-        val id = mUserSP.getInt(ID,-1)
-        val username = mUserSP.getString(USERNAME,"unknown")
-        val password = mUserSP.getString(PASSWORD,"unknown")
-        val number = mUserSP.getString(NUMBER,"unknown")
-        val classname = mUserSP.getString(CLASS_NAME,"unknown")
-        val icon = mUserSP.getString(ICON,"unknown")
-        val nickname = mUserSP.getString(NICKNAME,"unknown")
-        val phone = mUserSP.getString(PHONE,"unknown")
-        val signature = mUserSP.getString(SIGNATURE,"unknown")
+        val id = mUserSP.getInt(ID, UNKNOW_USER)
+        val username = mUserSP.getString(USERNAME,"")
+        val password = mUserSP.getString(PASSWORD,"")
+        val number = mUserSP.getString(NUMBER,null)
+        val classname = mUserSP.getString(CLASS_NAME,null)
+        val icon = mUserSP.getString(ICON,null)
+        val nickname = mUserSP.getString(NICKNAME,null)
+        val phone = mUserSP.getString(PHONE,null)
+        val signature = mUserSP.getString(SIGNATURE,null)
 
         return UserModel(id,username,password, number, classname, icon, nickname, phone, signature)
     }

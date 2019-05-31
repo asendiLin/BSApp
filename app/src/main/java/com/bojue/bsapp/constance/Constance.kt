@@ -20,6 +20,10 @@ const val ORDER_DETAIL = "order_detail"
 
 const val BASE_URL_KEY = "base_url"
 
+const val COMMUNITY_LIST = "communityList"
+
+const val UNKNOW_USER = -1
+
  val originType = 0
  val paotui =1
  val daina =2

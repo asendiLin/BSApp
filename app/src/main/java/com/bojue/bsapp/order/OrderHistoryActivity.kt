@@ -1,10 +1,13 @@
 package com.bojue.bsapp.order
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.bojue.bsapp.R
@@ -12,6 +15,7 @@ import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.UserManager
+import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 
 class OrderHistoryActivity : BaseActivity() {
@@ -19,26 +23,33 @@ class OrderHistoryActivity : BaseActivity() {
     private val myTag = "OrderHistoryActivity"
     private lateinit var mTvTitle: TextView
     private lateinit var mRvOrderList: RecyclerView
+    private lateinit var mBtnReload : Button
     private lateinit var mOrderListAdapter: OrderListAdapter
     private val mOrderList = ArrayList<OrderModel>()
+    private val mLoadingDialog by lazy {
+        LoadingDialog(this)
+    }
     private val mHistoryViewModel by lazy {
         getViewModel(OrderHistoryViewModel::class.java)
     }
+
+    private var mOrderType = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_history)
         initView()
         val historyType = intent.getIntExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
-
+        mOrderType = historyType
         initDate(historyType)
     }
 
     private fun initDate(historyType: Int) {
-//        val stuId = UserManager.getUser().stuId
-        val stuId = 4
+        mLoadingDialog.show()
+        val stuId = UserManager.getUser().id
         mHistoryViewModel.getHistoryOrderList(historyType, stuId).observe(this, Observer { result ->
             Log.i(myTag, "result -> $result")
+            mLoadingDialog.dismiss()
             if (result?.status == SUCCESS_STATU) {
                 mOrderList.clear()
                 result.data?.let { list ->
@@ -46,6 +57,8 @@ class OrderHistoryActivity : BaseActivity() {
                 }
                 mOrderListAdapter.notifyDataSetChanged()
             } else {
+                mBtnReload.visibility = View.VISIBLE
+                mRvOrderList.visibility = View.GONE
                 Toast.makeText(this, result?.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -68,10 +81,27 @@ class OrderHistoryActivity : BaseActivity() {
     private fun initView() {
         mRvOrderList = findViewById(R.id.rv_order_history_list)
         mOrderListAdapter = OrderListAdapter(mOrderList, this)
+        mOrderListAdapter.setOnOrderIntemClickListener(object : OrderListAdapter.OnOrderIntemClickListener{
+            override fun onOrderItemClick(position: Int) {
+                val intent = Intent(this@OrderHistoryActivity,OrderHistoryDetailActivity::class.java)
+                intent.putExtra(ORDER_DETAIL,mOrderList[position])
+                intent.putExtra(HISTORY_ORDER_TYPE,mOrderType)
+                startActivity(intent)
+            }
+        })
         mRvOrderList.adapter = mOrderListAdapter
         mRvOrderList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         mTvTitle= findViewById(R.id.tv_title_content)
+        mBtnReload =findViewById(R.id.btn_order_reload)
+        mBtnReload.setOnClickListener {
+            mBtnReload.visibility = View.GONE
+            mRvOrderList.visibility = View.VISIBLE
+            mLoadingDialog.show()
+            val type = intent.getIntExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
+            val stuId = UserManager.getUser().id
+            mHistoryViewModel.getHistoryOrderList(type, stuId)
+        }
 
     }
 }

@@ -4,18 +4,17 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.bojue.bsapp.R
+import com.bojue.bsapp.activity.HomeActivity
 import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.login.LoginActivity
-import com.bojue.bsapp.model.LoginResponse
 import com.bojue.bsapp.model.RegisterResponse
 import com.bojue.bsapp.model.UserModel
-import com.bojue.bsapp.util.SPUtils
+import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
@@ -47,6 +46,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
             R.id.btn_to_login -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.fab_register -> {
                 val loadingDialog = LoadingDialog(this)
@@ -59,9 +59,12 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                     result?.let {
                         if (result.status == SUCCESS_STATU){
                             saveUserInfo(result.data)
+                            ToastUtil.showShort(this,"注册成功")
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
                         }else{
-                            val alertDialog = AlertDialog.Builder(this).setMessage(result.message).create()
-                            alertDialog.show()
+                            ToastUtil.showShort(this,result.message)
                         }
                     }
 

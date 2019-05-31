@@ -166,7 +166,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
         android:layout_marginTop="30dp"
-        android:background="@color/colorTheme"
+        android:background="@drawable/btn_bg_common"
         android:text="接单"
         android:textColor="@color/colorWhite"
         />

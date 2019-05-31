@@ -8,7 +8,7 @@ import android.os.Parcelable
  * data: 2019/5/24.
  * description:
  */
-data class UserModel(val stuId: Int, val username: String,
+data class UserModel(val id: Int, val username: String,
                      val password: String, var number: String?,
                      val classname: String?, var icon: String?,
                      var nickname: String?, var phone: String?,
@@ -25,7 +25,7 @@ data class UserModel(val stuId: Int, val username: String,
             parcel.readString())
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        dest?.writeInt(stuId)
+        dest?.writeInt(id)
         dest?.writeString(username)
         dest?.writeString(password)
         dest?.writeString(number)

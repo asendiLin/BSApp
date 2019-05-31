@@ -19,9 +19,7 @@ import com.bojue.bsapp.util.*
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.yanzhenjie.album.Album
-import com.yanzhenjie.album.AlbumConfig
 import com.yanzhenjie.album.api.widget.Widget
-import javax.inject.Inject
 
 class PublishCommunityActivity : BaseActivity() {
 
@@ -50,11 +48,17 @@ class PublishCommunityActivity : BaseActivity() {
         mEtContent = findViewById(R.id.et_community_content)
         mIvImage = findViewById(R.id.iv_publish_image)
         mBtnCommunityPublish.setOnClickListener {
-            val loadingDialog=LoadingDialog(this)
+
+            if (mEtContent.text.isNullOrEmpty() || mBitmap ==null){
+                ToastUtil.showShort(this,"请完善动态信息")
+                return@setOnClickListener
+            }
+
+            val loadingDialog= LoadingDialog(this)
             loadingDialog.show()
 
             val content = mEtContent.text.toString()
-            val stuId = UserManager.getUser().stuId
+            val stuId = if(UserManager.getUser().id == 0) 4 else UserManager.getUser().id
             var pic = ""
 
             mBitmap?.let {
@@ -73,9 +77,11 @@ class PublishCommunityActivity : BaseActivity() {
                                         }
                                     }
                                 })
-                    }
+                    } 
 
                     override fun onFail(message: String) {
+                        loadingDialog.dismiss()
+                        ToastUtil.showShort(this@PublishCommunityActivity,message)
                     }
                 })
             }

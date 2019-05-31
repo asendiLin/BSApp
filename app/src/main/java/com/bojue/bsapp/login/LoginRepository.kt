@@ -3,6 +3,7 @@ package com.bojue.bsapp.login
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
+import com.bojue.bsapp.constance.FAIL_STATU
 import com.bojue.bsapp.http.api.LoginAndRegisterService
 import com.bojue.bsapp.model.BaseResponse
 import com.bojue.bsapp.model.LoginResponse
@@ -29,10 +30,17 @@ class LoginRepository @Inject constructor(val service : LoginAndRegisterService)
 
                 Log.i(myTag,"onResponse ${response?.body().toString()}")
 
+                if (response?.isSuccessful==true){
+                    response.body()?.let { data ->
+                        mLoginLiveData.postValue(data)
+                    }}else{
+                    mLoginLiveData.postValue(BaseResponse(null, FAIL_STATU,"注册失败",0))
+                }
             }
 
             override fun onFailure(call: Call<BaseResponse<LoginResponse>>?, t: Throwable?) {
                 Log.i(myTag,"onFailure ${t?.message}")
+                mLoginLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",0))
             }
         })
 

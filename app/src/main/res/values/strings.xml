@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BSApp</string>
+    <string name="app_name">time</string>
     <string name="txt_public_type">需求类型</string>
     <string name="txt_public_phone">联系方式</string>
     <string name="txt_public_pay">所需酬劳</string>

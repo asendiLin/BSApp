@@ -10,6 +10,7 @@ import com.bojue.bsapp.constance.BASE_URL
 import com.bojue.bsapp.constance.BASE_URL_KEY
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.util.SPUtils
+import com.bojue.bsapp.util.ShowImageUtil
 import com.bumptech.glide.Glide
 import com.sackcentury.shinebuttonlib.ShineButton
 
@@ -20,6 +21,12 @@ import com.sackcentury.shinebuttonlib.ShineButton
  */
 class CommunityAdapter(private val mActivity: FragmentActivity, private val mCommunityList: ArrayList<CommunityModel>)
     : BaseAdapter() {
+
+    private var mClickLitener : OnClickItemListener? =null
+
+    fun setOnClickListener(listener : OnClickItemListener){
+        this.mClickLitener = listener
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var vh: CommunityViewHolder
@@ -46,17 +53,24 @@ class CommunityAdapter(private val mActivity: FragmentActivity, private val mCom
         }
         vh.tvCommunityContent?.text = mCommunityList[position].content
         vh.tvNickname?.text = mCommunityList[position].nickname
-        Glide.with(mActivity).load("${SPUtils.getString(mActivity, BASE_URL_KEY, BASE_URL)}${mCommunityList[position].pic}").into(vh.ivCommunityItem)
-        Glide.with(mActivity).load(mCommunityList[position].icon).into(vh.ivUserImage)
+        ShowImageUtil.showImage(mActivity,vh.ivCommunityItem!!,mCommunityList[position].pic)
+        ShowImageUtil.showImage(mActivity,vh.ivUserImage!!,mCommunityList[position].icon)
 
-        vh.btnLike?.setOnClickListener {
-            Toast.makeText(mActivity, "like-->$position", Toast.LENGTH_SHORT).show()
+        if (mCommunityList[position].isLike == null){
+            vh.btnLike?.setOnClickListener {
+                mClickLitener?.like(position)
+            }
+        }else{
+            vh.btnLike?.isEnabled = false
+//            vh.btnLike?.setBtnColor(R.color.colorRed)
+            vh.btnLike?.isChecked = true
         }
+
         vh.btnComment?.setOnClickListener {
-            Toast.makeText(mActivity, "评论-->$position", Toast.LENGTH_SHORT).show()
+            mClickLitener?.comment(position)
         }
         vh.btnShare?.setOnClickListener {
-            Toast.makeText(mActivity, "分享-->$position", Toast.LENGTH_SHORT).show()
+            mClickLitener?.share(position)
         }
 
 
@@ -83,5 +97,11 @@ class CommunityAdapter(private val mActivity: FragmentActivity, private val mCom
         var btnLike: ShineButton? = null
         var btnComment: ImageButton? = null
         var btnShare: ImageButton? = null
+    }
+
+    interface OnClickItemListener {
+        fun like(position : Int)
+        fun share(position :Int)
+        fun comment(position:Int)
     }
 }

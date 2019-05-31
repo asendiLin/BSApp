@@ -9,6 +9,7 @@ import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
 import com.bojue.bsapp.order.OrderDetailViewModel
 import com.bojue.bsapp.order.OrderHistoryViewModel
+import com.bojue.bsapp.order.OrderStatusChangeViewModel
 import com.bojue.bsapp.order.OrderViewModel
 import com.bojue.bsapp.publish.PublishOrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
@@ -97,4 +98,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(CourseViewModel::class)
     fun courseViewModel(viewModel: CourseViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderStatusChangeViewModel::class)
+    fun orderStatusChangeViewModel(viewModel: OrderStatusChangeViewModel):IViewModel
 }

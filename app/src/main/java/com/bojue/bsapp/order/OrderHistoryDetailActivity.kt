@@ -8,14 +8,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.CANCEL_ORDER
-import com.bojue.bsapp.constance.COMPLETE_ORDER
-import com.bojue.bsapp.constance.DOING_ORDER
-import com.bojue.bsapp.constance.ORDER_DETAIL
+import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
+import com.bojue.bsapp.util.ShowImageUtil
+import com.bojue.bsapp.util.ToastUtil
+import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
-import com.bumptech.glide.Glide
 
 class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
@@ -35,7 +34,11 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mTvCancel: TextView
     private lateinit var mTvDelete: TextView
 
-    private lateinit var mOrderDetail : OrderModel
+    private lateinit var mOrderDetail: OrderModel
+
+    private val mLoadingDialog by lazy {
+        LoadingDialog(this)
+    }
 
     private val mOrderStatusChangeViewModel by lazy {
         getViewModel(OrderStatusChangeViewModel::class.java)
@@ -50,14 +53,32 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
     private fun initData() {
         mOrderDetail = intent.getParcelableExtra(ORDER_DETAIL)
+        val type = intent.getIntExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
+        showDetail(mOrderDetail, type)
 
         mOrderStatusChangeViewModel.changeOrderStatusLiveData.observe(this, Observer { result ->
             Log.i(myTag, "initData( change -> $result")
+            if (mLoadingDialog.isShowing) {
+                mLoadingDialog.dismiss()
+            }
 
+            if (result?.status == SUCCESS_STATU){
+                finish()
+            }else{
+                ToastUtil.showShort(this,"${result?.message}")
+            }
         })
 
-        mOrderStatusChangeViewModel.deleteOrderLiveData.observe(this, Observer {result ->
+        mOrderStatusChangeViewModel.deleteOrderLiveData.observe(this, Observer { result ->
             Log.i(myTag, "initData( delete -> $result")
+            if (mLoadingDialog.isShowing) {
+                mLoadingDialog.dismiss()
+            }
+            if (result?.status == SUCCESS_STATU){
+                finish()
+            }else{
+                ToastUtil.showShort(this,"${result?.message}")
+            }
         })
     }
 
@@ -83,13 +104,14 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.tv_complete_order ->{
-                changeOrderStatus(COMPLETE_ORDER,mOrderDetail.id,0)
+            R.id.tv_complete_order -> {
+                changeOrderStatus(COMPLETE_ORDER, mOrderDetail.id, 0)
             }
-            R.id.tv_cancel_order ->{
-                changeOrderStatus(CANCEL_ORDER,mOrderDetail.id,0)
+            R.id.tv_cancel_order -> {
+                changeOrderStatus(CANCEL_ORDER, mOrderDetail.id, 0)
             }
-            R.id.tv_delete_order ->{
+            R.id.tv_delete_order -> {
+                mLoadingDialog.show()
                 mOrderStatusChangeViewModel.deleteOrderById(mOrderDetail.id)
             }
         }
@@ -97,34 +119,37 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
     private fun showDetail(orderModel: OrderModel, status: Int) {
 
-        Glide.with(this).load(orderModel.student?.icon).into(mIvUserIcon)
+        ShowImageUtil.showImage(this, mIvUserIcon, orderModel.student?.icon)
         mTvNickname.text = orderModel.student?.nickname
         mTvEndTime.text = orderModel.time
         mTvPhone.text = orderModel.phone
         mTvPrice.text = orderModel.money.toString()
         mTvContent.text = orderModel.content
 
-        if (orderModel.studented == null){
+        if (orderModel.studented == null) {
             mCvAccept.visibility = View.GONE
-        }else{
-            Glide.with(this).load(orderModel.studented.icon).into(mIvAcceptUserIcon)
-            mTvAcceptNickname.text=orderModel.studented.nickname
+        } else {
+            ShowImageUtil.showImage(this, mIvAcceptUserIcon, orderModel.studented.icon)
+            mTvAcceptNickname.text = orderModel.studented.nickname
             mTvAcceptPhone.text = orderModel.studented.phone
         }
-//        when (status) {
-//            DOING_ORDER -> {
-//
-//            }
-//            COMPLETE_ORDER -> {
-//
-//            }
-//            CANCEL_ORDER -> {
-//
-//            }
-//        }
+        when (status) {
+            DOING_ORDER -> {
+
+            }
+            COMPLETE_ORDER -> {
+                mTvComplete.visibility = View.GONE
+                mTvCancel.visibility = View.GONE
+            }
+            CANCEL_ORDER -> {
+                mTvComplete.visibility = View.GONE
+                mTvCancel.visibility = View.GONE
+            }
+        }
     }
 
     private fun changeOrderStatus(status: Int, id: Int, studentId: Int) {
+        mLoadingDialog.show()
         mOrderStatusChangeViewModel.changeStatus(status, id, studentId)
     }
 }

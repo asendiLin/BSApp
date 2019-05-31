@@ -1,10 +1,10 @@
 package com.bojue.bsapp.community
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,11 @@ import android.widget.Button
 import android.widget.Toast
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
+import com.bojue.bsapp.util.ToastUtil
+import com.bojue.bsapp.util.UserManager
+import com.bojue.bsapp.widget.ListBottomSheetDialogFragment
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseFragment
 import link.fls.swipestack.SwipeStack
@@ -24,15 +28,21 @@ import link.fls.swipestack.SwipeStack
  */
 class CommunityFragment : BaseFragment(),View.OnClickListener {
 
+    private val myTag = "CommunityFragment"
+    private val COMMENT_DIALOG_TAG= "comment_dialog"
     private lateinit var mRootView : View
     private lateinit var mSSCommunity : SwipeStack
     private lateinit var mFlbAdd : FloatingActionButton
     private lateinit var mBtnRelaod : Button
-    private lateinit var mCommunityViewModel :CommunityViewModel
+    private val mCommunityViewModel by lazy {
+        getViewModel(CommunityViewModel::class.java)
+    }
     private lateinit var mCommunityListAdapter : CommunityAdapter
     private val mCommunityList = ArrayList<CommunityModel>()
     private var mLoadingDialog : LoadingDialog? = null
-    private val mRemoveCommunityList = ArrayList<CommunityModel>()
+
+    private val mCommentDialog = ListBottomSheetDialogFragment()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(context).inflate(R.layout.fragment_community_layout,null,false)
         mSSCommunity = mRootView.findViewById(R.id.ss_community)
@@ -40,15 +50,35 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
         mSSCommunity.adapter = mCommunityListAdapter
         mSSCommunity.setListener(object : SwipeStack.SwipeStackListener{
             override fun onViewSwipedToLeft(position: Int) {
-                mRemoveCommunityList.add(mCommunityList[position])
+//                mRemoveCommunityList.add(mCommunityList[position])
             }
 
             override fun onViewSwipedToRight(position: Int) {
-                mRemoveCommunityList.add(mCommunityList[position])
+//                mRemoveCommunityList.add(mCommunityList[position])
             }
 
             override fun onStackEmpty() {
                 mBtnRelaod.visibility = View.VISIBLE
+            }
+        })
+
+        mCommentDialog.setClickSendCommentCallback { position, content ->
+            mLoadingDialog?.show()
+            mCommunityViewModel.publishComment(content,mCommunityList[position].studentId,mCommunityList[position].id)
+        }
+
+        mCommunityListAdapter.setOnClickListener(object : CommunityAdapter.OnClickItemListener{
+            override fun like(position: Int) {
+                Log.i(myTag,"like -> $position")
+                mCommunityViewModel.postZan(mCommunityList[position].id,UserManager.getUser().id)
+            }
+
+            override fun share(position: Int) {
+            }
+
+            override fun comment(position: Int) {
+                mCommunityViewModel.getCommentList(mCommunityList[position].id)
+                mCommentDialog.show(requireFragmentManager(),COMMENT_DIALOG_TAG)
             }
         })
         mFlbAdd = mRootView.findViewById(R.id.fab_add_community)
@@ -66,8 +96,7 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mCommunityViewModel = ViewModelProviders.of(this,mViewModelFactory).get(CommunityViewModel::class.java)
-        mCommunityViewModel.getCommunityList().observe(this,Observer{result->
+        mCommunityViewModel.getCommunityList(UserManager.getUser().id).observe(this,Observer{result->
             mLoadingDialog?.let { dialog->
                 if (dialog.isShowing){
                     dialog.dismiss()
@@ -76,8 +105,8 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
             if (result?.status == SUCCESS_STATU){
                 val communityList = result.data
                 communityList?.let {
-                    mCommunityList.removeAll(mRemoveCommunityList)
-                    mRemoveCommunityList.clear()
+//                    mCommunityList.removeAll(mRemoveCommunityList)
+//                    mRemoveCommunityList.clear()
                     if (communityList.isEmpty()){
                         mBtnRelaod.visibility = View.VISIBLE
                     }else{
@@ -92,6 +121,34 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
             }
 
         })
+        mCommunityViewModel.zanLiveData.observe(this, Observer {result ->
+        })
+        mCommunityViewModel.commentLiveData.observe(this, Observer { result ->
+            if (mLoadingDialog?.isShowing == true){
+                mLoadingDialog?.dismiss()
+            }
+            if (result?.status == SUCCESS_STATU){
+                mCommentDialog.refreshCommentList(result.data)
+            }else{
+                ToastUtil.showShort(requireContext(),result?.message)
+            }
+        })
+
+        mCommunityViewModel.publishCommentLiveData.observe(this, Observer {result->
+            if (mLoadingDialog?.isShowing == true){
+                mLoadingDialog?.dismiss()
+            }
+            if (result?.status == SUCCESS_STATU){
+                ToastUtil.showShort(requireContext(),"评论成功")
+                mCommentDialog.refreshCommentList(result.data)
+//                if ( mCommentDialog.dialog.isShowing){
+//                    mCommentDialog.dismiss()
+//                }
+            }else{
+                ToastUtil.showShort(requireContext(),"评论失败")
+            }
+        })
+
     }
 
     override fun onClick(v: View?) {
@@ -102,7 +159,7 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
             }
             R.id.btn_reload -> {
                 mLoadingDialog?.show()
-                mCommunityViewModel.getCommunityList()
+                mCommunityViewModel.getCommunityList(UserManager.getUser().id)
             }
         }
     }

@@ -16,8 +16,14 @@ import javax.inject.Inject
 class MyselfCommunityViewModel @Inject constructor(application: Application,val repository: CommunityRepository)
     : BaseViewModel(application) {
 
+    val deleteCommunityLiveData = repository.deleteCommunityLiveData
+
     fun getCommunityList(username : String) : LiveData<BaseResponse<List<CommunityModel>>>{
         return repository.getSelfCommunityList(username)
+    }
+
+    fun deleteCommunity(id : Int){
+        repository.deleteCommunity(id)
     }
 
 }

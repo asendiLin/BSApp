@@ -1,6 +1,10 @@
 package com.bojue.bsapp.myself
 
 import android.app.Application
+import android.arch.lifecycle.LiveData
+import com.bojue.bsapp.community.CommunityRepository
+import com.bojue.bsapp.model.BaseResponse
+import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.viewmodel.BaseViewModel
 import javax.inject.Inject
 
@@ -9,16 +13,13 @@ import javax.inject.Inject
  * data: 2019/5/10.
  * description:
  */
-class MyselfViewModel @Inject constructor(application: Application,val repository: EditInfoRepository)
+class MyselfViewModel @Inject constructor(application: Application,val repository:CommunityRepository)
     : BaseViewModel(application){
 
-    val  editInfoLiveData = repository.editInfoLiveData
+    val myselfCommunityLiveData = repository.selfCommunityListLiveData
 
-    fun editInfo(stuId: Int,  username: String,
-                 password: String,  number: String?,
-                 classname: String?,  icon: String?,
-                 nickname: String?,  phone: String?,
-                 signature: String?) {
-        repository.editInfo(stuId, username, password, number, classname, icon, nickname, phone, signature)
+    fun getCommunityList(username : String) : LiveData<BaseResponse<List<CommunityModel>>> {
+        return repository.getSelfCommunityList(username)
     }
+
 }

@@ -2,7 +2,6 @@ package com.bojue.bsapp.publish
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -18,6 +17,7 @@ import com.bigkoo.pickerview.view.TimePickerView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.ext.getViewModel
+import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseFragment
@@ -31,8 +31,6 @@ import java.util.*
 class PublishOrderFragment : BaseFragment(),View.OnClickListener{
 
     private val myTag = "PublishOrderFragment"
-
-
 
     private lateinit var rootView: View
     private lateinit var pvTime: TimePickerView
@@ -134,22 +132,36 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
             result?.let {
                 if (result.status == SUCCESS_STATU){
                     Toast.makeText(requireContext(),"发布成功",Toast.LENGTH_SHORT).show()
+                    reset()
                 }else{
                     Toast.makeText(requireContext(),result.message,Toast.LENGTH_SHORT).show()
                 }
             }
-
-
-
         })
+    }
 
+    private fun reset(){
+        mEtPhoneNumber.setText("")
+        mEtDetailContent.setText("")
+        mEtPay.setText("")
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_order_publish ->{
+
+                if (UserManager.getUser().number .isNullOrEmpty()){
+                    ToastUtil.showShort(requireContext(),"通过学生认证后才能发布订单")
+                    return
+                }
+
+                if (mEtPhoneNumber.text.isNullOrEmpty() ||  mEtPay.text.isNullOrEmpty() || mEtDetailContent.text.isNullOrEmpty()){
+                    ToastUtil.showShort(requireContext(),"请完善订单信息")
+                    return
+                }
+
                 mLoadingDialog.show()
-                val stuId = if(UserManager.getUser().stuId == 0) 4 else UserManager.getUser().stuId
+                val stuId = if(UserManager.getUser().id == 0) 4 else UserManager.getUser().id
                 val phoneNumber = mEtPhoneNumber.text.toString()
                 val pay = mEtPay.text.toString().toInt()
                 val date = txt_timepicker.text.toString()

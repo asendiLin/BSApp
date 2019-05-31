@@ -35,6 +35,7 @@ class IdentifyDialog(private val mContext: Context,private val identifyListener 
                 val number = mEtNumber.text.toString()
                 val password = mEtPassword.text.toString()
                 identifyListener?.onIdentify(number, password)
+                dismiss()
             }
         }
     }

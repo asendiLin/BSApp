@@ -18,13 +18,32 @@ interface CommunityService {
 
     @FormUrlEncoded
     @POST("Treehole/publish.action")
-    fun publish(@Field("content")content :String,@Field("studentId")studentId :Int,
-                @Field("pic")pic :String,@Field("time") time:String):Call<BaseResponse<CommunityModel>>
+    fun publish(@Field("content") content: String, @Field("studentId") studentId: Int,
+                @Field("pic") pic: String, @Field("time") time: String): Call<BaseResponse<CommunityModel>>
 
+    @FormUrlEncoded
     @POST("Treehole/findTreehole.action")
-    fun getCommunityList():Call<BaseResponse<List<CommunityModel>>>
+    fun getCommunityList(@Field("studentId") stuId : Int): Call<BaseResponse<List<CommunityModel>>>
 
     @FormUrlEncoded
     @POST("Student/getMyTreehole.action")
-    fun getSelfCommunityList(@Field("username")username :String):Call<BaseResponse<List<CommunityModel>>>
+    fun getSelfCommunityList(@Field("username") username: String): Call<BaseResponse<List<CommunityModel>>>
+
+    @FormUrlEncoded
+    @POST("Support/like.action")
+    fun postLike(@Field("id") id: Int, @Field("studentId") studentId: Int):Call<BaseResponse<Any>>
+
+    @FormUrlEncoded
+    @POST("Treehole/findReply.action")
+    fun getCommentList(@Field("id") id :Int): Call<BaseResponse<List<CommunityModel>>>
+
+    @FormUrlEncoded
+    @POST("Treehole/publish.action")
+    fun publishComment(@Field("content") content: String, @Field("studentId") studentId: Int,
+                       @Field("origin")origin:Int)
+            : Call<BaseResponse<CommunityModel>>
+
+    @FormUrlEncoded
+    @POST("Treehole/deleteById.action")
+    fun deleteCommunity(@Field("id")id :Int)  : Call<BaseResponse<Any>>
 }

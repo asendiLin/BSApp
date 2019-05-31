@@ -68,6 +68,19 @@ object CourseUtil {
         return courseList
     }
 
+    fun getTodayCourseCount(week : Int):Int{
+        val list = mDaoSession.courseEntityDao.loadAll()
+        val gson = Gson()
+        var count = 0
+        list.forEach {data->
+            val courseModel = gson.fromJson(data.courseInfo, CourseModel::class.java)
+            if (week == courseModel.week){
+                count++
+            }
+        }
+        return count
+    }
+
     fun saveCourseList(courseList:List<CourseModel>){
         val gson = Gson()
         courseList.forEach {data ->

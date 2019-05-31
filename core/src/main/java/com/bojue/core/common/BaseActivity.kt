@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import com.bojue.core.component.BaseComponent
+import com.bojue.core.util.ActivityManger
 
 /**
  * author: asendi.
@@ -16,6 +17,12 @@ open class BaseActivity : AppCompatActivity(){
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ActivityManger.addActivity(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityManger.removeActivity(this)
     }
 
 }

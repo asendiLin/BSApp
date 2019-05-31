@@ -15,6 +15,7 @@ import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.ShowImageUtil
+import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
 import com.bumptech.glide.Glide
@@ -65,7 +66,7 @@ class OrderDetailActivity : BaseActivity() {
         mToolbar.setNavigationOnClickListener { finish() }
         mBtnOrderAccept.setOnClickListener {
             mLoadingDialog.show()
-            acceptOrder(DOING_ORDER,mOrderModel.id,UserManager.getUser().stuId)
+            acceptOrder(DOING_ORDER,mOrderModel.id,UserManager.getUser().id)
         }
         mTvTitle.text = "订单详情"
     }
@@ -82,6 +83,10 @@ class OrderDetailActivity : BaseActivity() {
     }
 
     private fun acceptOrder(status :Int ,id:Int,stuId:Int) {
+        if (UserManager.getUser().number .isNullOrEmpty()){
+            ToastUtil.showShort(this,"通过学生认证后才能发布订单")
+            return
+        }
        mOrderDetailViewModel.acceptOrder(status, id, stuId).observe(this , Observer { result->
            if (mLoadingDialog.isShowing){
                mLoadingDialog.dismiss()

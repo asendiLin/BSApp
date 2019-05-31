@@ -57,19 +57,26 @@ class UploadPicManager {
             }
             asFileJob.await()
 
-            val requestBody = RequestBody.create(MediaType.parse("image/jpeg"), tempFile)
+            val uploadJob = async {
+                val requestBody = RequestBody.create(MediaType.parse("image/jpeg"), tempFile)
 
-            val picPart = MultipartBody.Part.createFormData("file", tempFile.name, requestBody)
-            try {
-                val execute = service.uploadPic(picPart).execute()
-                Log.i(myTag, "data = ${execute.body()?.data}")
-                execute.body()?.data?.let {url->
-                    listener.onSuccess(url)
+                val picPart = MultipartBody.Part.createFormData("file", tempFile.name, requestBody)
+                try {
+                    val execute = service.uploadPic(picPart).execute()
+                    Log.i(myTag, "data = ${execute.body()?.data}")
+                    execute.body()?.data?.let {url->
+                        launch(UI){
+                            listener.onSuccess(url)
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.i(myTag,"uploadPic ${e.message}")
+                    launch(UI){
+                        listener.onFail("上传图片失败")
+                    }
                 }
-            } catch (e: Exception) {
-                listener.onFail("上传图片失败")
             }
-
+            uploadJob.await()
         }
     }
 

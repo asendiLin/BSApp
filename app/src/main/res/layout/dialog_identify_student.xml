@@ -10,6 +10,7 @@
         android:layout_height="40dp"
         android:inputType="number"
         android:hint="请输入学号..."
+        android:background="@color/colorWhite"
         />
 
     <EditText
@@ -18,6 +19,7 @@
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:hint="请输入密码..."
+        android:background="@color/colorWhite"
         />
 
     <Button
@@ -27,7 +29,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="140dp"
         android:layout_marginRight="140dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorTheme"
         android:text="验证"
         android:textColor="@color/colorWhite"

@@ -3,8 +3,6 @@ package com.bojue.bsapp.myself
 import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.graphics.BitmapFactory
-import android.graphics.drawable.RippleDrawable
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -20,7 +18,7 @@ import com.bojue.bsapp.util.UploadPicManager
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
-import com.bumptech.glide.Glide
+import com.bojue.core.event.EventUtil
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.api.widget.Widget
 
@@ -54,6 +52,7 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                 if (result.status == SUCCESS_STATU){
                     result.data?.let {
                         UserManager.saveUser(it)
+                        EventUtil.post(it)
                     }
                     Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show()
                 }else{
@@ -91,13 +90,14 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                 val nickname = mEtNickname.text.toString()
                 val signature = mEtSignature.text.toString()
                 val user =UserManager.getUser()
+                Log.i(myTag,"edit info user-> $user")
                 user.nickname = nickname
                 user.signature = signature
-                if (user.stuId == 0){
-                    mEditInfoViewModel.editInfo(4,user.username,user.password,
+                if (user.id == 0){
+                    mEditInfoViewModel.editInfo(user.id,user.username,user.password,
                             user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
                 }else{
-                    mEditInfoViewModel.editInfo(user.stuId,user.username,user.password,
+                    mEditInfoViewModel.editInfo(user.id,user.username,user.password,
                             user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
                 }
             }
@@ -172,19 +172,14 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
             override fun onSuccess(path: String) {
                 val user = UserManager.getUser()
                 user.icon = path
-                if (user.stuId == 0){
-                    mEditInfoViewModel.editInfo(4,user.username,user.password,
+                ShowImageUtil.showImage(this@EditSelfActivity,mIvUserIcon,user.icon)
+                Log.i(myTag,"edit pic user -> $user")
+                    mEditInfoViewModel.editInfo(user.id,user.username,user.password,
                             user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
-                }else{
-                    mEditInfoViewModel.editInfo(user.stuId,user.username,user.password,
-                            user.number,user.classname,user.icon,user.nickname,user.phone,user.signature)
-                }
             }
 
             override fun onFail(message: String) {
-                runOnUiThread {
-                    Toast.makeText(this@EditSelfActivity,message,Toast.LENGTH_SHORT).show()
-                }
+                Toast.makeText(this@EditSelfActivity,message,Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -5,31 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bojue.bsapp.setting.SettingActivity"
     android:orientation="vertical"
+    tools:context="com.bojue.bsapp.setting.SettingActivity"
     >
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <RelativeLayout
             android:id="@+id/rl_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@color/colorTheme"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="@color/colorTheme">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_nav_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:drawableLeft="@mipmap/ic_title_back"
                 android:gravity="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp"
-                android:drawableLeft="@mipmap/ic_title_back"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,62 +43,83 @@
         </RelativeLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/tv_identify_student"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        tools:text="学生认证：201588888888"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        android:layout_marginTop="12dp"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorHint"
-        />
-
-    <TextView
-        android:id="@+id/tv_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        tools:text="手机号码：13420117889"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorHint"
-        />
-    <TextView
-    android:id="@+id/tv_clear_cache"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    tools:text="清理缓存：16M"
-    android:gravity="center_vertical"
-    android:textSize="16sp"
-    />
-
-    <TextView
-        android:id="@+id/tv_setting_url"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="设置URL"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        />
-
-    <Button
-        android:id="@+id/btn_logout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginTop="120dp"
-        android:text="退出登录"
-        android:background="#ff0303"
-        android:textColor="@color/colorWhite"
-        />
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_identify_student"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            tools:text="学生认证：201588888888"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorHint"
+            />
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            tools:text="手机号码：13420117889"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorHint"
+            />
+
+        <TextView
+            android:id="@+id/tv_clear_cache"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            tools:text="清理缓存：16M"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorHint"
+            />
+
+        <TextView
+            android:id="@+id/tv_setting_url"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="设置URL"
+            android:textSize="16sp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorHint"
+            />
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/btn_bg_common"
+            android:text="退出登录"
+            android:textColor="@color/colorWhite"
+            />
+    </LinearLayout>
 </LinearLayout>

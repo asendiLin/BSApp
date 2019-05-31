@@ -66,4 +66,13 @@
         android:textColor="@color/colorPrimary"
         android:text="其他"
         />
+
+    <TextView
+        android:id="@+id/tv_order_all"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:text="全部"
+        />
 </LinearLayout>

@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.bojue.bsapp.order.OrderHistoryActivity">
 
-    <include layout="@layout/common_title_bar"/>
-
+    <include
+        android:id="@+id/title"
+        layout="@layout/common_title_bar"/>
+    <Button
+        android:id="@+id/btn_order_reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重新加载"
+        android:textColor="@color/colorTheme"
+        android:background="@drawable/bg_btn_status"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_order_history_list"
+        android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</RelativeLayout>

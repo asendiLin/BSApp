@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.bojue.bsapp.R
@@ -33,6 +34,7 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
     private lateinit var mFabOrderType : FloatingActionButton
     private lateinit var mRvOrderList : RecyclerView
     private lateinit var mSrlOrderList:SwipeRefreshLayout
+    private lateinit var mBtnReload : Button
     private val mOrderList = ArrayList<OrderModel>()
     private val mOrderViewModel by lazy {
         getViewModel(OrderViewModel::class.java)
@@ -42,10 +44,12 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
         mRvOrderList = mRootView.findViewById(R.id.rv_order_list)
         mSrlOrderList = mRootView.findViewById(R.id.srl_order_list)
         mFabOrderType = mRootView.findViewById(R.id.fab_order_type)
+        mBtnReload = mRootView.findViewById(R.id.btn_order_reload)
         mSrlOrderList.setColorSchemeResources(R.color.colorTheme)
         mSrlOrderList.setProgressViewOffset(true, 0, 10)
         mSrlOrderList.setOnRefreshListener(this)
         mFabOrderType.setOnClickListener(this)
+        mBtnReload.setOnClickListener(this)
         mOrderListAdapter = OrderListAdapter(mOrderList,requireActivity())
         mRvOrderList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         mRvOrderList.adapter = mOrderListAdapter
@@ -65,6 +69,9 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
         when(v?.id){
             R.id.fab_order_type ->{
                 showSelectTypeDialog()
+            }
+            R.id.btn_order_reload ->{
+                getOrderList(mCurrentType)
             }
         }
     }
@@ -101,6 +108,10 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
             getOrderList(other)
             bottomDialog.dismiss()
         }
+        view.findViewById<TextView>(R.id.tv_order_all).setOnClickListener {
+            getOrderList(originType)
+            bottomDialog.dismiss()
+        }
 
         bottomDialog.setContentView(view)
         val window = bottomDialog.window
@@ -123,11 +134,14 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
             mFabOrderType.isEnabled = true
             if (result?.status == SUCCESS_STATU){
                 result.data?.let { data ->
+                    mBtnReload.visibility = View.GONE
                     mOrderList.clear()
                     mOrderList.addAll(data)
                     mOrderListAdapter.notifyDataSetChanged()
                 }
             }else{
+                mSrlOrderList.visibility = View.GONE
+                mBtnReload.visibility = View.VISIBLE
                 Toast.makeText(requireContext(),result?.message,Toast.LENGTH_SHORT).show()
             }
         })
@@ -140,6 +154,8 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
     }
 
     private fun getOrderList(type :Int){
+        mBtnReload.visibility = View.GONE
+        mSrlOrderList.visibility = View.VISIBLE
         mCurrentType = type
         mFabOrderType.isEnabled = false
         if (!mSrlOrderList.isRefreshing){
