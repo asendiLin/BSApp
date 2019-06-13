@@ -88,8 +88,12 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
 
             if (result?.status == SUCCESS_STATU) {
 
-                showCourse(result.data)
-
+                if (result.data?.isNotEmpty() == true){
+                    Log.i(myTag,"initCourseTable get course table success.")
+                    showCourse(result.data)
+                }else{
+                    Toast.makeText(this, "获取课表数据为空", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "获取课表数据失败", Toast.LENGTH_SHORT).show()
             }

@@ -45,7 +45,6 @@ class CourseRepository @Inject constructor(val service : CourseService,val appli
                         courseLiveData.postValue(data)
                         data.data?.let {
                             CourseUtil.saveCourseList(it)
-                            CourseUtil.saveRefresh(application)
                         }
                     }
                 }else{

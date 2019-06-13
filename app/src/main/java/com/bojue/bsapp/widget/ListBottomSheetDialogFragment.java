@@ -56,6 +56,13 @@ public class ListBottomSheetDialogFragment extends BottomSheetDialogFragment {
         mPosition = position;
     }
 
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        mCommunityModelList.clear();
+        mCommentItemAdapter.notifyDataSetChanged();
+    }
+
     public void refreshCommentList(List<CommunityModel> communityModelList) {
         Log.i(myTag, "refreshCommentList");
         mCommunityModelList.clear();

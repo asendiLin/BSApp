@@ -30,7 +30,7 @@
         android:layout_marginLeft="140dp"
         android:layout_marginRight="140dp"
         android:layout_marginTop="10dp"
-        android:background="@color/colorTheme"
+        android:background="@drawable/btn_bg_common"
         android:text="验证"
         android:textColor="@color/colorWhite"
         />

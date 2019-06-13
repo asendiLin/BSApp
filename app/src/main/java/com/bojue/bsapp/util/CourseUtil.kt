@@ -83,7 +83,7 @@ object CourseUtil {
 
     fun isShouldLoad():Boolean{
         val list = mDaoSession.courseEntityDao.loadAll()
-        return list.size == 0
+        return list.isEmpty()
     }
 
     fun saveCourseList(courseList:List<CourseModel>){

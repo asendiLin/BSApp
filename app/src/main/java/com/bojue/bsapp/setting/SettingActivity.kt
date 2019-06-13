@@ -27,6 +27,9 @@ import com.bojue.bsapp.widget.SettingUrlDialog
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
 import com.bojue.core.util.ActivityManger
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
+import java.util.*
 
 class SettingActivity : BaseActivity(), View.OnClickListener {
 
@@ -105,7 +108,22 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
 
                         Log.i(myTag, "username = $username number $number password $password")
 
-                        username.let {
+//                        val delayTask = object : TimerTask() {
+//                            override fun run() {
+//                                launch(UI){
+//                                    loadingDialog.dismiss()
+//                                    Toast.makeText(this@SettingActivity, "验证成功", Toast.LENGTH_SHORT).show()
+//                                    EventUtil.post(SettingEvent(SettingEvent.COURSE))
+//                                    mTvIdentifyStudent.text = number
+//                                    user.number = number
+//                                    UserManager.saveUser(user)
+//                                }
+//
+//                            }
+//                        }
+//                        val timer = Timer()
+//                        timer.schedule(delayTask, 2000)
+
                             mSettingViewModel
                                     .identify(username, number, password)
                                     .observe(this@SettingActivity, Observer { result ->
@@ -122,7 +140,6 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
                                             }
                                         }
                                     })
-                        }
                     }
                 })
                 identifyDialog.show()
