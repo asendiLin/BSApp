@@ -27,9 +27,6 @@ import com.bojue.bsapp.widget.SettingUrlDialog
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
 import com.bojue.core.util.ActivityManger
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
-import java.util.*
 
 class SettingActivity : BaseActivity(), View.OnClickListener {
 
