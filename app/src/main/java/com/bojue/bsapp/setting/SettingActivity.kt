@@ -12,9 +12,8 @@ import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.BASE_URL
 import com.bojue.bsapp.constance.BASE_URL_KEY
 import com.bojue.bsapp.constance.FAIL_STATU
-import com.bojue.bsapp.constance.SUCCESS_STATU
 import com.bojue.bsapp.event.SettingEvent
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.login.LoginActivity
 import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.util.SPUtils

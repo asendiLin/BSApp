@@ -1,7 +1,6 @@
 package com.bojue.bsapp.order
 
 import android.arch.lifecycle.Observer
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.widget.Button
@@ -12,13 +11,12 @@ import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.DOING_ORDER
 import com.bojue.bsapp.constance.ORDER_DETAIL
 import com.bojue.bsapp.constance.SUCCESS_STATU
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.ShowImageUtil
 import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
-import com.bumptech.glide.Glide
 import com.yanzhenjie.album.widget.LoadingDialog
 
 class OrderDetailActivity : BaseActivity() {

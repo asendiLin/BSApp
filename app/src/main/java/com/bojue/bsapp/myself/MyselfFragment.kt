@@ -19,7 +19,7 @@ import com.bojue.bsapp.community.MyselfCommunityActivity
 import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.course.CourseActivity
 import com.bojue.bsapp.event.SettingEvent
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.model.UserModel
 import com.bojue.bsapp.order.OrderHistoryActivity

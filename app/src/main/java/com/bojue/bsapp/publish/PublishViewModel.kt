@@ -3,7 +3,7 @@ package com.bojue.bsapp.publish
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import com.bojue.bsapp.model.PublishModel
-import com.bojue.bsapp.viewmodel.BaseViewModel
+import com.bojue.core.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 /**

@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.bojue.bsapp.event.BitmapEvent
 import com.bojue.bsapp.model.BaseResponse
 import com.bojue.bsapp.model.CommunityModel
-import com.bojue.bsapp.viewmodel.BaseViewModel
+import com.bojue.core.viewmodel.BaseViewModel
 import com.bojue.core.event.EventUtil
 import org.greenrobot.eventbus.Subscribe
 import javax.inject.Inject

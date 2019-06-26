@@ -4,8 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.LiveData
 import com.bojue.bsapp.model.BaseResponse
 import com.bojue.bsapp.model.OrderModel
-import com.bojue.bsapp.viewmodel.BaseViewModel
-import com.yanzhenjie.album.mvp.BaseView
+import com.bojue.core.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 /**

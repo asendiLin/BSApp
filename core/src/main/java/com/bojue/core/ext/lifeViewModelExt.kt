@@ -1,12 +1,13 @@
-package com.bojue.bsapp.ext
+package com.bojue.core.ext
+
 
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
-import com.bojue.bsapp.viewmodel.BaseViewModel
-import com.bojue.bsapp.viewmodel.IViewModel
+
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.common.BaseFragment
+import com.bojue.core.viewmodel.BaseViewModel
 
 /**
  * author: asendi.

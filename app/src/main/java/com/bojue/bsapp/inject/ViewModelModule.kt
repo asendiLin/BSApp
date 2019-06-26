@@ -15,9 +15,9 @@ import com.bojue.bsapp.publish.PublishOrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
 import com.bojue.bsapp.register.RegisterViewModel
 import com.bojue.bsapp.setting.SettingViewModel
-import com.bojue.bsapp.viewmodel.AppViewModelFactory
-import com.bojue.bsapp.viewmodel.IViewModel
-import com.bojue.bsapp.viewmodel.ViewModelKey
+import com.bojue.core.viewmodel.AppViewModelFactory
+import com.bojue.core.viewmodel.IViewModel
+import com.bojue.core.viewmodel.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

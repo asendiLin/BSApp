@@ -1,4 +1,4 @@
-package com.bojue.bsapp.viewmodel
+package com.bojue.core.viewmodel
 
 /**
  * create data : 2019/5/8

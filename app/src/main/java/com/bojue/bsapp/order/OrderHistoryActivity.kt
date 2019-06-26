@@ -13,7 +13,7 @@ import android.widget.Toast
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.event.RefreshEvent
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog

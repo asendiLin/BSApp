@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.LiveData
 import com.bojue.bsapp.model.BaseResponse
 import com.bojue.bsapp.model.LoginResponse
-import com.bojue.bsapp.viewmodel.BaseViewModel
+import com.bojue.core.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 /**

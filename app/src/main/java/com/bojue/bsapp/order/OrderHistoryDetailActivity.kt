@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.event.RefreshEvent
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.ShowImageUtil
 import com.bojue.bsapp.util.ToastUtil

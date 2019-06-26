@@ -1,4 +1,4 @@
-package com.bojue.bsapp.viewmodel
+package com.bojue.core.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import dagger.MapKey

@@ -1,7 +1,7 @@
 package com.bojue.bsapp.course
 
 import android.app.Application
-import com.bojue.bsapp.viewmodel.BaseViewModel
+import com.bojue.core.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 /**

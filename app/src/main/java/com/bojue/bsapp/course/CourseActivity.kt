@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.bojue.bsapp.R
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.util.DateUtils
 import com.bojue.bsapp.util.PrefUtils
 import com.bojue.core.common.BaseActivity

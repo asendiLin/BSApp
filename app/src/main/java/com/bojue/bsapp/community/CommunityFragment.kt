@@ -12,7 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.SUCCESS_STATU
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.util.UserManager

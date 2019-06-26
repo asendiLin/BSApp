@@ -1,4 +1,4 @@
-package com.bojue.bsapp.viewmodel
+package com.bojue.core.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

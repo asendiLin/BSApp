@@ -14,7 +14,7 @@ import android.view.WindowManager
 import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.bsapp.constance.SUCCESS_STATU
-import com.bojue.bsapp.ext.getViewModel
+import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.util.*
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
