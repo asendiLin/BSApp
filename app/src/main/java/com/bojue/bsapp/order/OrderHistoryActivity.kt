@@ -11,14 +11,14 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.event.RefreshEvent
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.model.OrderModel
+import com.sendi.order.model.OrderModel
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
+import com.sendi.base.constance.*
 import org.greenrobot.eventbus.Subscribe
 
 class OrderHistoryActivity : BaseActivity() {
@@ -28,7 +28,7 @@ class OrderHistoryActivity : BaseActivity() {
     private lateinit var mRvOrderList: RecyclerView
     private lateinit var mBtnReload : Button
     private lateinit var mOrderListAdapter: OrderListAdapter
-    private val mOrderList = ArrayList<OrderModel>()
+    private val mOrderList = ArrayList<com.sendi.order.model.OrderModel>()
     private val mLoadingDialog by lazy {
         LoadingDialog(this)
     }
@@ -94,7 +94,7 @@ class OrderHistoryActivity : BaseActivity() {
                 val intent = Intent(this@OrderHistoryActivity,OrderHistoryDetailActivity::class.java)
                 intent.putExtra(ORDER_DETAIL,mOrderList[position])
                 intent.putExtra(HISTORY_ORDER_TYPE,mOrderType)
-                intent.putExtra(POSITION , position)
+                intent.putExtra(POSITION, position)
                 startActivity(intent)
             }
         })

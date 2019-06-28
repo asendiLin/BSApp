@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.DOING_ORDER
-import com.bojue.bsapp.constance.ORDER_DETAIL
-import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.sendi.base.constance.DOING_ORDER
+import com.sendi.base.constance.ORDER_DETAIL
+import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.model.OrderModel
+import com.sendi.order.model.OrderModel
 import com.bojue.bsapp.util.ShowImageUtil
 import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
@@ -31,13 +31,13 @@ class OrderDetailActivity : BaseActivity() {
     private lateinit var mTvOrderContent : TextView
     private lateinit var mTvOrderPrice : TextView
     private lateinit var mTvOrderAddress : TextView
-    private lateinit var mOrderModel : OrderModel
+    private lateinit var mOrderModel : com.sendi.order.model.OrderModel
 
     private val mLoadingDialog by lazy {
         LoadingDialog(this)
     }
     private val mOrderDetailViewModel by lazy {
-        getViewModel(OrderDetailViewModel::class.java)
+        getViewModel(com.sendi.order.viewmodel.OrderDetailViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

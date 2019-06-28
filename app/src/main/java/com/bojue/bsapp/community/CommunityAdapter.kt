@@ -6,12 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.BASE_URL
-import com.bojue.bsapp.constance.BASE_URL_KEY
 import com.bojue.bsapp.model.CommunityModel
-import com.bojue.bsapp.util.SPUtils
 import com.bojue.bsapp.util.ShowImageUtil
-import com.bumptech.glide.Glide
 import com.sackcentury.shinebuttonlib.ShineButton
 
 /**

@@ -1,8 +1,8 @@
 package com.bojue.bsapp.callback
 
 import android.util.Log
-import com.bojue.bsapp.constance.SUCCESS_STATU
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.constance.SUCCESS_STATU
+import com.sendi.base.data.BaseResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

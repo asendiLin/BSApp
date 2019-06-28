@@ -1,6 +1,6 @@
 package com.bojue.bsapp.http.api
 
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.CourseModel
 import retrofit2.Call
 import retrofit2.http.Field

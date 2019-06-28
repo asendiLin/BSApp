@@ -1,21 +1,14 @@
 package com.bojue.bsapp.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.UNKNOW_USER
+import com.sendi.base.constance.UNKNOW_USER
 import com.bojue.bsapp.login.LoginActivity
 import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.newFixedThreadPoolContext
-import kotlinx.coroutines.experimental.runBlocking
-import com.bojue.bsapp.MainActivity
 import java.util.*
 
 

@@ -2,7 +2,7 @@ package com.bojue.bsapp.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.bojue.bsapp.constance.UNKNOW_USER
+import com.sendi.base.constance.UNKNOW_USER
 import com.bojue.bsapp.model.UserModel
 
 /**
@@ -46,7 +46,7 @@ object UserManager {
 
     fun clearUser(){
         val userEdit = mUserSP.edit()
-        userEdit.putInt(ID,UNKNOW_USER)
+        userEdit.putInt(ID, UNKNOW_USER)
         userEdit.apply()
     }
 

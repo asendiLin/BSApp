@@ -1,9 +1,10 @@
-package com.bojue.bsapp.order
+package com.sendi.order.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.core.viewmodel.BaseViewModel
+import com.sendi.order.repository.OrderRepository
 import javax.inject.Inject
 
 /**

@@ -8,15 +8,15 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.event.RefreshEvent
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.model.OrderModel
+import com.sendi.order.model.OrderModel
 import com.bojue.bsapp.util.ShowImageUtil
 import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
+import com.sendi.base.constance.*
 
 class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
@@ -36,7 +36,7 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mTvCancel: TextView
     private lateinit var mTvDelete: TextView
 
-    private lateinit var mOrderDetail: OrderModel
+    private lateinit var mOrderDetail: com.sendi.order.model.OrderModel
 
     private var mPosition = 0
 
@@ -124,7 +124,7 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun showDetail(orderModel: OrderModel, status: Int) {
+    private fun showDetail(orderModel: com.sendi.order.model.OrderModel, status: Int) {
 
         ShowImageUtil.showImage(this, mIvUserIcon, orderModel.student?.icon)
         mTvNickname.text = orderModel.student?.nickname

@@ -3,7 +3,7 @@ package com.bojue.bsapp.myself
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import com.bojue.bsapp.community.CommunityRepository
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.core.viewmodel.BaseViewModel
 import javax.inject.Inject

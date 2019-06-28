@@ -1,4 +1,4 @@
-package com.bojue.bsapp.constance
+package com.sendi.base.constance
 
 /**
  * author: asendi.

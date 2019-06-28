@@ -7,9 +7,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.BASE_URL
-import com.bojue.bsapp.constance.BASE_URL_KEY
-import com.bojue.bsapp.util.SPUtils
 import com.bojue.bsapp.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 

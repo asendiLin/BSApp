@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.model.OrderModel
 import com.bojue.bsapp.util.ShowImageUtil
-import com.bumptech.glide.Glide
 
 /**
  * author: asendi.
  * data: 2019/5/16.
  * description:
  */
-class OrderListAdapter(private val mOrderList : List<OrderModel>,private val mContext:Context)
+class OrderListAdapter(private val mOrderList : List<OrderModel>, private val mContext:Context)
     : RecyclerView.Adapter<OrderListAdapter.OrderListViewHolder>() {
 
     private var mOnOrderIntemClickListener : OnOrderIntemClickListener? =null

@@ -1,6 +1,6 @@
 package com.bojue.bsapp.http.api
 
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Multipart

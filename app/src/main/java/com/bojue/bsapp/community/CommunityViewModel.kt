@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.bojue.bsapp.event.BitmapEvent
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.core.viewmodel.BaseViewModel
 import com.bojue.core.event.EventUtil

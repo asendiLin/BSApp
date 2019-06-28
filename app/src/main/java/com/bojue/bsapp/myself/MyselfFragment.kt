@@ -16,7 +16,6 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import com.bojue.bsapp.community.MyselfCommunityActivity
-import com.bojue.bsapp.constance.*
 import com.bojue.bsapp.course.CourseActivity
 import com.bojue.bsapp.event.SettingEvent
 import com.bojue.core.ext.getViewModel
@@ -27,6 +26,7 @@ import com.bojue.bsapp.setting.SettingActivity
 import com.bojue.bsapp.util.*
 import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.event.EventUtil
+import com.sendi.base.constance.*
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
 import kotlin.collections.ArrayList

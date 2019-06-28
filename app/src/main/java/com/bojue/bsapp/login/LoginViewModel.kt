@@ -2,7 +2,7 @@ package com.bojue.bsapp.login
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.LoginResponse
 import com.bojue.core.viewmodel.BaseViewModel
 import javax.inject.Inject

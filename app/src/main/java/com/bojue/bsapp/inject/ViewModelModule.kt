@@ -7,10 +7,10 @@ import com.bojue.bsapp.course.CourseViewModel
 import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
-import com.bojue.bsapp.order.OrderDetailViewModel
+import com.sendi.order.viewmodel.OrderDetailViewModel
 import com.bojue.bsapp.order.OrderHistoryViewModel
 import com.bojue.bsapp.order.OrderStatusChangeViewModel
-import com.bojue.bsapp.order.OrderViewModel
+import com.sendi.order.viewmodel.OrderViewModel
 import com.bojue.bsapp.publish.PublishOrderViewModel
 import com.bojue.bsapp.publish.PublishViewModel
 import com.bojue.bsapp.register.RegisterViewModel
@@ -51,8 +51,8 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(OrderViewModel::class)
-    fun orderViewModel(viewModel: OrderViewModel):IViewModel
+    @ViewModelKey(com.sendi.order.viewmodel.OrderViewModel::class)
+    fun orderViewModel(viewModel: com.sendi.order.viewmodel.OrderViewModel):IViewModel
 
     @Binds
     @IntoMap
@@ -76,8 +76,8 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(OrderDetailViewModel::class)
-    fun orderDetailViewModel(viewModel: OrderDetailViewModel):IViewModel
+    @ViewModelKey(com.sendi.order.viewmodel.OrderDetailViewModel::class)
+    fun orderDetailViewModel(viewModel: com.sendi.order.viewmodel.OrderDetailViewModel):IViewModel
 
     @Binds
     @IntoMap

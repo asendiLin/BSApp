@@ -1,7 +1,7 @@
-package com.bojue.bsapp.http.api
+package com.sendi.order.repository
 
-import com.bojue.bsapp.model.BaseResponse
-import com.bojue.bsapp.model.OrderModel
+import com.sendi.base.data.BaseResponse
+import com.sendi.order.model.OrderModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

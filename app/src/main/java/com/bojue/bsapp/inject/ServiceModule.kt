@@ -1,8 +1,7 @@
 package com.bojue.bsapp.inject
 
 import android.app.Application
-import android.content.Context
-import com.bojue.bsapp.constance.BASE_URL
+import com.sendi.base.constance.BASE_URL
 import com.bojue.bsapp.http.api.*
 import com.bojue.bsapp.util.SPUtils
 import dagger.Module
@@ -49,8 +48,8 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideOrderService(retrofit: Retrofit): OrderService {
-        return retrofit.create( OrderService::class.java)
+    fun provideOrderService(retrofit: Retrofit): com.sendi.order.repository.OrderService {
+        return retrofit.create( com.sendi.order.repository.OrderService::class.java)
     }
 
     @Provides

@@ -14,10 +14,10 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.*
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.model.OrderModel
+import com.sendi.order.model.OrderModel
 import com.bojue.core.common.BaseFragment
+import com.sendi.base.constance.*
 
 /**
  * author: asendi.
@@ -35,9 +35,9 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
     private lateinit var mRvOrderList : RecyclerView
     private lateinit var mSrlOrderList:SwipeRefreshLayout
     private lateinit var mBtnReload : Button
-    private val mOrderList = ArrayList<OrderModel>()
+    private val mOrderList = ArrayList<com.sendi.order.model.OrderModel>()
     private val mOrderViewModel by lazy {
-        getViewModel(OrderViewModel::class.java)
+        getViewModel(com.sendi.order.viewmodel.OrderViewModel::class.java)
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_order_list,null,false)

@@ -4,10 +4,10 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.bojue.bsapp.callback.CommonCallback
-import com.bojue.bsapp.constance.FAIL_STATU
-import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.sendi.base.constance.FAIL_STATU
+import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.bsapp.http.api.CommunityService
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.CommunityModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,7 +35,7 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
         service.getCommunityList(stuId).enqueue(object : Callback<BaseResponse<List<CommunityModel>>>{
             override fun onFailure(call: Call<BaseResponse<List<CommunityModel>>>?, t: Throwable?) {
                 Log.i(myTag,"onFailure -> message = ${t?.message}")
-                mCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",100))
+                mCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU, "网络出错", 100))
             }
 
             override fun onResponse(call: Call<BaseResponse<List<CommunityModel>>>?, response: Response<BaseResponse<List<CommunityModel>>>?) {
@@ -44,7 +44,7 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
                     if (response.isSuccessful){
                         mCommunityListLiveData.postValue(response.body())
                     }else {
-                        mCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU,response.errorBody().string(),100))
+                        mCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU, response.errorBody().string(), 100))
                     }
                 }
 
@@ -59,7 +59,7 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
         service.getSelfCommunityList(username).enqueue(object :Callback<BaseResponse<List<CommunityModel>>>{
             override fun onFailure(call: Call<BaseResponse<List<CommunityModel>>>?, t: Throwable?) {
                 Log.i(myTag,"onFailure -> ${t?.message}")
-                selfCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",100))
+                selfCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU, "网络出错", 100))
             }
 
             override fun onResponse(call: Call<BaseResponse<List<CommunityModel>>>?, response: Response<BaseResponse<List<CommunityModel>>>?) {
@@ -68,7 +68,7 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
                     if (response.isSuccessful){
                         selfCommunityListLiveData.postValue(response.body())
                     }else {
-                        selfCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU,response.errorBody().string(),100))
+                        selfCommunityListLiveData.postValue(BaseResponse(null, FAIL_STATU, response.errorBody().string(), 100))
                     }
                 }
             }
@@ -86,14 +86,14 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
                     if (response.isSuccessful){
                         mPublishLiveData.postValue(response.body())
                     }else {
-                        mPublishLiveData.postValue(BaseResponse(null, FAIL_STATU,response.errorBody().string(),100))
+                        mPublishLiveData.postValue(BaseResponse(null, FAIL_STATU, response.errorBody().string(), 100))
                     }
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<CommunityModel>>?, t: Throwable?) {
                 Log.i(myTag,"onFailure -> ${t?.message}")
-                mPublishLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",100))
+                mPublishLiveData.postValue(BaseResponse(null, FAIL_STATU, "网络出错", 100))
             }
         })
         return mPublishLiveData
@@ -110,14 +110,14 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
                     }
 
                 }else{
-                    commnunityZanLiveData.postValue(BaseResponse(null, FAIL_STATU,"数据出错",0))
+                    commnunityZanLiveData.postValue(BaseResponse(null, FAIL_STATU, "数据出错", 0))
                 }
 
             }
 
             override fun onFailure(call: Call<BaseResponse<Any>>?, t: Throwable?) {
                 Log.i(myTag,"onFailure -> ${t?.message}")
-                commnunityZanLiveData.postValue(BaseResponse(null, FAIL_STATU,"${t?.message}",0))
+                commnunityZanLiveData.postValue(BaseResponse(null, FAIL_STATU, "${t?.message}", 0))
             }
         })
     }
@@ -126,12 +126,12 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
         service.getCommentList(id).enqueue(object :CommonCallback<List<CommunityModel>>(){
             override fun onSuccess(data: List<CommunityModel>?) {
                 Log.i(myTag,"onSuccess -> data = $data")
-                commentListLiveData.postValue(BaseResponse(data, SUCCESS_STATU,null,0))
+                commentListLiveData.postValue(BaseResponse(data, SUCCESS_STATU, null, 0))
             }
 
             override fun onFail(message: String) {
                 Log.i(myTag,"onFail -> message = $message")
-                commentListLiveData.postValue(BaseResponse(null, FAIL_STATU,message,0))
+                commentListLiveData.postValue(BaseResponse(null, FAIL_STATU, message, 0))
             }
         })
     }
@@ -140,12 +140,12 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
         service.publishComment(content,stuId,origin).enqueue(object : CommonCallback<CommunityModel>(){
             override fun onSuccess(data: CommunityModel?) {
                 Log.i(myTag,"onSuccess -> data = $data")
-                publishCommentListLiveData.postValue(BaseResponse(data, SUCCESS_STATU,null,0))
+                publishCommentListLiveData.postValue(BaseResponse(data, SUCCESS_STATU, null, 0))
             }
 
             override fun onFail(message: String) {
                 Log.i(myTag,"onFail -> message = $message")
-                publishCommentListLiveData.postValue(BaseResponse(null, FAIL_STATU,message,0))
+                publishCommentListLiveData.postValue(BaseResponse(null, FAIL_STATU, message, 0))
             }
         })
     }
@@ -154,12 +154,12 @@ class CommunityRepository @Inject constructor(val service :CommunityService) {
         service.deleteCommunity(id).enqueue(object  : CommonCallback<Any>(){
             override fun onSuccess(data: Any?) {
                 Log.i(myTag,"onSuccess -> data = $data")
-                deleteCommunityLiveData.postValue(BaseResponse(data, SUCCESS_STATU,null,0))
+                deleteCommunityLiveData.postValue(BaseResponse(data, SUCCESS_STATU, null, 0))
             }
 
             override fun onFail(message: String) {
                 Log.i(myTag,"onFail -> message = $message")
-                deleteCommunityLiveData.postValue(BaseResponse(null, FAIL_STATU,message,0))
+                deleteCommunityLiveData.postValue(BaseResponse(null, FAIL_STATU, message, 0))
             }
         })
     }

@@ -16,7 +16,7 @@ import android.arch.lifecycle.Observer
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
-import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.bsapp.model.CourseModel
 import com.bojue.bsapp.util.CourseUtil
 import com.bojue.bsapp.util.UserManager

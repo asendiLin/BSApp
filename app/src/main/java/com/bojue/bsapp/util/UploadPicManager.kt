@@ -3,10 +3,8 @@ package com.bojue.bsapp.util
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
-import com.bojue.bsapp.constance.BASE_URL
+import com.sendi.base.constance.BASE_URL
 import com.bojue.bsapp.http.api.CommonService
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
@@ -21,7 +19,6 @@ import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 /**
  * author: asendi.

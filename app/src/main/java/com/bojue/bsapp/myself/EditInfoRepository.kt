@@ -3,9 +3,9 @@ package com.bojue.bsapp.myself
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import com.bojue.bsapp.constance.FAIL_STATU
+import com.sendi.base.constance.FAIL_STATU
 import com.bojue.bsapp.http.api.MyselfService
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.UserModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,13 +33,13 @@ class EditInfoRepository @Inject constructor(val service : MyselfService) {
                         if (response?.isSuccessful == true){
                             editInfoLiveData.postValue(response.body())
                         }else{
-                            editInfoLiveData.postValue(BaseResponse(null, FAIL_STATU,"修改失败",0))
+                            editInfoLiveData.postValue(BaseResponse(null, FAIL_STATU, "修改失败", 0))
                         }
                     }
 
                     override fun onFailure(call: Call<BaseResponse<UserModel>>?, t: Throwable?) {
                         Log.i(myTag,"onFailure -> ${t?.message}")
-                        editInfoLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",0))
+                        editInfoLiveData.postValue(BaseResponse(null, FAIL_STATU, "网络出错", 0))
                     }
                 })
 

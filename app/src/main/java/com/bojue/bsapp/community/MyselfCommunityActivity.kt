@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.TextView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.COMMUNITY_LIST
-import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.sendi.base.constance.COMMUNITY_LIST
+import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.bsapp.util.ToastUtil

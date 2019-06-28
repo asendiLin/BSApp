@@ -11,7 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.util.ShowImageUtil
 import com.bojue.bsapp.util.UploadPicManager

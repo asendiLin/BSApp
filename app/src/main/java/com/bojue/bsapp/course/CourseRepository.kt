@@ -1,16 +1,14 @@
 package com.bojue.bsapp.course
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import com.bojue.bsapp.constance.FAIL_STATU
-import com.bojue.bsapp.constance.SUCCESS_STATU
+import com.sendi.base.constance.FAIL_STATU
+import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.bsapp.http.api.CourseService
-import com.bojue.bsapp.model.BaseResponse
+import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.CourseModel
 import com.bojue.bsapp.util.CourseUtil
-import com.bojue.bsapp.util.SPUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,13 +46,13 @@ class CourseRepository @Inject constructor(val service : CourseService,val appli
                         }
                     }
                 }else{
-                    courseLiveData.postValue(BaseResponse(null, FAIL_STATU,"数据获取失败",0))
+                    courseLiveData.postValue(BaseResponse(null, FAIL_STATU, "数据获取失败", 0))
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<List<CourseModel>>>?, t: Throwable?) {
                 Log.i(myTag,"onFailure -> ${t?.message}")
-                courseLiveData.postValue(BaseResponse(null, FAIL_STATU,"网络出错",0))
+                courseLiveData.postValue(BaseResponse(null, FAIL_STATU, "网络出错", 0))
             }
         })
 
@@ -62,7 +60,7 @@ class CourseRepository @Inject constructor(val service : CourseService,val appli
     private fun getCoursesFormLocal() : List<CourseModel>{
         Log.i(myTag,"getCoursesFormLocal")
         val coursesList = CourseUtil.getCourseList()
-        courseLiveData.postValue(BaseResponse(coursesList, SUCCESS_STATU,null,0))
+        courseLiveData.postValue(BaseResponse(coursesList, SUCCESS_STATU, null, 0))
         return coursesList
     }
 

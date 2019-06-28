@@ -5,7 +5,7 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.widget.ImageView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.constance.BASE_URL
+import com.sendi.base.constance.BASE_URL
 import com.bumptech.glide.Glide
 
 /**

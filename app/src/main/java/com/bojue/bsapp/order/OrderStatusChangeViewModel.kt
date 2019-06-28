@@ -9,7 +9,7 @@ import javax.inject.Inject
  * data: 2019/5/28.
  * description:
  */
-class OrderStatusChangeViewModel @Inject constructor(application: Application, val repository: OrderRepository)
+class OrderStatusChangeViewModel @Inject constructor(application: Application, val repository: com.sendi.order.repository.OrderRepository)
     : BaseViewModel(application) {
 
     val changeOrderStatusLiveData = repository.changeOrderStatusLiveData
