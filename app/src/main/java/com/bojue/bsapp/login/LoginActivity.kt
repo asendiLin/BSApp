@@ -15,9 +15,8 @@ import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.LoginResponse
 import com.bojue.bsapp.model.UserModel
 import com.bojue.bsapp.register.RegisterActivity
-import com.bojue.bsapp.util.ToastUtil
+import com.sendi.base.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
-import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 
 class LoginActivity : BaseActivity(), View.OnClickListener {

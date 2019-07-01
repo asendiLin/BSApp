@@ -16,11 +16,10 @@ import com.bojue.bsapp.event.SettingEvent
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.login.LoginActivity
 import com.bojue.bsapp.myself.EditInfoViewModel
-import com.bojue.bsapp.util.SPUtils
-import com.bojue.bsapp.util.ToastUtil
+import com.sendi.base.util.SPUtils
+import com.sendi.base.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 import com.bojue.bsapp.widget.IdentifyDialog
-import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.bsapp.widget.SettingPhoneDialog
 import com.bojue.bsapp.widget.SettingUrlDialog
 import com.bojue.core.common.BaseActivity

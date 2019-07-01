@@ -9,7 +9,7 @@ import android.widget.EditText
 import com.bojue.bsapp.R
 import com.sendi.base.constance.BASE_URL
 import com.sendi.base.constance.BASE_URL_KEY
-import com.bojue.bsapp.util.SPUtils
+import com.sendi.base.util.SPUtils
 
 /**
  * author: asendi.

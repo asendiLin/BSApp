@@ -11,8 +11,7 @@ import com.sendi.base.constance.COMMUNITY_LIST
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
-import com.bojue.bsapp.util.ToastUtil
-import com.bojue.bsapp.widget.LoadingDialog
+import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseActivity
 
 class MyselfCommunityActivity : BaseActivity() {

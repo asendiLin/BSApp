@@ -14,10 +14,10 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.bojue.core.ext.getViewModel
-import com.sendi.order.model.OrderModel
 import com.bojue.core.common.BaseFragment
 import com.example.order.R
 import com.sendi.base.constance.*
+import com.sendi.order.activity.OrderDetailActivity
 import com.sendi.order.adapter.OrderListAdapter
 import com.sendi.order.viewmodel.OrderViewModel
 
@@ -57,9 +57,9 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
         mRvOrderList.adapter = mOrderListAdapter
         mOrderListAdapter.setOnOrderIntemClickListener(object : OrderListAdapter.OnOrderIntemClickListener{
             override fun onOrderItemClick(position: Int) {
-//             todo:   val intent = Intent(requireActivity(),OrderDetailActivity::class.java)
-//                intent.putExtra(ORDER_DETAIL,mOrderList[position])
-//                requireContext().startActivity(intent)
+                val intent = Intent(requireActivity(), OrderDetailActivity::class.java)
+                intent.putExtra(ORDER_DETAIL,mOrderList[position])
+                requireContext().startActivity(intent)
             }
         })
         return mRootView

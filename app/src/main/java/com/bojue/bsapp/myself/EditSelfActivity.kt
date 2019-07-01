@@ -14,9 +14,8 @@ import com.bojue.bsapp.R
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.util.ShowImageUtil
-import com.bojue.bsapp.util.UploadPicManager
+import com.sendi.base.util.UploadPicManager
 import com.bojue.bsapp.util.UserManager
-import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
 import com.yanzhenjie.album.Album

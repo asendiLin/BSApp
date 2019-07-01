@@ -16,8 +16,10 @@ import com.bojue.bsapp.R
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.util.*
-import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
+import com.sendi.base.util.DateUtils
+import com.sendi.base.util.ToastUtil
+import com.sendi.base.util.UploadPicManager
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.api.widget.Widget
 

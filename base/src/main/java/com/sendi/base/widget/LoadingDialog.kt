@@ -1,9 +1,9 @@
-package com.bojue.bsapp.widget
+package com.sendi.base.widget
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import com.bojue.bsapp.R
+import com.sendi.base.R
 
 /**
  * author: asendi.

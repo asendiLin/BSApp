@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.bojue.bs.db.DaoSession
 import com.bojue.bs.db.DaoMaster
 import com.bojue.bsapp.course.db.CourseEntity
+import com.sendi.base.util.SPUtils
 
 
 /**

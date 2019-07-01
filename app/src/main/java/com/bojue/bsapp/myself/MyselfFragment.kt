@@ -24,9 +24,9 @@ import com.bojue.bsapp.model.UserModel
 import com.bojue.bsapp.order.OrderHistoryActivity
 import com.bojue.bsapp.setting.SettingActivity
 import com.bojue.bsapp.util.*
-import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.event.EventUtil
 import com.sendi.base.constance.*
+import com.sendi.base.util.ToastUtil
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
 import kotlin.collections.ArrayList

@@ -7,7 +7,7 @@ import com.sendi.base.constance.DEFAULT_URL
 import com.bojue.bsapp.inject.Injector
 import com.bojue.bsapp.util.CourseUtil
 import com.bojue.bsapp.util.MediaLoader
-import com.bojue.bsapp.util.SPUtils
+import com.sendi.base.util.SPUtils
 import com.bojue.bsapp.util.UserManager
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig

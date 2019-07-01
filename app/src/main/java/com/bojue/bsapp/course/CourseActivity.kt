@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.*
 import com.bojue.bsapp.R
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.util.DateUtils
-import com.bojue.bsapp.util.PrefUtils
+import com.sendi.base.util.DateUtils
+import com.sendi.base.util.PrefUtils
 import com.bojue.core.common.BaseActivity
 import android.arch.lifecycle.Observer
 import android.view.Gravity
@@ -20,7 +20,6 @@ import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.bsapp.model.CourseModel
 import com.bojue.bsapp.util.CourseUtil
 import com.bojue.bsapp.util.UserManager
-import com.bojue.bsapp.widget.LoadingDialog
 import java.util.*
 
 class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedListener, View.OnClickListener {

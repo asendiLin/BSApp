@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.bojue.bsapp.R
-import com.bojue.bsapp.util.ToastUtil
+import com.sendi.base.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 
 /**

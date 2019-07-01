@@ -15,7 +15,6 @@ import com.bojue.bsapp.event.RefreshEvent
 import com.bojue.core.ext.getViewModel
 import com.sendi.order.model.OrderModel
 import com.bojue.bsapp.util.UserManager
-import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
 import com.sendi.base.constance.*

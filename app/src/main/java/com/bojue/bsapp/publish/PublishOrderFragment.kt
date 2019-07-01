@@ -16,9 +16,8 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
 import com.bojue.bsapp.R
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.util.ToastUtil
+import com.sendi.base.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
-import com.bojue.bsapp.widget.LoadingDialog
 import com.bojue.core.common.BaseFragment
 import com.sendi.base.constance.*
 import java.text.SimpleDateFormat

@@ -1,4 +1,4 @@
-package com.bojue.bsapp.order
+package com.sendi.order.activity
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -7,17 +7,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.bojue.bsapp.R
 import com.sendi.base.constance.DOING_ORDER
 import com.sendi.base.constance.ORDER_DETAIL
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
-import com.sendi.order.model.OrderModel
-import com.bojue.bsapp.util.ShowImageUtil
-import com.sendi.base.util.ToastUtil
-import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
-import com.yanzhenjie.album.widget.LoadingDialog
+import com.example.order.R
+import com.sendi.base.util.ShowImageUtil
+import com.sendi.base.util.ToastUtil
+import com.sendi.base.widget.LoadingDialog
 
 class OrderDetailActivity : BaseActivity() {
 

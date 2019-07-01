@@ -3,7 +3,7 @@ package com.bojue.bsapp.inject
 import android.app.Application
 import com.sendi.base.constance.BASE_URL
 import com.bojue.bsapp.http.api.*
-import com.bojue.bsapp.util.SPUtils
+import com.sendi.base.util.SPUtils
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

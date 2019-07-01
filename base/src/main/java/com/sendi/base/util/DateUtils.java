@@ -1,4 +1,4 @@
-package com.bojue.bsapp.util;
+package com.sendi.base.util;
 
 import java.util.Calendar;
 import java.util.Date;
