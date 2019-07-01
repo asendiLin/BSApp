@@ -17,6 +17,12 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        if (isDevelop) {
+            applicationId "com.sendi.order"
+        } else {
+        }
+
+        resourcePrefix "order_" //防止资源命名冲突
     }
 
     buildTypes {
@@ -26,7 +32,15 @@ android {
         }
     }
 
-    sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/java/'] } }
+    sourceSets { main {
+            java.srcDirs = ['src/main/java', 'src/main/java/']
+            if (isDevelop){
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
 }
 
 dependencies {
