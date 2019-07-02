@@ -49,12 +49,6 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideOrderService(retrofit: Retrofit): com.sendi.order.repository.OrderService {
-        return retrofit.create( com.sendi.order.repository.OrderService::class.java)
-    }
-
-    @Provides
-    @Singleton
     fun provideCommunityService(retrofit: Retrofit): CommunityService {
         return retrofit.create(CommunityService::class.java)
     }
