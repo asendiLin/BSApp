@@ -7,10 +7,10 @@
     android:gravity="center"
     tools:context=".activity.OrderLauncherActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="order component"
-        />
+   <FrameLayout
+       android:id="@+id/fl_order_content"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       />
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.sendi.order.inject
 
+import com.sendi.order.repository.OrderService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -15,8 +16,8 @@ class OrderServiceModule {
 
     @Provides
     @Singleton
-    fun provideOrderService(retrofit: Retrofit): com.sendi.order.repository.OrderService {
-        return retrofit.create( com.sendi.order.repository.OrderService::class.java)
+    fun provideOrderService(retrofit: Retrofit): OrderService {
+        return retrofit.create( OrderService::class.java)
     }
 
 }

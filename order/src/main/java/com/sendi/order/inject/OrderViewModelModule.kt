@@ -1,5 +1,7 @@
 package com.sendi.order.inject
 
+import android.arch.lifecycle.ViewModelProvider
+import com.bojue.core.viewmodel.AppViewModelFactory
 import com.bojue.core.viewmodel.IViewModel
 import com.bojue.core.viewmodel.ViewModelKey
 import com.sendi.order.viewmodel.OrderDetailViewModel
@@ -17,6 +19,10 @@ import dagger.multibindings.IntoMap
  */
 @Module
 interface OrderViewModelModule {
+
+    @Binds
+    fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
+
     @Binds
     @IntoMap
     @ViewModelKey(OrderViewModel::class)
