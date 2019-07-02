@@ -6,7 +6,7 @@ import android.util.Log
 import com.sendi.base.constance.FAIL_STATU
 import com.bojue.bsapp.http.api.MyselfService
 import com.sendi.base.data.BaseResponse
-import com.bojue.bsapp.model.UserModel
+import com.sendi.user.UserModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,16 +19,16 @@ import javax.inject.Inject
  */
 class EditInfoRepository @Inject constructor(val service : MyselfService) {
     private val myTag = "EditInfoRepository"
-    val editInfoLiveData = MutableLiveData<BaseResponse<UserModel>>()
+    val editInfoLiveData = MutableLiveData<BaseResponse<com.sendi.user.UserModel>>()
 
     fun editInfo( stuId: Int,  username: String,
                   password: String,  number: String?,
                   classname: String?,  icon: String?,
                   nickname: String?,  phone: String?,
-                  signature: String?): LiveData<BaseResponse<UserModel>> {
+                  signature: String?): LiveData<BaseResponse<com.sendi.user.UserModel>> {
         service.editInfo(stuId,username,password,number,classname,icon,nickname,phone,signature)
-                .enqueue(object : Callback<BaseResponse<UserModel>>{
-                    override fun onResponse(call: Call<BaseResponse<UserModel>>?, response: Response<BaseResponse<UserModel>>?) {
+                .enqueue(object : Callback<BaseResponse<com.sendi.user.UserModel>>{
+                    override fun onResponse(call: Call<BaseResponse<com.sendi.user.UserModel>>?, response: Response<BaseResponse<com.sendi.user.UserModel>>?) {
                         Log.i(myTag,"response -> ${response?.body()}")
                         if (response?.isSuccessful == true){
                             editInfoLiveData.postValue(response.body())
@@ -37,7 +37,7 @@ class EditInfoRepository @Inject constructor(val service : MyselfService) {
                         }
                     }
 
-                    override fun onFailure(call: Call<BaseResponse<UserModel>>?, t: Throwable?) {
+                    override fun onFailure(call: Call<BaseResponse<com.sendi.user.UserModel>>?, t: Throwable?) {
                         Log.i(myTag,"onFailure -> ${t?.message}")
                         editInfoLiveData.postValue(BaseResponse(null, FAIL_STATU, "网络出错", 0))
                     }

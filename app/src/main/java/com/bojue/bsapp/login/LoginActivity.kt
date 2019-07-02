@@ -13,7 +13,7 @@ import com.bojue.bsapp.activity.HomeActivity
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.LoginResponse
-import com.bojue.bsapp.model.UserModel
+import com.sendi.user.UserModel
 import com.bojue.bsapp.register.RegisterActivity
 import com.sendi.base.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
@@ -72,8 +72,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun saveUserInfo(userInfo: LoginResponse?) {
         userInfo?.let {
-            val userModel = UserModel(userInfo.id,userInfo.username,userInfo.password,
-                    userInfo.number,userInfo.classname,userInfo.icon,userInfo.nickname,userInfo.phone,userInfo.signature)
+            val userModel = com.sendi.user.UserModel(userInfo.id, userInfo.username, userInfo.password,
+                    userInfo.number, userInfo.classname, userInfo.icon, userInfo.nickname, userInfo.phone, userInfo.signature)
             UserManager.saveUser(userModel)
         }
     }

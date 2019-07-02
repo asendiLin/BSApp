@@ -20,7 +20,7 @@ import com.bojue.bsapp.course.CourseActivity
 import com.sendi.base.event.SettingEvent
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.model.CommunityModel
-import com.bojue.bsapp.model.UserModel
+import com.sendi.user.UserModel
 import com.bojue.bsapp.setting.SettingActivity
 import com.bojue.bsapp.util.*
 import com.bojue.core.event.EventUtil
@@ -208,7 +208,7 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
     }
 
     @Subscribe
-    fun onUserInfoEvent(user: UserModel) {
+    fun onUserInfoEvent(user: com.sendi.user.UserModel) {
         mTvNickname.text = user.nickname
         mTvSignature.text = user.signature
         ShowImageUtil.showImage(this, mIvUserIcon, user.icon)

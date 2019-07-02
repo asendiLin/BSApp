@@ -3,7 +3,7 @@ package com.bojue.bsapp.util
 import android.content.Context
 import android.content.SharedPreferences
 import com.sendi.base.constance.UNKNOW_USER
-import com.bojue.bsapp.model.UserModel
+import com.sendi.user.UserModel
 
 /**
  * author: asendi.
@@ -30,7 +30,7 @@ object UserManager {
         mUserSP = context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
     }
 
-    fun saveUser(userModel: UserModel) {
+    fun saveUser(userModel: com.sendi.user.UserModel) {
         val userEdit = mUserSP.edit()
         userEdit.putInt(ID,userModel.id)
         userEdit.putString(USERNAME,userModel.username)
@@ -50,7 +50,7 @@ object UserManager {
         userEdit.apply()
     }
 
-    fun getUser():UserModel {
+    fun getUser(): com.sendi.user.UserModel {
         val id = mUserSP.getInt(ID, UNKNOW_USER)
         val username = mUserSP.getString(USERNAME,"")
         val password = mUserSP.getString(PASSWORD,"")
@@ -61,7 +61,7 @@ object UserManager {
         val phone = mUserSP.getString(PHONE,null)
         val signature = mUserSP.getString(SIGNATURE,null)
 
-        return UserModel(id,username,password, number, classname, icon, nickname, phone, signature)
+        return com.sendi.user.UserModel(id, username, password, number, classname, icon, nickname, phone, signature)
     }
 
 }

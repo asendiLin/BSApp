@@ -28,6 +28,12 @@ android {
         }
 
         resourcePrefix "order_" //防止资源命名冲突
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {

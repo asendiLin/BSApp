@@ -3,8 +3,8 @@ package com.sendi.base.util
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
+import com.sendi.base.api.CommonService
 import com.sendi.base.constance.BASE_URL
-import com.bojue.bsapp.http.api.CommonService
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch

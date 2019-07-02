@@ -1,4 +1,4 @@
-package com.bojue.bsapp.http.api
+package com.sendi.base.api
 
 import com.sendi.base.data.BaseResponse
 import okhttp3.MultipartBody

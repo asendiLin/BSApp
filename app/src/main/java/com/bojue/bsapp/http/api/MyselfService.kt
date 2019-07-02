@@ -1,7 +1,7 @@
 package com.bojue.bsapp.http.api
 
 import com.sendi.base.data.BaseResponse
-import com.bojue.bsapp.model.UserModel
+import com.sendi.user.UserModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -20,6 +20,6 @@ interface MyselfService {
                  @Field("password") password: String, @Field("number") number: String?,
                  @Field("classname") classname: String?, @Field("icon") icon: String?,
                  @Field("nickname") nickname: String?, @Field("phone") phone: String?,
-                 @Field("signature") signature:String?): Call<BaseResponse<UserModel>>
+                 @Field("signature") signature:String?): Call<BaseResponse<com.sendi.user.UserModel>>
 
 }

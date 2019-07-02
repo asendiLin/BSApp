@@ -19,6 +19,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -40,4 +45,5 @@ dependencies {
 
     implementation project(':core')
     implementation project(':base')
+    implementation project(':user_export')
 }

@@ -14,7 +14,7 @@ import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.login.LoginActivity
 import com.bojue.bsapp.model.RegisterResponse
-import com.bojue.bsapp.model.UserModel
+import com.sendi.user.UserModel
 import com.sendi.base.util.ToastUtil
 import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
@@ -77,9 +77,9 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
     private fun saveUserInfo(userInfo: RegisterResponse?) {
         userInfo?.let {
-            val userModel = UserModel(userInfo.id,userInfo.username,userInfo.password,
-                    userInfo.number,userInfo.classname,userInfo.icon,userInfo.nickname,
-                    userInfo.phone,userInfo.signature)
+            val userModel = com.sendi.user.UserModel(userInfo.id, userInfo.username, userInfo.password,
+                    userInfo.number, userInfo.classname, userInfo.icon, userInfo.nickname,
+                    userInfo.phone, userInfo.signature)
             UserManager.saveUser(userModel)
         }
     }

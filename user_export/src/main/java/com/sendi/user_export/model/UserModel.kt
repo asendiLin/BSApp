@@ -1,4 +1,4 @@
-package com.bojue.bsapp.model
+package com.sendi.user_export.model
 
 import android.os.Parcel
 import android.os.Parcelable
