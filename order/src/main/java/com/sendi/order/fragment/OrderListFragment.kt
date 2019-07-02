@@ -15,8 +15,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bojue.core.ext.getViewModel
 import com.bojue.core.common.BaseFragment
-import com.example.order.R
 import com.sendi.base.constance.*
+import com.sendi.order.R
 import com.sendi.order.activity.OrderDetailActivity
 import com.sendi.order.adapter.OrderListAdapter
 import com.sendi.order.viewmodel.OrderViewModel

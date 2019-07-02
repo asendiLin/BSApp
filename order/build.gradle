@@ -42,11 +42,12 @@ android {
         }
     }
 
-    sourceSets { main {
+    sourceSets {
+        main {
             java.srcDirs = ['src/main/java', 'src/main/java/']
-            if (isDevelop){
+            if (isDevelop) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-            }else {
+            } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
         }

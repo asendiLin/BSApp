@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.order.R
 import com.sendi.base.util.ShowImageUtil
+import com.sendi.order.R
 
 /**
  * author: asendi.
