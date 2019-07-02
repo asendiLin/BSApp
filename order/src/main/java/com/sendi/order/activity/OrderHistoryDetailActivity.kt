@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bojue.core.ext.getViewModel
-import com.sendi.order.model.OrderModel
 import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil

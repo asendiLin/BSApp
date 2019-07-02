@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.bojue.core.ext.getViewModel
 import com.sendi.order.model.OrderModel
 import com.bojue.core.common.BaseActivity
@@ -20,6 +21,8 @@ import com.sendi.base.event.RefreshEvent
 import com.sendi.base.widget.LoadingDialog
 import com.sendi.order.adapter.OrderListAdapter
 import com.sendi.order.viewmodel.OrderHistoryViewModel
+import com.sendi.user_export.constance.USER_MANAGER
+import com.sendi.user_export.manager.IUserManager
 import org.greenrobot.eventbus.Subscribe
 
 class OrderHistoryActivity : BaseActivity() {
@@ -29,7 +32,11 @@ class OrderHistoryActivity : BaseActivity() {
     private lateinit var mRvOrderList: RecyclerView
     private lateinit var mBtnReload : Button
     private lateinit var mOrderListAdapter: OrderListAdapter
-    private val mOrderList = ArrayList<com.sendi.order.model.OrderModel>()
+    private val mOrderList = ArrayList<OrderModel>()
+
+    @Autowired(name = USER_MANAGER)
+    lateinit var userManager : IUserManager
+
     private val mLoadingDialog by lazy {
         LoadingDialog(this)
     }
@@ -51,7 +58,7 @@ class OrderHistoryActivity : BaseActivity() {
 
     private fun initDate(historyType: Int) {
         mLoadingDialog.show()
-        val stuId = UserManager.getUser().id
+        val stuId = userManager.getUser().id
         mHistoryViewModel.getHistoryOrderList(historyType, stuId).observe(this, Observer { result ->
             Log.i(myTag, "result -> $result")
             mLoadingDialog.dismiss()
@@ -109,7 +116,7 @@ class OrderHistoryActivity : BaseActivity() {
             mRvOrderList.visibility = View.VISIBLE
             mLoadingDialog.show()
             val type = intent.getIntExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
-            val stuId = UserManager.getUser().id
+            val stuId = userManager.getUser().id
             mHistoryViewModel.getHistoryOrderList(type, stuId)
         }
     }

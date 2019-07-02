@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.sendi.base.constance.DOING_ORDER
 import com.sendi.base.constance.ORDER_DETAIL
 import com.sendi.base.constance.SUCCESS_STATU
@@ -16,6 +17,8 @@ import com.example.order.R
 import com.sendi.base.util.ShowImageUtil
 import com.sendi.base.util.ToastUtil
 import com.sendi.base.widget.LoadingDialog
+import com.sendi.user_export.constance.USER_MANAGER
+import com.sendi.user_export.manager.IUserManager
 
 class OrderDetailActivity : BaseActivity() {
 
@@ -30,6 +33,9 @@ class OrderDetailActivity : BaseActivity() {
     private lateinit var mTvOrderPrice : TextView
     private lateinit var mTvOrderAddress : TextView
     private lateinit var mOrderModel : com.sendi.order.model.OrderModel
+
+    @Autowired(name = USER_MANAGER)
+    lateinit var userManager : IUserManager
 
     private val mLoadingDialog by lazy {
         LoadingDialog(this)
@@ -62,7 +68,7 @@ class OrderDetailActivity : BaseActivity() {
         mToolbar.setNavigationOnClickListener { finish() }
         mBtnOrderAccept.setOnClickListener {
 
-            acceptOrder(DOING_ORDER,mOrderModel.id,UserManager.getUser().id)
+            acceptOrder(DOING_ORDER,mOrderModel.id,userManager.getUser().id)
         }
         mTvTitle.text = "订单详情"
     }
@@ -79,11 +85,11 @@ class OrderDetailActivity : BaseActivity() {
     }
 
     private fun acceptOrder(status :Int ,id:Int,stuId:Int) {
-        if (UserManager.getUser().number .isNullOrEmpty()){
+        if (userManager.getUser().number .isNullOrEmpty()){
             ToastUtil.showShort(this,"通过学生认证后才能发布订单")
             return
         }
-        if (UserManager.getUser().phone.isNullOrEmpty()){
+        if (userManager.getUser().phone.isNullOrEmpty()){
             ToastUtil.showShort(this,"您还没有设置手机号码哦")
         }
         mLoadingDialog.show()
