@@ -46,7 +46,7 @@ class OrderDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_detail)
+        setContentView(R.layout.order_activity_order_detail)
         initView()
 
         initData()

@@ -15,7 +15,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -24,7 +24,6 @@ android {
 
         if (isDevelop) {
             applicationId "com.sendi.order"
-        } else {
         }
 
         resourcePrefix "order_" //防止资源命名冲突
@@ -52,6 +51,10 @@ android {
             }
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -63,6 +66,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    kapt rootProject.ext.dependencies.dagger_compiler
+    kapt rootProject.ext.dependencies.dagger_processor
+
 
     implementation project(':core')
     implementation project(':base')

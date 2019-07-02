@@ -42,7 +42,7 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
         getViewModel(OrderViewModel::class.java)
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mRootView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_order_list,null,false)
+        mRootView = LayoutInflater.from(requireContext()).inflate(R.layout.order_fragment_order_list,null,false)
         mRvOrderList = mRootView.findViewById(R.id.rv_order_list)
         mSrlOrderList = mRootView.findViewById(R.id.srl_order_list)
         mFabOrderType = mRootView.findViewById(R.id.fab_order_type)
@@ -80,7 +80,7 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
 
     private fun showSelectTypeDialog(){
         val bottomDialog = Dialog(context, R.style.BottomDialog)
-        val view = LayoutInflater.from(context).inflate(R.layout.dialog_bottom_order_type, null, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.order_dialog_bottom_order_type, null, false)
 
         view.findViewById<TextView>(R.id.tv_order_type1).setOnClickListener {
             getOrderList(paotui)

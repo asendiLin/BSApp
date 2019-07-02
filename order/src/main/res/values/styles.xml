@@ -13,4 +13,20 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <!--<item name="android:windowAnimationStyle">@style/dialog_bottom_anim_in_out</item>-->
     </style>
+
+    <!--需求详情的LinearLayout-->
+    <style name="order_need_detail_ll_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_m</item>
+    </style>
+
+    <!--需求详情的TextView-->
+    <style name="order_need_detail_txt_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_m</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

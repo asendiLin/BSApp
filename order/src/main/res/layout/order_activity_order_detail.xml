@@ -57,17 +57,17 @@
             />
 
         <LinearLayout
-            style="@style/need_detail_ll_style"
+            style="@style/order_need_detail_ll_style"
             >
 
             <TextView
-                style="@style/need_detail_txt_style"
+                style="@style/order_need_detail_txt_style"
                 android:text="结束时间："
                 />
 
             <TextView
                 android:id="@+id/tv_end_time"
-                style="@style/need_detail_txt_style"
+                style="@style/order_need_detail_txt_style"
                 android:layout_marginLeft="@dimen/space_s"
                 tools:text="1月10日"
                 />
