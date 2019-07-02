@@ -1,4 +1,4 @@
-package com.bojue.bsapp.order
+package com.sendi.order.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.LiveData

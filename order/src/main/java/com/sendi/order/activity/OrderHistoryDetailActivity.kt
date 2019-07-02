@@ -1,4 +1,4 @@
-package com.bojue.bsapp.order
+package com.sendi.order.activity
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -7,15 +7,16 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bojue.bsapp.R
-import com.bojue.bsapp.event.RefreshEvent
 import com.bojue.core.ext.getViewModel
 import com.sendi.order.model.OrderModel
-import com.bojue.bsapp.util.ShowImageUtil
 import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
+import com.example.order.R
 import com.sendi.base.constance.*
+import com.sendi.base.event.RefreshEvent
+import com.sendi.base.util.ShowImageUtil
+import com.sendi.base.widget.LoadingDialog
 
 class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 
@@ -44,7 +45,7 @@ class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
     }
 
     private val mOrderStatusChangeViewModel by lazy {
-        getViewModel(OrderStatusChangeViewModel::class.java)
+        getViewModel(com.sendi.order.viewmodel.OrderStatusChangeViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

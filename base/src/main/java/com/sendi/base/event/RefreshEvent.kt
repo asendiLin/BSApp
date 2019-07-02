@@ -1,4 +1,4 @@
-package com.bojue.bsapp.event
+package com.sendi.base.event
 
 /**
  * author: asendi.

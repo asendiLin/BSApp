@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.event.BitmapEvent
+import com.sendi.base.event.BitmapEvent
 import com.bojue.bsapp.filter.FilterNameAdapter
 import com.bojue.bsapp.util.GPUImageUtil
 import com.bojue.core.event.EventUtil

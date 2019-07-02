@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.order"></manifest>
+          package="com.example.order">
+    <application>
+        <activity android:name="com.sendi.order.activity.OrderHistoryActivity"/>
+        <activity android:name="com.sendi.order.activity.OrderHistoryDetailActivity"/>
+        <activity android:name="com.sendi.order.activity.OrderDetailActivity"/>
+    </application>
+</manifest>

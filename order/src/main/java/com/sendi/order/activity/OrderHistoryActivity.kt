@@ -1,4 +1,4 @@
-package com.bojue.bsapp.order
+package com.sendi.order.activity
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
@@ -10,14 +10,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.bojue.bsapp.R
-import com.bojue.bsapp.event.RefreshEvent
 import com.bojue.core.ext.getViewModel
 import com.sendi.order.model.OrderModel
-import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
+import com.example.order.R
 import com.sendi.base.constance.*
+import com.sendi.base.event.RefreshEvent
+import com.sendi.base.widget.LoadingDialog
+import com.sendi.order.adapter.OrderListAdapter
+import com.sendi.order.viewmodel.OrderHistoryViewModel
 import org.greenrobot.eventbus.Subscribe
 
 class OrderHistoryActivity : BaseActivity() {

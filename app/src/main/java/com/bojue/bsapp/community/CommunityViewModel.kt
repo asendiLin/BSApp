@@ -3,7 +3,7 @@ package com.bojue.bsapp.community
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.bojue.bsapp.event.BitmapEvent
+import com.sendi.base.event.BitmapEvent
 import com.sendi.base.data.BaseResponse
 import com.bojue.bsapp.model.CommunityModel
 import com.bojue.core.viewmodel.BaseViewModel

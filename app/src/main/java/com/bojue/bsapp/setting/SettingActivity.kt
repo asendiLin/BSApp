@@ -12,7 +12,7 @@ import com.bojue.bsapp.R
 import com.sendi.base.constance.BASE_URL
 import com.sendi.base.constance.BASE_URL_KEY
 import com.sendi.base.constance.FAIL_STATU
-import com.bojue.bsapp.event.SettingEvent
+import com.sendi.base.event.SettingEvent
 import com.bojue.core.ext.getViewModel
 import com.bojue.bsapp.login.LoginActivity
 import com.bojue.bsapp.myself.EditInfoViewModel
