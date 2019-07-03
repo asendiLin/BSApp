@@ -5,4 +5,4 @@ package com.sendi.community_export.constance
  * author : sendi
  * description :
  */
-const val IMAGE_MANAGER = "image_manager"
+const val IMAGE_MANAGER = "/community/image_manager"

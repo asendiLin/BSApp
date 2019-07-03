@@ -20,6 +20,7 @@ import com.sendi.community.R
 import com.sendi.community.activity.PublishCommunityActivity
 import com.sendi.community.adapter.CommunityAdapter
 import com.sendi.community.viewmodel.CommunityViewModel
+import com.sendi.community_export.model.CommunityModel
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
 import link.fls.swipestack.SwipeStack
@@ -41,7 +42,7 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
         getViewModel(CommunityViewModel::class.java)
     }
     private lateinit var mCommunityListAdapter : CommunityAdapter
-    private val mCommunityList = ArrayList<com.sendi.community.model.CommunityModel>()
+    private val mCommunityList = ArrayList<CommunityModel>()
     private var mLoadingDialog : LoadingDialog? = null
 
     private val mCommentDialog = ListBottomSheetDialogFragment()

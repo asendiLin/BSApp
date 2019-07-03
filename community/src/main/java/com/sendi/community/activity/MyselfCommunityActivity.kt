@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.sendi.base.constance.COMMUNITY_LIST
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
-import com.sendi.community.model.CommunityModel
+import com.sendi.community_export.model.CommunityModel
 import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseActivity
 import com.sendi.base.widget.LoadingDialog
@@ -21,7 +21,7 @@ class MyselfCommunityActivity : BaseActivity() {
     private val myTag = "MyselfCommunityActivity"
     private lateinit var mRvCommunityList: RecyclerView
     private lateinit var mCommunityListAdapter: MySelfCommunityAdapter
-    private val mCommunityList = ArrayList<com.sendi.community.model.CommunityModel>()
+    private val mCommunityList = ArrayList<CommunityModel>()
     private var mDeletePosition = 0
     private val mLoadingDialog by lazy {
         LoadingDialog(this)
@@ -38,7 +38,7 @@ class MyselfCommunityActivity : BaseActivity() {
     }
 
     private fun initData() {
-        val communityList = intent.getParcelableArrayListExtra<com.sendi.community.model.CommunityModel>(COMMUNITY_LIST)
+        val communityList = intent.getParcelableArrayListExtra<CommunityModel>(COMMUNITY_LIST)
         Log.i(myTag, "initData -> $communityList")
         communityList?.let {
             mCommunityList.addAll(communityList)

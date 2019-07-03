@@ -1,7 +1,7 @@
 package com.sendi.community.api
 
 import com.sendi.base.data.BaseResponse
-import com.sendi.community.model.CommunityModel
+import com.sendi.community_export.model.CommunityModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -18,15 +18,15 @@ interface CommunityService {
     @FormUrlEncoded
     @POST("Treehole/publish.action")
     fun publish(@Field("content") content: String, @Field("studentId") studentId: Int,
-                @Field("pic") pic: String, @Field("time") time: String): Call<BaseResponse<com.sendi.community.model.CommunityModel>>
+                @Field("pic") pic: String, @Field("time") time: String): Call<BaseResponse<CommunityModel>>
 
     @FormUrlEncoded
     @POST("Treehole/findTreehole.action")
-    fun getCommunityList(@Field("studentId") stuId : Int): Call<BaseResponse<List<com.sendi.community.model.CommunityModel>>>
+    fun getCommunityList(@Field("studentId") stuId : Int): Call<BaseResponse<List<CommunityModel>>>
 
     @FormUrlEncoded
     @POST("Student/getMyTreehole.action")
-    fun getSelfCommunityList(@Field("username") username: String): Call<BaseResponse<List<com.sendi.community.model.CommunityModel>>>
+    fun getSelfCommunityList(@Field("username") username: String): Call<BaseResponse<List<CommunityModel>>>
 
     @FormUrlEncoded
     @POST("Support/like.action")
@@ -34,13 +34,13 @@ interface CommunityService {
 
     @FormUrlEncoded
     @POST("Treehole/findReply.action")
-    fun getCommentList(@Field("id") id :Int): Call<BaseResponse<List<com.sendi.community.model.CommunityModel>>>
+    fun getCommentList(@Field("id") id :Int): Call<BaseResponse<List<CommunityModel>>>
 
     @FormUrlEncoded
     @POST("Treehole/publish.action")
     fun publishComment(@Field("content") content: String, @Field("studentId") studentId: Int,
                        @Field("origin")origin:Int)
-            : Call<BaseResponse<com.sendi.community.model.CommunityModel>>
+            : Call<BaseResponse<CommunityModel>>
 
     @FormUrlEncoded
     @POST("Treehole/deleteById.action")

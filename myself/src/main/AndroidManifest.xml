@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sendi.myself" >
+    <application>
+        <activity android:name=".activity.EditSelfActivity"/>
+        <activity android:name=".activity.SettingActivity"/>
+    </application>
+</manifest>

@@ -8,7 +8,7 @@ import android.widget.*
 import com.sackcentury.shinebuttonlib.ShineButton
 import com.sendi.base.util.ShowImageUtil
 import com.sendi.community.R
-import com.sendi.community.model.CommunityModel
+import com.sendi.community_export.model.CommunityModel
 
 /**
  * author: asendi.

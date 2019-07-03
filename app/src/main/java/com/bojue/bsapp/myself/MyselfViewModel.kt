@@ -13,7 +13,7 @@ import javax.inject.Inject
  * data: 2019/5/10.
  * description:
  */
-class MyselfViewModel @Inject constructor(application: Application,val repository: com.sendi.community.repository.CommunityRepository)
+class MyselfViewModel @Inject constructor(application: Application,val repository: CommunityRepository)
     : BaseViewModel(application){
 
     val myselfCommunityLiveData = repository.selfCommunityListLiveData

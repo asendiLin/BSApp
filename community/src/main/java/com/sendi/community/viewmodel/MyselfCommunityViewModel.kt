@@ -3,7 +3,7 @@ package com.sendi.community.viewmodel
 import android.app.Application
 import android.arch.lifecycle.LiveData
 import com.sendi.base.data.BaseResponse
-import com.sendi.community.model.CommunityModel
+import com.sendi.community_export.model.CommunityModel
 import com.bojue.core.viewmodel.BaseViewModel
 import com.sendi.community.repository.CommunityRepository
 import javax.inject.Inject

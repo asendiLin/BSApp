@@ -3,7 +3,6 @@ package com.sendi.community.fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.UserManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -26,7 +25,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.sendi.base.util.ShowImageUtil;
 import com.sendi.base.widget.LoadingDialog;
 import com.sendi.community.R;
-import com.sendi.community.model.CommunityModel;
+import com.sendi.community_export.model.CommunityModel;
 import com.sendi.user_export.constance.ConstanceKt;
 import com.sendi.user_export.manager.IUserManager;
 

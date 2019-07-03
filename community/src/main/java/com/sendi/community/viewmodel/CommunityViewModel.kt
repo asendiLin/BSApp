@@ -5,7 +5,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.sendi.base.event.BitmapEvent
 import com.sendi.base.data.BaseResponse
-import com.sendi.community.model.CommunityModel
+import com.sendi.community_export.model.CommunityModel
 import com.bojue.core.viewmodel.BaseViewModel
 import com.bojue.core.event.EventUtil
 import com.sendi.community.repository.CommunityRepository

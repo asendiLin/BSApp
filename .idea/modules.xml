@@ -6,7 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/community/community.iml" filepath="$PROJECT_DIR$/community/community.iml" />
+      <module fileurl="file://$PROJECT_DIR$/community_export/community_export.iml" filepath="$PROJECT_DIR$/community_export/community_export.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myself/myself.iml" filepath="$PROJECT_DIR$/myself/myself.iml" />
       <module fileurl="file://$PROJECT_DIR$/order/order.iml" filepath="$PROJECT_DIR$/order/order.iml" />
       <module fileurl="file://$PROJECT_DIR$/user/user.iml" filepath="$PROJECT_DIR$/user/user.iml" />
       <module fileurl="file://$PROJECT_DIR$/user_export/user_export.iml" filepath="$PROJECT_DIR$/user_export/user_export.iml" />
