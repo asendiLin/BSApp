@@ -6,6 +6,16 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.sendi.base.constance.UNKNOW_USER
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
+import com.sendi.user_export.manager.IUserManager.Companion.CLASS_NAME
+import com.sendi.user_export.manager.IUserManager.Companion.ICON
+import com.sendi.user_export.manager.IUserManager.Companion.ID
+import com.sendi.user_export.manager.IUserManager.Companion.NAME
+import com.sendi.user_export.manager.IUserManager.Companion.NICKNAME
+import com.sendi.user_export.manager.IUserManager.Companion.NUMBER
+import com.sendi.user_export.manager.IUserManager.Companion.PASSWORD
+import com.sendi.user_export.manager.IUserManager.Companion.PHONE
+import com.sendi.user_export.manager.IUserManager.Companion.SIGNATURE
+import com.sendi.user_export.manager.IUserManager.Companion.USERNAME
 import com.sendi.user_export.model.UserModel
 
 /**
@@ -15,20 +25,6 @@ import com.sendi.user_export.model.UserModel
  */
 @Route(path = USER_MANAGER)
 class UserManager : IUserManager {
-
-    companion object{
-        const val NAME = "user_info"
-
-        const val ID = "id"
-        const val USERNAME = "username"
-        const val PASSWORD = "password"
-        const val NUMBER = "number"
-        const val CLASS_NAME = "classname"
-        const val ICON = "icon"
-        const val NICKNAME = "nickname"
-        const val PHONE = "phone"
-        const val SIGNATURE = "signature"
-    }
 
     private lateinit var mUserSP: SharedPreferences
 
