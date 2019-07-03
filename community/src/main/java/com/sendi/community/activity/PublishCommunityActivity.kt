@@ -33,13 +33,12 @@ class PublishCommunityActivity : BaseActivity() {
 
     private lateinit var mBtnPhotoSelect: ImageButton
     private lateinit var mTvBack: TextView
-    private lateinit var mIbSelectImage: ImageButton
     private lateinit var mIvImage: ImageView
     private lateinit var mBtnCommunityPublish: Button
     private lateinit var mEtContent : EditText
     private var mBitmap:Bitmap? = null
 
-    val mUploadPicManager = UploadPicManager()
+    private val mUploadPicManager = UploadPicManager()
 
     @Autowired(name = USER_MANAGER)
     lateinit var userManager : IUserManager
