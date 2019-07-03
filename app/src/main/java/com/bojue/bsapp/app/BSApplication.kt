@@ -5,7 +5,7 @@ import com.sendi.base.constance.BASE_URL
 import com.sendi.base.constance.BASE_URL_KEY
 import com.sendi.base.constance.DEFAULT_URL
 import com.bojue.bsapp.inject.Injector
-import com.bojue.bsapp.util.CourseUtil
+import com.sendi.course.manager.CourseUtil
 import com.sendi.base.util.SPUtils
 import com.bojue.bsapp.util.UserManager
 import com.yanzhenjie.album.Album
@@ -25,7 +25,7 @@ class BSApplication : Application() {
         UserManager.init(this)
         BASE_URL = SPUtils.getString(this, BASE_URL_KEY, DEFAULT_URL) ?: DEFAULT_URL
         initAlbum()
-        CourseUtil.init(this)
+        com.sendi.course.manager.CourseUtil.init(this)
     }
 
     private fun initAlbum() {

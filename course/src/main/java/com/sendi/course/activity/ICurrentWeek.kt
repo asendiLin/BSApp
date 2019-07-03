@@ -1,4 +1,4 @@
-package com.bojue.bsapp.course
+package com.sendi.course.activity
 
 /**
  * author: asendi.

@@ -1,4 +1,4 @@
-package com.bojue.bsapp.course;
+package com.sendi.course.dapter;
 
 
 import android.content.Context;
@@ -11,7 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bojue.bsapp.R;
+import com.sendi.course.activity.ICurrentWeek;
+import com.sendi.course.R;
 
 import java.util.List;
 

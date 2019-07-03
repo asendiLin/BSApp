@@ -34,7 +34,7 @@ android {
 
         kapt {
             arguments {
-                arg('eventBusIndex', 'com.bojue.order.event.EventBusIndexCore')
+                arg('eventBusIndex', 'com.bojue.myself.event.EventBusIndexCore')
             }
         }
     }
@@ -84,4 +84,5 @@ dependencies {
 
     implementation project(':user_export')
     implementation project(':community_export')
+    implementation project(':course_export')
 }

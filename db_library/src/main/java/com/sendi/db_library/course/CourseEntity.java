@@ -1,4 +1,4 @@
-package com.bojue.bsapp.course.db;
+package com.sendi.db_library.course;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;

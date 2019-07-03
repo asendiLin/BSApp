@@ -54,9 +54,4 @@ class ServiceModule {
         return retrofit.create(CommonService::class.java)
     }
 
-    @Provides
-    @Singleton
-    fun provideCourseService(retrofit: Retrofit): CourseService {
-        return retrofit.create(CourseService::class.java)
-    }
 }

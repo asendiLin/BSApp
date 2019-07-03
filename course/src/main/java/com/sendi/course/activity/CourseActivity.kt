@@ -1,4 +1,4 @@
-package com.bojue.bsapp.course
+package com.sendi.course.activity
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import com.bojue.bsapp.R
 import com.bojue.core.ext.getViewModel
 import com.sendi.base.util.DateUtils
 import com.sendi.base.util.PrefUtils
@@ -16,10 +15,14 @@ import android.arch.lifecycle.Observer
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.sendi.base.constance.SUCCESS_STATU
-import com.bojue.bsapp.model.CourseModel
-import com.bojue.bsapp.util.CourseUtil
-import com.bojue.bsapp.util.UserManager
+import com.sendi.base.widget.LoadingDialog
+import com.sendi.course.R
+import com.sendi.course.dapter.WeekDayAdapter
+import com.sendi.course.viewmodel.CourseViewModel
+import com.sendi.user_export.constance.USER_MANAGER
+import com.sendi.user_export.manager.IUserManager
 import java.util.*
 
 class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -38,6 +41,9 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
     private var cFlag = false
 
     private var mPassword = ""
+
+    @Autowired(name = USER_MANAGER)
+    lateinit var userManager : IUserManager
 
     private val mCourseViewModel by lazy {
         getViewModel(CourseViewModel::class.java)
@@ -99,10 +105,10 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
 
         })
 
-        if (CourseUtil.isShouldLoad()) {
+        if (com.sendi.course.manager.CourseUtil.isShouldLoad()) {
             showPasswordDialog()
         } else {
-            getCourseData(mPassword, UserManager.getUser().number!!)
+            getCourseData(mPassword, userManager.getUser().number!!)
         }
     }
 
@@ -113,7 +119,7 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
         val etPassword = view.findViewById<EditText>(R.id.et_password)
         btnPassword.setOnClickListener {
             val password = etPassword.text.toString()
-            val user = UserManager.getUser()
+            val user = userManager.getUser()
             Log.i(myTag, "password $password number ${user.number}")
             getCourseData(password, user.number!!)
             bottomDialog.dismiss()
@@ -133,14 +139,14 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
         mCourseViewModel.getCourses(number, password)
     }
 
-    private fun showCourse(data: List<CourseModel>?) {
+    private fun showCourse(data: List<com.sendi.course_export.model.CourseModel>?) {
         data?.forEach { course ->
 
             var week = course.week
-            val section = CourseUtil.getsSection(course)
+            val section = com.sendi.course.manager.CourseUtil.getsSection(course)
             val name = course.name
             val classroom = course.classroom
-            val isCurrentWeek = CourseUtil.isCurrentWeekHas(course.period, mSelectWeekNum)
+            val isCurrentWeek = com.sendi.course.manager.CourseUtil.isCurrentWeekHas(course.period, mSelectWeekNum)
             Log.i(myTag, "isCurrentWeek -> $isCurrentWeek,mSelectWeekNum-> $mSelectWeekNum")
             if (week == 7) {
                 week = 0
@@ -226,11 +232,11 @@ class CourseActivity : BaseActivity(), ICurrentWeek, AdapterView.OnItemSelectedL
         mSelectWeekNum = position + 1
         if (!cFlag) {
             cFlag = true
-            if (!CourseUtil.isShouldLoad()){
-                getCourseData(mPassword, UserManager.getUser().number!!)
+            if (!com.sendi.course.manager.CourseUtil.isShouldLoad()){
+                getCourseData(mPassword, userManager.getUser().number!!)
             }
         }else{
-            getCourseData(mPassword, UserManager.getUser().number!!)
+            getCourseData(mPassword, userManager.getUser().number!!)
         }
     }
 

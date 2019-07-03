@@ -1,7 +1,8 @@
-package com.bojue.bsapp.course
+package com.sendi.course.viewmodel
 
 import android.app.Application
 import com.bojue.core.viewmodel.BaseViewModel
+import com.sendi.course.repository.CourseRepository
 import javax.inject.Inject
 
 /**

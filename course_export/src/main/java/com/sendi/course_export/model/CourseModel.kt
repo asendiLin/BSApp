@@ -1,4 +1,4 @@
-package com.sendi.myself.model
+package com.sendi.course_export.model
 
 /**
  * author: asendi.

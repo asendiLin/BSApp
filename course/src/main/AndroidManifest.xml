@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sendi.course" >
+
+    <application>
+        <activity android:name=".activity.CourseActivity"/>
+    </application>
+
+</manifest>

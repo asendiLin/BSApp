@@ -1,7 +1,7 @@
-package com.bojue.bsapp.http.api
+package com.sendi.course.api
 
 import com.sendi.base.data.BaseResponse
-import com.bojue.bsapp.model.CourseModel
+import com.sendi.course_export.model.CourseModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

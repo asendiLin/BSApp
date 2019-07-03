@@ -1,14 +1,14 @@
-package com.bojue.bsapp.course
+package com.sendi.course.repository
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.sendi.base.constance.FAIL_STATU
 import com.sendi.base.constance.SUCCESS_STATU
-import com.bojue.bsapp.http.api.CourseService
 import com.sendi.base.data.BaseResponse
-import com.bojue.bsapp.model.CourseModel
-import com.bojue.bsapp.util.CourseUtil
+import com.sendi.course.api.CourseService
+import com.sendi.course.manager.CourseUtil
+import com.sendi.course_export.model.CourseModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,7 +19,7 @@ import javax.inject.Inject
  * data: 2019/5/29.
  * description:
  */
-class CourseRepository @Inject constructor(val service : CourseService,val application: Application) {
+class CourseRepository @Inject constructor(val service : CourseService, val application: Application) {
 
     private val myTag = "CourseRepository"
 
