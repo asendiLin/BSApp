@@ -6,7 +6,6 @@ import com.sendi.base.constance.BASE_URL_KEY
 import com.sendi.base.constance.DEFAULT_URL
 import com.bojue.bsapp.inject.Injector
 import com.bojue.bsapp.util.CourseUtil
-import com.bojue.bsapp.util.MediaLoader
 import com.sendi.base.util.SPUtils
 import com.bojue.bsapp.util.UserManager
 import com.yanzhenjie.album.Album

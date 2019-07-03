@@ -1,2 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sendi.community" />
+    package="com.sendi.community" >
+    <application>
+        <activity android:name=".activity.CommunityLauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.PublishCommunityActivity"/>
+        <activity android:name=".activity.ImagePreviewActivity"/>
+        <activity android:name=".activity.MyselfCommunityActivity"/>
+    </application>
+</manifest>

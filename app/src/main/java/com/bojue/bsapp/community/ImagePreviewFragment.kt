@@ -1,8 +1,6 @@
 package com.bojue.bsapp.community
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,8 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.filter.FilterNameAdapter
-import com.bojue.bsapp.util.GPUImageUtil
+import com.sendi.community.util.GPUImageUtil
 import com.bojue.core.common.BaseFragment
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.experimental.*
@@ -34,15 +31,15 @@ class ImagePreviewFragment : BaseFragment() {
     private lateinit var mOriginBitmap: Bitmap
     private lateinit var mBtnSaveImage : Button
     private val filterType = mapOf(0 to 0,
-            1 to GPUImageUtil.SEPIA_FILTER,
-            2 to GPUImageUtil.GRAYSCALE_FILTER,
-            3 to GPUImageUtil.GAUSSIAN_BLUR_FILTER,
-            4 to GPUImageUtil.TOON_FILTER,
-            5 to GPUImageUtil.DISSOLVE_BLEN_FILTER,
-            6 to GPUImageUtil.HAZE_FILTER,
-            7 to GPUImageUtil.SHARPEN_FILTER,
-            8 to GPUImageUtil.GAMMA_FILTER,
-            9 to GPUImageUtil.SKETCH_FILTER)
+            1 to com.sendi.community.util.GPUImageUtil.SEPIA_FILTER,
+            2 to com.sendi.community.util.GPUImageUtil.GRAYSCALE_FILTER,
+            3 to com.sendi.community.util.GPUImageUtil.GAUSSIAN_BLUR_FILTER,
+            4 to com.sendi.community.util.GPUImageUtil.TOON_FILTER,
+            5 to com.sendi.community.util.GPUImageUtil.DISSOLVE_BLEN_FILTER,
+            6 to com.sendi.community.util.GPUImageUtil.HAZE_FILTER,
+            7 to com.sendi.community.util.GPUImageUtil.SHARPEN_FILTER,
+            8 to com.sendi.community.util.GPUImageUtil.GAMMA_FILTER,
+            9 to com.sendi.community.util.GPUImageUtil.SKETCH_FILTER)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -67,7 +64,7 @@ class ImagePreviewFragment : BaseFragment() {
         val filtersAdapter = FilterNameAdapter(nameList)
         filtersAdapter.setOnClickItemListener(object : FilterNameAdapter.OnClickFilterItemListener {
             override fun onItemClick(position: Int) {
-                val bitmapWithFilter = GPUImageUtil.getBitmapWithFilter(requireContext(), mOriginBitmap, filterType[position]!!)
+                val bitmapWithFilter = com.sendi.community.util.GPUImageUtil.getBitmapWithFilter(requireContext(), mOriginBitmap, filterType[position]!!)
                 mIvPreview.setImageBitmap(bitmapWithFilter)
             }
         })

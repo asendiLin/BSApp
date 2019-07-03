@@ -15,11 +15,10 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.*
 import android.widget.*
-import com.bojue.bsapp.community.MyselfCommunityActivity
 import com.bojue.bsapp.course.CourseActivity
 import com.sendi.base.event.SettingEvent
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.model.CommunityModel
+import com.sendi.community.model.CommunityModel
 import com.sendi.user.UserModel
 import com.bojue.bsapp.setting.SettingActivity
 import com.bojue.bsapp.util.*
@@ -60,7 +59,7 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
     private lateinit var mTvZanCount: TextView
     private lateinit var mTvCommunityCount: TextView
 
-    private val mCommunityList = ArrayList<CommunityModel>(32)
+    private val mCommunityList = ArrayList<com.sendi.community.model.CommunityModel>(32)
 
     private val mLoadingDialog by lazy {
         LoadingDialog(requireActivity())

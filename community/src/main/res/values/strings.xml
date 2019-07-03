@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">community</string>
+
+    <string-array name="filter_name_arr">
+        <item>原图</item>
+        <item>怀旧</item>
+        <item>灰度</item>
+        <item>模糊</item>
+        <item>卡通</item>
+        <item>溶解</item>
+        <item>朦胧</item>
+        <item>锐化</item>
+        <item>伽马线</item>
+        <item>素描</item>
+    </string-array>
 </resources>

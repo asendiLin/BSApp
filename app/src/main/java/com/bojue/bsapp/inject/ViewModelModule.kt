@@ -1,8 +1,6 @@
 package com.bojue.bsapp.inject
 
 import android.arch.lifecycle.ViewModelProvider
-import com.bojue.bsapp.community.CommunityViewModel
-import com.bojue.bsapp.community.MyselfCommunityViewModel
 import com.bojue.bsapp.course.CourseViewModel
 import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.EditInfoViewModel
@@ -27,10 +25,7 @@ interface ViewModelModule {
     @Binds
     fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(CommunityViewModel::class)
-    fun communityViewModel(viewModel: CommunityViewModel):IViewModel
+
 
     @Binds
     @IntoMap
@@ -57,12 +52,6 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(EditInfoViewModel::class)
     fun editInfoViewModel(viewModel: EditInfoViewModel):IViewModel
-
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MyselfCommunityViewModel::class)
-    fun selfCommunityViewModel(viewModel: MyselfCommunityViewModel):IViewModel
 
     @Binds
     @IntoMap

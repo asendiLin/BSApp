@@ -46,13 +46,6 @@ class ServiceModule {
     fun provideLoginAndRegisterService(retrofit: Retrofit): LoginAndRegisterService {
         return retrofit.create(LoginAndRegisterService::class.java)
     }
-
-    @Provides
-    @Singleton
-    fun provideCommunityService(retrofit: Retrofit): CommunityService {
-        return retrofit.create(CommunityService::class.java)
-    }
-
     @Provides
     @Singleton
     fun provideMyselfService(retrofit: Retrofit): MyselfService {

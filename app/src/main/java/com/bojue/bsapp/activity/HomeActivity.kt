@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.RadioGroup
 import android.widget.TextView
 import com.bojue.bsapp.R
-import com.bojue.bsapp.community.CommunityFragment
 import com.bojue.bsapp.myself.MyselfFragment
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.common.BaseFragment

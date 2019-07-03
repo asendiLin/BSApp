@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bojue.bsapp.R
-import com.bojue.bsapp.util.MediaLoader
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig
 import android.util.Log
