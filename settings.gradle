@@ -1,1 +1,1 @@
-include ':app', ':core', ':order', ':base', ':user', ':user_export'
+include ':app', ':core', ':order', ':base', ':user', ':user_export', ':community'

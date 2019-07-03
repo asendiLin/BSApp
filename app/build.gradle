@@ -83,15 +83,12 @@ dependencies {
 
     implementation rootProject.ext.dependencies.glide
 
-    //社区分享界面卡片
-    implementation 'link.fls:swipestack:0.3.0'
+
 //    implementation 'com.android.support:cardview-v7:28.0.0'
 //    implementation 'com.android.support:recyclerview-v7:28.0.0'
 //    implementation 'de.hdodenhof:circleimageview:2.2.0'
 //    implementation 'com.android.support:design:28.0.0'
-    //滤镜
-    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
-    implementation 'com.yanzhenjie:album:2.1.3'
+    
 
 
 
