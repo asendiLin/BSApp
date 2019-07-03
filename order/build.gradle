@@ -76,7 +76,8 @@ dependencies {
 
     kapt rootProject.ext.dependencies.dagger_compiler
     kapt rootProject.ext.dependencies.dagger_processor
-
+    
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
 
     implementation project(':core')
     implementation project(':base')

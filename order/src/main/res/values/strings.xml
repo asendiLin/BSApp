@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">order</string>
+    <string name="order_app_name">order</string>
+    <string name="order_txt_public_type">需求类型</string>
+    <string name="order_txt_public_phone">联系方式</string>
+    <string name="order_txt_public_pay">所需酬劳</string>
+    <string name="order_txt_public_endTime">结束时间</string>
+    <string name="order_txt_public_time">1月1日</string>
+    <string name="order_txt_btn_publish">发布</string>
 </resources>

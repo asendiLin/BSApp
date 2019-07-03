@@ -1,4 +1,4 @@
-package com.bojue.bsapp.publish
+package com.sendi.order.fragment
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
@@ -11,15 +11,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
-import com.bojue.bsapp.R
 import com.bojue.core.ext.getViewModel
 import com.sendi.base.util.ToastUtil
-import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseFragment
 import com.sendi.base.constance.*
+import com.sendi.base.widget.LoadingDialog
+import com.sendi.order.R
+import com.sendi.order.viewmodel.PublishOrderViewModel
+import com.sendi.user_export.constance.USER_MANAGER
+import com.sendi.user_export.manager.IUserManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,6 +52,9 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
     private lateinit var mEtPay :EditText
     private lateinit var mEtDetailContent :EditText
 
+    @Autowired(name = USER_MANAGER)
+    lateinit var userManager : IUserManager
+
     private val mLoadingDialog by lazy {
         LoadingDialog(requireActivity())
     }
@@ -59,7 +66,7 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
 
     @SuppressLint("ResourceType")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView =LayoutInflater.from(context).inflate(R.layout.fragment_pulish_order_layout,null,false)
+        rootView =LayoutInflater.from(context).inflate(R.layout.order_fragment_pulish_order_layout,null,false)
         mBtnPublish = rootView.findViewById(R.id.btn_order_publish)
         mTvType1 =rootView.findViewById(R.id.tv_order_type1)
         mTvType2 =rootView.findViewById(R.id.tv_order_type2)
@@ -149,7 +156,7 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
         when(v?.id){
             R.id.btn_order_publish ->{
 
-                if (UserManager.getUser().number .isNullOrEmpty()){
+                if (userManager.getUser().number .isNullOrEmpty()){
                     ToastUtil.showShort(requireContext(),"通过学生认证后才能发布订单")
                     return
                 }
@@ -160,7 +167,7 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
                 }
 
                 mLoadingDialog.show()
-                val stuId = if(UserManager.getUser().id == 0) 4 else UserManager.getUser().id
+                val stuId = userManager.getUser().id
                 val phoneNumber = mEtPhoneNumber.text.toString()
                 val pay = mEtPay.text.toString().toInt()
                 val date = txt_timepicker.text.toString()

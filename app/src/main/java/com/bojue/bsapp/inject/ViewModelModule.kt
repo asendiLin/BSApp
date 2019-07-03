@@ -7,8 +7,6 @@ import com.bojue.bsapp.course.CourseViewModel
 import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.EditInfoViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
-import com.bojue.bsapp.publish.PublishOrderViewModel
-import com.bojue.bsapp.publish.PublishViewModel
 import com.bojue.bsapp.register.RegisterViewModel
 import com.bojue.bsapp.setting.SettingViewModel
 import com.bojue.core.viewmodel.AppViewModelFactory
@@ -42,11 +40,6 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(PublishViewModel::class)
-    fun publishViewModel(viewModel: PublishViewModel):IViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(LoginViewModel::class)
     fun loginViewModel(viewModel: LoginViewModel):IViewModel
 
@@ -64,13 +57,6 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(EditInfoViewModel::class)
     fun editInfoViewModel(viewModel: EditInfoViewModel):IViewModel
-
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(PublishOrderViewModel::class)
-    fun publishOrderViewModel(viewModel: PublishOrderViewModel):IViewModel
-
 
 
     @Binds

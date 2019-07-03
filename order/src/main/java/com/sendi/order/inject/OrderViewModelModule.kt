@@ -4,10 +4,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.bojue.core.viewmodel.AppViewModelFactory
 import com.bojue.core.viewmodel.IViewModel
 import com.bojue.core.viewmodel.ViewModelKey
-import com.sendi.order.viewmodel.OrderDetailViewModel
-import com.sendi.order.viewmodel.OrderHistoryViewModel
-import com.sendi.order.viewmodel.OrderStatusChangeViewModel
-import com.sendi.order.viewmodel.OrderViewModel
+import com.sendi.order.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -42,4 +39,9 @@ interface OrderViewModelModule {
     @IntoMap
     @ViewModelKey(OrderStatusChangeViewModel::class)
     fun orderStatusChangeViewModel(viewModel: OrderStatusChangeViewModel):IViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PublishOrderViewModel::class)
+    fun publishOrderViewModel(viewModel: PublishOrderViewModel):IViewModel
 }

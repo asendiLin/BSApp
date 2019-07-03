@@ -2,7 +2,6 @@ package com.bojue.bsapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.bojue.bsapp.publish.PublishOrderFragment
 
 class MainActivity : AppCompatActivity() {
 
