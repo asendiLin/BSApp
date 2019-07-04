@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.WindowManager
 import com.bojue.bsapp.R
 import com.sendi.base.constance.UNKNOW_USER
-import com.bojue.bsapp.login.LoginActivity
 import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
 import java.util.*

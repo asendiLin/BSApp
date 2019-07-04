@@ -1,9 +1,7 @@
 package com.bojue.bsapp.inject
 
 import android.arch.lifecycle.ViewModelProvider
-import com.bojue.bsapp.login.LoginViewModel
 import com.bojue.bsapp.myself.MyselfViewModel
-import com.bojue.bsapp.register.RegisterViewModel
 import com.bojue.core.viewmodel.AppViewModelFactory
 import com.bojue.core.viewmodel.IViewModel
 import com.bojue.core.viewmodel.ViewModelKey
@@ -28,16 +26,5 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(MyselfViewModel::class)
     fun myselfViewModel(viewModel: MyselfViewModel):IViewModel
-
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(LoginViewModel::class)
-    fun loginViewModel(viewModel: LoginViewModel):IViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(RegisterViewModel::class)
-    fun registerViewModel(viewModel: RegisterViewModel):IViewModel
 
 }

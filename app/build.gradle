@@ -6,8 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'org.greenrobot.greendao'
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -32,16 +30,6 @@ android {
         }
     }
 
-    greendao {
-        //版本号，升级时可配置
-        schemaVersion 1
-        //生成的DAO，DaoMaster和DaoSession的包路径。默认与表实体所在的包路径相同
-
-        //生成的DAO，DaoMaster和DaoSession的加密包路径。默认与表实体所在的包路径相同
-        daoPackage 'com.bojue.bs.db'
-        //生成源文件的路径。默认源文件目录是在build目录中的(build/generated/source/greendao)
-        targetGenDir 'src/main/java'
-    }
 }
 
 kotlin {
@@ -71,15 +59,15 @@ dependencies {
     kapt rootProject.ext.dependencies.eventbus_annotation_processor
 
     // Okhttp库
-    implementation 'com.squareup.okhttp3:okhttp:3.1.2'
+//    implementation 'com.squareup.okhttp3:okhttp:3.1.2'
     // Retrofit库
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+//    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 //    implementation "com.google.dagger:dagger:2.16"
 //    implementation "com.google.dagger:dagger-android:2.16"
 //    implementation "com.google.dagger:dagger-android-support:2.16"
-    kapt rootProject.ext.dependencies.dagger_compiler
-    kapt rootProject.ext.dependencies.dagger_processor
+//    kapt rootProject.ext.dependencies.dagger_compiler
+//    kapt rootProject.ext.dependencies.dagger_processor
 
     implementation rootProject.ext.dependencies.glide
 
@@ -93,7 +81,7 @@ dependencies {
 
 
 
-    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
-
-    implementation 'org.greenrobot:greendao:3.2.0'
+//    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+//
+//    implementation 'org.greenrobot:greendao:3.2.0'
 }

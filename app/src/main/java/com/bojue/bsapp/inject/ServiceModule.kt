@@ -2,7 +2,6 @@ package com.bojue.bsapp.inject
 
 import android.app.Application
 import com.sendi.base.constance.BASE_URL
-import com.bojue.bsapp.http.api.*
 import com.sendi.base.api.CommonService
 import com.sendi.base.util.SPUtils
 import dagger.Module
@@ -39,12 +38,6 @@ class ServiceModule {
                 .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(SPUtils.getString(application,"base_url", BASE_URL))
                 .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideLoginAndRegisterService(retrofit: Retrofit): LoginAndRegisterService {
-        return retrofit.create(LoginAndRegisterService::class.java)
     }
 
 
