@@ -1,8 +1,8 @@
-package com.bojue.bsapp.http.api
+package com.sendi.login.api
 
 import com.sendi.base.data.BaseResponse
-import com.bojue.bsapp.model.LoginResponse
-import com.bojue.bsapp.model.RegisterResponse
+import com.sendi.login.model.LoginResponse
+import com.sendi.login.model.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

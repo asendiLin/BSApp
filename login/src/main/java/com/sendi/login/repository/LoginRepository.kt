@@ -1,12 +1,12 @@
-package com.bojue.bsapp.login
+package com.sendi.login.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.sendi.base.constance.FAIL_STATU
-import com.bojue.bsapp.http.api.LoginAndRegisterService
 import com.sendi.base.data.BaseResponse
-import com.bojue.bsapp.model.LoginResponse
+import com.sendi.login.api.LoginAndRegisterService
+import com.sendi.login.model.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

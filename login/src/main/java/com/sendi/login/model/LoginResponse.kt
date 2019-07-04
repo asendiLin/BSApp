@@ -1,4 +1,4 @@
-package com.bojue.bsapp.model
+package com.sendi.login.model
 
 /**
  * author: asendi.

@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorWhite"
-    tools:context="com.bojue.bsapp.register.RegisterActivity">
+    android:background="@color/colorWhite">
 
     <Button
         android:id="@+id/btn_to_login"
@@ -22,7 +21,7 @@
     <ImageView
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_app_logo"
         android:layout_gravity="center"
         />

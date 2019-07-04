@@ -1,4 +1,4 @@
-package com.bojue.bsapp.register
+package com.sendi.login.activity
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
@@ -8,16 +8,18 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
-import com.bojue.bsapp.R
-import com.bojue.bsapp.activity.HomeActivity
+import com.alibaba.android.arouter.facade.annotation.Autowired
+
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
-import com.bojue.bsapp.login.LoginActivity
-import com.bojue.bsapp.model.RegisterResponse
-import com.sendi.user.UserModel
 import com.sendi.base.util.ToastUtil
-import com.bojue.bsapp.util.UserManager
 import com.bojue.core.common.BaseActivity
+import com.sendi.base.widget.LoadingDialog
+import com.sendi.login.R
+import com.sendi.login.model.RegisterResponse
+import com.sendi.user_export.constance.USER_MANAGER
+import com.sendi.user_export.manager.IUserManager
+import com.sendi.user_export.model.UserModel
 
 class RegisterActivity : BaseActivity(), View.OnClickListener {
 
@@ -26,8 +28,11 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mBtnToLogin: Button
     private lateinit var mFabRegister: FloatingActionButton
 
+    @Autowired(name = USER_MANAGER)
+    lateinit var userManager : IUserManager
+
     private val mRegisterViewModel by lazy {
-        getViewModel(RegisterViewModel::class.java)
+        getViewModel(com.sendi.login.viewmodel.RegisterViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,8 +66,8 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                         if (result.status == SUCCESS_STATU){
                             saveUserInfo(result.data)
                             ToastUtil.showShort(this,"注册成功")
-                            val intent = Intent(this, HomeActivity::class.java)
-                            startActivity(intent)
+//                          todo:  val intent = Intent(this, HomeActivity::class.java)
+//                            startActivity(intent)
                             finish()
                         }else{
                             ToastUtil.showShort(this,result.message)
@@ -77,10 +82,10 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
     private fun saveUserInfo(userInfo: RegisterResponse?) {
         userInfo?.let {
-            val userModel = com.sendi.user.UserModel(userInfo.id, userInfo.username, userInfo.password,
+            val userModel = UserModel(userInfo.id, userInfo.username, userInfo.password,
                     userInfo.number, userInfo.classname, userInfo.icon, userInfo.nickname,
                     userInfo.phone, userInfo.signature)
-            UserManager.saveUser(userModel)
+            userManager.saveUser(userModel)
         }
     }
 }
