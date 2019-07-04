@@ -2,6 +2,7 @@ package com.sendi.myself.activity
 
 import android.app.Dialog
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.bojue.core.event.EventUtil
 import com.sendi.base.util.ShowImageUtil
 import com.sendi.base.widget.LoadingDialog
 import com.sendi.myself.R
+import com.sendi.myself.inject.MyselfInjector
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
 import com.sendi.user_export.model.UserModel
@@ -186,5 +188,9 @@ class EditSelfActivity : BaseActivity() , View.OnClickListener{
                 Toast.makeText(this@EditSelfActivity,message,Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    override fun requireViewModelFactory(): ViewModelProvider.Factory {
+        return MyselfInjector.viewModelFactory()
     }
 }

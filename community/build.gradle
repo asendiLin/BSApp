@@ -79,6 +79,8 @@ dependencies {
 
     kapt rootProject.ext.dependencies.eventbus_annotation_processor
 
+    kapt rootProject.ext.dependencies.arouter_compiler
+
     //社区分享界面卡片
     implementation 'link.fls:swipestack:0.3.0'
     //滤镜

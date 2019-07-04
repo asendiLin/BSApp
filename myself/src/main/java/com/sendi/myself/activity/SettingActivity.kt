@@ -1,6 +1,7 @@
 package com.sendi.myself.activity
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,7 @@ import com.sendi.base.widget.LoadingDialog
 import com.sendi.myself.R
 import com.sendi.myself.dialog.IdentifyDialog
 import com.sendi.myself.dialog.SettingUrlDialog
+import com.sendi.myself.inject.MyselfInjector
 import com.sendi.myself.viewmodel.SettingViewModel
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
@@ -173,5 +175,9 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
             }
 
         }
+    }
+
+    override fun requireViewModelFactory(): ViewModelProvider.Factory {
+        return MyselfInjector.viewModelFactory()
     }
 }

@@ -16,6 +16,7 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.launcher.ARouter
 import com.sendi.base.event.SettingEvent
 import com.bojue.core.ext.getViewModel
 import com.bojue.core.event.EventUtil
@@ -106,8 +107,8 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
         mTvCommunityCount = mRootView.findViewById(R.id.tv_community_count)
         initCurrentCourse()
 
-//        val user = userManager.getUser()
-        val user = UserModel(1,"name","123","","","","asendi","","better man")
+        val user = userManager.getUser()
+//        val user = UserModel(1,"name","123","","","","asendi","","better man")
         mTvNickname.text = user.nickname
         mTvSignature.text = user.signature
         ShowImageUtil.showImage(this, mIvUserIcon, user.icon)
@@ -129,8 +130,8 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun initCurrentCourse() {
-//        val user = userManager.getUser()
-        val user = UserModel(1,"name","123","","","","asendi","","better man")
+        val user = userManager.getUser()
+//        val user = UserModel(1,"name","123","","","","asendi","","better man")
         if (user.number == null) {
             mTvCourseStatus.text = "您未通过学生认证哦"
         } else {
@@ -192,24 +193,24 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.ll_doing_count -> {
-//              todo:  val intent = Intent(requireContext(), OrderHistoryActivity::class.java)
-//                intent.putExtra(HISTORY_ORDER_TYPE, DOING_ORDER)
-//                startActivity(intent)
+                ARouter.getInstance().build("/order/order_history_activity")
+                        .withInt(HISTORY_ORDER_TYPE,DOING_ORDER)
+                        .navigation(activity)
             }
             R.id.ll_cancel_count -> {
-//          todo:      val intent = Intent(requireContext(), OrderHistoryActivity::class.java)
-//                intent.putExtra(HISTORY_ORDER_TYPE, CANCEL_ORDER)
-//                startActivity(intent)
+                ARouter.getInstance().build("/order/order_history_activity")
+                        .withInt(HISTORY_ORDER_TYPE,CANCEL_ORDER)
+                        .navigation(activity)
             }
             R.id.ll_complete_count -> {
-//            todo:    val intent = Intent(requireContext(), OrderHistoryActivity::class.java)
-//                intent.putExtra(HISTORY_ORDER_TYPE, COMPLETE_ORDER)
-//                startActivity(intent)
+                ARouter.getInstance().build("/order/order_history_activity")
+                        .withInt(HISTORY_ORDER_TYPE,COMPLETE_ORDER)
+                        .navigation(activity)
             }
             R.id.ll_myself_community -> {
-//             todo:   val intent = Intent(requireActivity(), MyselfCommunityActivity::class.java)
-//                intent.putParcelableArrayListExtra(COMMUNITY_LIST, mCommunityList)
-//                requireActivity().startActivity(intent)
+                ARouter.getInstance().build("/community/myself_community_activity")
+                        .withParcelableArrayList(COMMUNITY_LIST,mCommunityList)
+                        .navigation(activity)
             }
         }
     }

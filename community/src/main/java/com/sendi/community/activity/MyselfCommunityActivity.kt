@@ -1,11 +1,13 @@
 package com.sendi.community.activity
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.sendi.base.constance.COMMUNITY_LIST
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
@@ -15,7 +17,9 @@ import com.bojue.core.common.BaseActivity
 import com.sendi.base.widget.LoadingDialog
 import com.sendi.community.R
 import com.sendi.community.adapter.MySelfCommunityAdapter
+import com.sendi.community.inject.CommunityInjector
 
+@Route(path = "/community/myself_community_activity")
 class MyselfCommunityActivity : BaseActivity() {
 
     private val myTag = "MyselfCommunityActivity"
@@ -85,6 +89,9 @@ class MyselfCommunityActivity : BaseActivity() {
         mRvCommunityList.adapter = mCommunityListAdapter
         val tvTitle = findViewById<TextView>(R.id.tv_title_content)
         tvTitle.text = "我的动态"
+    }
 
+    override fun requireViewModelFactory(): ViewModelProvider.Factory {
+        return CommunityInjector.viewModelFactory()
     }
 }

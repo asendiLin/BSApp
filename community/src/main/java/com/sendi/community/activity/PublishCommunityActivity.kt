@@ -2,6 +2,7 @@ package com.sendi.community.activity
 
 import android.app.Dialog
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.sendi.base.util.UploadPicManager
 import com.sendi.base.widget.LoadingDialog
 import com.sendi.community.R
 import com.sendi.community.fragment.PATH
+import com.sendi.community.inject.CommunityInjector
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
 import com.yanzhenjie.album.Album
@@ -175,5 +177,9 @@ class PublishCommunityActivity : BaseActivity() {
         val intent = Intent(this, ImagePreviewActivity::class.java)
         intent.putExtra(PATH, path)
         startActivity(intent)
+    }
+
+    override fun requireViewModelFactory(): ViewModelProvider.Factory {
+        return CommunityInjector.viewModelFactory()
     }
 }
