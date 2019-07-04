@@ -2,7 +2,7 @@ package com.sendi.order.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.sendi.order.R
+import com.example.order.R
 import com.sendi.order.fragment.PublishOrderFragment
 
 class OrderLauncherActivity : AppCompatActivity() {

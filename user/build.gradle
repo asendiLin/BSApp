@@ -46,7 +46,9 @@ dependencies {
     kapt rootProject.ext.dependencies.dagger_compiler
     kapt rootProject.ext.dependencies.dagger_processor
 
+    kapt rootProject.ext.dependencies.arouter_compiler
+    
     implementation project(':core')
     implementation project(':base')
-    implementation project(':user_export')
+    api project(':user_export')
 }

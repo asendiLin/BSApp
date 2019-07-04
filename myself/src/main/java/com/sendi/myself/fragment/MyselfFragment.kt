@@ -1,6 +1,7 @@
 package com.sendi.myself.fragment
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -26,6 +27,7 @@ import com.sendi.community_export.model.CommunityModel
 import com.sendi.myself.R
 import com.sendi.myself.activity.EditSelfActivity
 import com.sendi.myself.activity.SettingActivity
+import com.sendi.myself.inject.MyselfInjector
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
 import com.sendi.user_export.model.UserModel
@@ -233,4 +235,7 @@ class MyselfFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
+    override fun viewModelFactory(): ViewModelProvider.Factory {
+        return MyselfInjector.viewModelFactory()
+    }
 }

@@ -11,11 +11,11 @@ import com.bojue.core.ext.getViewModel
 import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
+import com.example.order.R
 import com.sendi.base.constance.*
 import com.sendi.base.event.RefreshEvent
 import com.sendi.base.util.ShowImageUtil
 import com.sendi.base.widget.LoadingDialog
-import com.sendi.order.R
 
 class OrderHistoryDetailActivity : BaseActivity(), View.OnClickListener {
 

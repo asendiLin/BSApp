@@ -1,6 +1,9 @@
 package com.bojue.core.common
 
+import android.arch.lifecycle.ViewModelProvider
+import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bojue.core.component.BaseComponent
 
 
@@ -11,6 +14,14 @@ import com.bojue.core.component.BaseComponent
  */
 open class BaseFragment : Fragment(){
     val mViewModelFactory by lazy {
-        BaseComponent.instance.provideViewModelFactory()
+        viewModelFactory()
+    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        ARouter.getInstance().inject(this)
+    }
+
+    open fun viewModelFactory():ViewModelProvider.Factory{
+        return BaseComponent.instance.provideViewModelFactory()
     }
 }

@@ -1,6 +1,7 @@
 package com.sendi.login.activity
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -9,6 +10,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.launcher.ARouter
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.sendi.login.model.LoginResponse
@@ -16,6 +18,8 @@ import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseActivity
 import com.sendi.base.widget.LoadingDialog
 import com.sendi.login.R
+import com.sendi.login.inject.LoginInjector
+import com.sendi.login.viewmodel.LoginViewModel
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
 import com.sendi.user_export.model.UserModel
@@ -26,7 +30,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mBtnToRegister: Button
     private lateinit var mFabLogin: FloatingActionButton
 
-    private val mLoginViewModel  by lazy { getViewModel(com.sendi.login.viewmodel.LoginViewModel::class.java) }
+    private val mLoginViewModel  by lazy { getViewModel(LoginViewModel::class.java) }
 
     @Autowired(name = USER_MANAGER)
     lateinit var userManager : IUserManager
@@ -58,9 +62,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 val password = mEtPassword.text.toString()
                 mLoginViewModel.login(username,password).observe(this, Observer{result->
                     dialog.dismiss()
+
+                    ARouter.getInstance().build("/home/home_activity").navigation(this)
+                    finish()
+
                     result?.let {
                         if (result.status == SUCCESS_STATU){
                             saveUserInfo(result.data)
+                            ARouter.getInstance().build("/home/home_activity").navigation(this)
 //                     todo:       val intent = Intent(this,HomeActivity::class.java)
 //                            startActivity(intent)
                             finish()
@@ -80,5 +89,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     userInfo.number, userInfo.classname, userInfo.icon, userInfo.nickname, userInfo.phone, userInfo.signature)
             userManager.saveUser(userModel)
         }
+    }
+
+    override fun requireViewModelFactory(): ViewModelProvider.Factory {
+       return LoginInjector.viewModelFactory()
     }
 }

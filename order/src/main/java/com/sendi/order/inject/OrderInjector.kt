@@ -1,6 +1,7 @@
 package com.sendi.order.inject
 
 import android.app.Application
+import android.arch.lifecycle.ViewModelProvider
 import com.bojue.core.component.BaseComponent
 
 /**
@@ -9,9 +10,9 @@ import com.bojue.core.component.BaseComponent
  * description :
  */
 object OrderInjector {
-
+    private lateinit var component : OrderComponent
     fun inject(application: Application){
-        val component = DaggerOrderComponent
+        component = DaggerOrderComponent
                 .builder()
                 .application(application)
                 .build()
@@ -20,4 +21,7 @@ object OrderInjector {
         BaseComponent.instance = component
     }
 
+    fun viewModelFactory():ViewModelProvider.Factory{
+        return component.provideViewModelFactory()
+    }
 }

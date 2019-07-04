@@ -1,6 +1,7 @@
 package com.sendi.community.inject
 
 import android.app.Application
+import android.arch.lifecycle.ViewModelProvider
 import com.bojue.core.component.BaseComponent
 
 /**
@@ -10,11 +11,15 @@ import com.bojue.core.component.BaseComponent
  */
 object CommunityInjector {
 
+    private lateinit var communityComponent : BaseComponent
 
     fun inject(application: Application){
-        val communityComponent = DaggerCommunityComponent.builder().application(application).build()
+        communityComponent = DaggerCommunityComponent.builder().application(application).build()
         BaseComponent.instance = communityComponent
     }
 
+    fun viewModelFactory():ViewModelProvider.Factory{
+        return communityComponent.provideViewModelFactory()
+    }
 
 }

@@ -1,5 +1,8 @@
 //统一版本控制
 ext{
+
+    isApplication = false
+
     android = [
             "minSdkVersion" : 16,
             "targetSdkVersion" : 26,

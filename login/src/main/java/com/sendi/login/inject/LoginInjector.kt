@@ -1,6 +1,7 @@
 package com.sendi.login.inject
 
 import android.app.Application
+import android.arch.lifecycle.ViewModelProvider
 import com.bojue.core.component.BaseComponent
 
 /**
@@ -10,12 +11,17 @@ import com.bojue.core.component.BaseComponent
  */
 object LoginInjector {
 
+    private lateinit var component : BaseComponent
+
     fun inject(application: Application){
 
-        val component = DaggerLoginComponent.builder().application(application).build()
+        component = DaggerLoginComponent.builder().application(application).build()
 
         BaseComponent.instance = component
 
     }
 
+    fun viewModelFactory() : ViewModelProvider.Factory{
+        return component.provideViewModelFactory()
+    }
 }

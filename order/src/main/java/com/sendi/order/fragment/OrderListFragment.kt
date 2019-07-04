@@ -2,6 +2,7 @@ package com.sendi.order.fragment
 
 import android.app.Dialog
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -15,10 +16,11 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bojue.core.ext.getViewModel
 import com.bojue.core.common.BaseFragment
+import com.example.order.R
 import com.sendi.base.constance.*
-import com.sendi.order.R
 import com.sendi.order.activity.OrderDetailActivity
 import com.sendi.order.adapter.OrderListAdapter
+import com.sendi.order.inject.OrderInjector
 import com.sendi.order.viewmodel.OrderViewModel
 
 /**
@@ -164,5 +166,9 @@ class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayou
             mSrlOrderList.isRefreshing = true
         }
         mOrderViewModel.getOrderList(type)
+    }
+
+    override fun viewModelFactory(): ViewModelProvider.Factory {
+        return OrderInjector.viewModelFactory()
     }
 }

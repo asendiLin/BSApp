@@ -1,6 +1,7 @@
 package com.sendi.myself.inject
 
 import android.app.Application
+import android.arch.lifecycle.ViewModelProvider
 import com.bojue.core.component.BaseComponent
 
 /**
@@ -10,9 +11,14 @@ import com.bojue.core.component.BaseComponent
  */
 object MyselfInjector {
 
+    private lateinit var component: BaseComponent
+
     fun inject(application: Application){
-       val component = DaggerMyselfComponent.builder().application(application).build()
+        component = DaggerMyselfComponent.builder().application(application).build()
         BaseComponent.instance = component
     }
 
+    fun viewModelFactory():ViewModelProvider.Factory{
+        return component.provideViewModelFactory()
+    }
 }

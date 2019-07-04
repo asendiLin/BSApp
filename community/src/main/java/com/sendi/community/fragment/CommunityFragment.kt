@@ -1,6 +1,7 @@
 package com.sendi.community.fragment
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -19,6 +20,7 @@ import com.sendi.base.widget.LoadingDialog
 import com.sendi.community.R
 import com.sendi.community.activity.PublishCommunityActivity
 import com.sendi.community.adapter.CommunityAdapter
+import com.sendi.community.inject.CommunityInjector
 import com.sendi.community.viewmodel.CommunityViewModel
 import com.sendi.community_export.model.CommunityModel
 import com.sendi.user_export.constance.USER_MANAGER
@@ -174,5 +176,9 @@ class CommunityFragment : BaseFragment(),View.OnClickListener {
                 mCommunityViewModel.getCommunityList(1/*userManager.getUser().id*/)
             }
         }
+    }
+
+    override fun viewModelFactory(): ViewModelProvider.Factory {
+        return CommunityInjector.viewModelFactory()
     }
 }

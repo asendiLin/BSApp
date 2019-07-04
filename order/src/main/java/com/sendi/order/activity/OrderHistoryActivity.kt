@@ -15,10 +15,10 @@ import com.bojue.core.ext.getViewModel
 import com.sendi.order.model.OrderModel
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.event.EventUtil
+import com.example.order.R
 import com.sendi.base.constance.*
 import com.sendi.base.event.RefreshEvent
 import com.sendi.base.widget.LoadingDialog
-import com.sendi.order.R
 import com.sendi.order.adapter.OrderListAdapter
 import com.sendi.order.viewmodel.OrderHistoryViewModel
 import com.sendi.user_export.constance.USER_MANAGER

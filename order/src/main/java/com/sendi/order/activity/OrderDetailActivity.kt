@@ -1,6 +1,7 @@
 package com.sendi.order.activity
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.widget.Button
@@ -13,10 +14,11 @@ import com.sendi.base.constance.ORDER_DETAIL
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.bojue.core.common.BaseActivity
+import com.example.order.R
 import com.sendi.base.util.ShowImageUtil
 import com.sendi.base.util.ToastUtil
 import com.sendi.base.widget.LoadingDialog
-import com.sendi.order.R
+import com.sendi.order.inject.OrderInjector
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
 
@@ -105,5 +107,9 @@ class OrderDetailActivity : BaseActivity() {
            }
 
        })
+    }
+
+    override fun requireViewModelFactory(): ViewModelProvider.Factory {
+        return OrderInjector.viewModelFactory()
     }
 }

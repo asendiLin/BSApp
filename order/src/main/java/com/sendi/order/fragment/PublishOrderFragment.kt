@@ -2,6 +2,7 @@ package com.sendi.order.fragment
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -18,9 +19,10 @@ import com.bigkoo.pickerview.view.TimePickerView
 import com.bojue.core.ext.getViewModel
 import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseFragment
+import com.example.order.R
 import com.sendi.base.constance.*
 import com.sendi.base.widget.LoadingDialog
-import com.sendi.order.R
+import com.sendi.order.inject.OrderInjector
 import com.sendi.order.viewmodel.PublishOrderViewModel
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
@@ -283,5 +285,9 @@ class PublishOrderFragment : BaseFragment(),View.OnClickListener{
         val formatter = SimpleDateFormat("MM月dd日")
         val dateString = formatter.format(date)
         return dateString
+    }
+
+    override fun viewModelFactory(): ViewModelProvider.Factory {
+        return OrderInjector.viewModelFactory()
     }
 }

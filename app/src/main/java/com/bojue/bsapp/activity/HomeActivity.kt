@@ -5,13 +5,19 @@ import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.RadioGroup
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.bojue.bsapp.R
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.common.BaseFragment
+import com.sendi.community.fragment.CommunityFragment
+import com.sendi.myself.fragment.MyselfFragment
+import com.sendi.order.fragment.OrderListFragment
+import com.sendi.order.fragment.PublishOrderFragment
 
 /**
  * 用于存放首页四个tab对应的Fragment
  */
+@Route(path = "/home/home_activity")
 class HomeActivity : BaseActivity() {
 
     private lateinit var mRgBottom: RadioGroup
@@ -21,7 +27,7 @@ class HomeActivity : BaseActivity() {
     private var mCurrentIndex = 0
     private var mCurrentFragment : Fragment? = null
 
-    private val mFragments = arrayOf<BaseFragment>(OrderListFragment(), PublishOrderFragment(),CommunityFragment(),MyselfFragment())
+    private val mFragments = arrayOf<BaseFragment>(OrderListFragment(), PublishOrderFragment(), CommunityFragment(), MyselfFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,15 +1,12 @@
 package com.bojue.bsapp.app
 
 import android.app.Application
-import com.sendi.base.constance.BASE_URL
-import com.sendi.base.constance.BASE_URL_KEY
-import com.sendi.base.constance.DEFAULT_URL
-import com.bojue.bsapp.inject.Injector
-import com.sendi.course.manager.CourseUtil
-import com.sendi.base.util.SPUtils
-import com.bojue.bsapp.util.UserManager
-import com.yanzhenjie.album.Album
-import com.yanzhenjie.album.AlbumConfig
+import com.alibaba.android.arouter.launcher.ARouter
+import com.sendi.community.manager.CommunityManager
+import com.sendi.course.manager.CourseManager
+import com.sendi.login.manager.LoginManager
+import com.sendi.myself.manager.MyselfManager
+import com.sendi.order.util.OrderManager
 
 /**
  * author: asendi.
@@ -21,16 +18,18 @@ class BSApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Injector.init(this)
-        UserManager.init(this)
-        BASE_URL = SPUtils.getString(this, BASE_URL_KEY, DEFAULT_URL) ?: DEFAULT_URL
-        initAlbum()
-        com.sendi.course.manager.CourseUtil.init(this)
+        initARouter(this)
+        OrderManager.init(this)
+        CommunityManager.init(this)
+        MyselfManager.init(this)
+        CourseManager.init(this)
+        LoginManager.init(this)
     }
 
-    private fun initAlbum() {
-        Album.initialize(AlbumConfig.newBuilder(this)
-                .setAlbumLoader(MediaLoader())
-                .build())
+    private fun initARouter(app : Application) {
+        ARouter.openLog()
+        ARouter.openDebug()
+        ARouter.printStackTrace()
+        ARouter.init(app)
     }
 }
