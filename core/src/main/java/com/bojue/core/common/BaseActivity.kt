@@ -1,13 +1,11 @@
 package com.bojue.core.common
 
 import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
 import com.alibaba.android.arouter.launcher.ARouter
-import com.bojue.core.component.BaseComponent
 import com.bojue.core.util.ActivityManger
+import com.bojue.core.viewmodel.AppViewModelFactory
 
 /**
  * author: asendi.
@@ -20,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity(){
     }
 
     open fun requireViewModelFactory(): ViewModelProvider.Factory{
-        return BaseComponent.instance.provideViewModelFactory()
+        return AppViewModelFactory(application,HashMap())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

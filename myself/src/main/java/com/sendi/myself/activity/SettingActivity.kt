@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bojue.bsapp.widget.SettingPhoneDialog
 import com.sendi.base.constance.BASE_URL
 import com.sendi.base.constance.BASE_URL_KEY
@@ -66,8 +67,7 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
         mTvPhoneNumber = findViewById(R.id.tv_phone_number)
         mTvClearCache = findViewById(R.id.tv_clear_cache)
         mBtnLogout = findViewById(R.id.btn_logout)
-//        val user = userManager.getUser()
-        val user = UserModel(1,"name","123","123456789","","","asendi","160032336655","better man")
+        val user = userManager.getUser()
         Log.i(myTag, "user -> $user")
         mTvIdentifyStudent.text = getString(R.string.student_identify, "${user.number}")
         mTvPhoneNumber.text = getString(R.string.phone_number, "${user.phone}")
@@ -170,8 +170,7 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
             R.id.btn_logout -> {
                 ActivityManger.logout()
                 userManager.clearUser()
-//               todo: val intent = Intent(this, LoginActivity::class.java)
-//                startActivity(intent)
+                ARouter.getInstance().build("/login/login_activity").navigation(this)
             }
 
         }

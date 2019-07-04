@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
@@ -24,6 +25,7 @@ import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
 import com.sendi.user_export.model.UserModel
 
+@Route(path = "/login/login_activity")
 class LoginActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mEtUsername: EditText
     private lateinit var mEtPassword: EditText
