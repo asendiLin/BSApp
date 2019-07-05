@@ -14,6 +14,7 @@ import android.view.*
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.bojue.core.ext.getViewModel
 import com.bojue.core.common.BaseFragment
 import com.example.order.R
@@ -28,6 +29,7 @@ import com.sendi.order.viewmodel.OrderViewModel
  * data: 2019/5/16.
  * description:
  */
+@Route(path = ORDER_LIST_PATH)
 class OrderListFragment : BaseFragment() ,View.OnClickListener,SwipeRefreshLayout.OnRefreshListener{
     private val myTag = "OrderListFragment"
 

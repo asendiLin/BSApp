@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="global_radio_bt_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_marginTop">6dp</item>
+    </style>
+
+</resources>

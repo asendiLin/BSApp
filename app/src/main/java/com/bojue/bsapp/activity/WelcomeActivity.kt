@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.bojue.bsapp.R
 import com.sendi.base.constance.UNKNOW_USER
 import com.bojue.core.common.BaseActivity
+import com.sendi.home.activity.HomeActivity
 import com.sendi.login.activity.LoginActivity
 import com.sendi.user_export.constance.USER_MANAGER
 import com.sendi.user_export.manager.IUserManager
@@ -42,7 +43,7 @@ class WelcomeActivity : BaseActivity() {
                     startActivity(intent)
                 }else{
                     Log.i(myTag,"to home")
-                    val intent  = Intent(this@WelcomeActivity,HomeActivity::class.java)
+                    val intent  = Intent(this@WelcomeActivity, HomeActivity::class.java)
                     startActivity(intent)
                 }
                 finish()

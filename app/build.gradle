@@ -66,6 +66,7 @@ dependencies {
     implementation project(':login')
     implementation project(':user')
     implementation project(':course')
+    implementation project(':home')
 
     implementation rootProject.ext.dependencies.kotlinx_coroutines_core
     implementation rootProject.ext.dependencies.kotlinx_coroutines_android

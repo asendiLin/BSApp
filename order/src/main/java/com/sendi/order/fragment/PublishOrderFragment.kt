@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
@@ -33,6 +34,7 @@ import java.util.*
 /**
  * Created by lizheng on 2019/5/12.
  */
+@Route(path = ORDER_PUBLISH_PATH)
 class PublishOrderFragment : BaseFragment(),View.OnClickListener{
 
     private val myTag = "PublishOrderFragment"

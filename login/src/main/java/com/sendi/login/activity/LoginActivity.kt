@@ -17,6 +17,7 @@ import com.bojue.core.ext.getViewModel
 import com.sendi.login.model.LoginResponse
 import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseActivity
+import com.sendi.base.constance.HOME_ACTIVITY
 import com.sendi.base.widget.LoadingDialog
 import com.sendi.login.R
 import com.sendi.login.inject.LoginInjector
@@ -65,15 +66,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 mLoginViewModel.login(username,password).observe(this, Observer{result->
                     dialog.dismiss()
 
-                    ARouter.getInstance().build("/home/home_activity").navigation(this)
+                    ARouter.getInstance().build(HOME_ACTIVITY).navigation(this)
                     finish()
 
                     result?.let {
                         if (result.status == SUCCESS_STATU){
                             saveUserInfo(result.data)
-                            ARouter.getInstance().build("/home/home_activity").navigation(this)
-//                     todo:       val intent = Intent(this,HomeActivity::class.java)
-//                            startActivity(intent)
+                            ARouter.getInstance().build(HOME_ACTIVITY).navigation(this)
                             finish()
                         }else{
                             ToastUtil.showShort(this,result.message)

@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sendi.home" >
+
+    <application >
+        <activity
+            android:name=".activity.HomeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+        </activity>
+    </application>
+
+</manifest>

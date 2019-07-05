@@ -12,10 +12,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.sendi.base.constance.SUCCESS_STATU
 import com.bojue.core.ext.getViewModel
 import com.sendi.base.util.ToastUtil
 import com.bojue.core.common.BaseFragment
+import com.sendi.base.constance.COMMUNITY_PATH
 import com.sendi.base.widget.LoadingDialog
 import com.sendi.community.R
 import com.sendi.community.activity.PublishCommunityActivity
@@ -32,6 +34,7 @@ import link.fls.swipestack.SwipeStack
  * author : sendi
  * description :社区Fragment
  */
+@Route(path = COMMUNITY_PATH)
 class CommunityFragment : BaseFragment(),View.OnClickListener {
 
     private val myTag = "CommunityFragment"

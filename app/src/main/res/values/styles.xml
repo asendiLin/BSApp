@@ -3,13 +3,6 @@
 
 
     <!-- 全局radioButton的style -->
-    <style name="global_radio_bt_style">
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">36dp</item>
-        <item name="android:button">@null</item>
-        <item name="android:layout_marginTop">6dp</item>
-    </style>
 
     <style name="TransparentText" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">#00000000</item>

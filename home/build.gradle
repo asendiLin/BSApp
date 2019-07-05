@@ -1,0 +1,77 @@
+if (rootProject.ext.isApplication) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        kapt {
+            arguments {
+                arg('eventBusIndex', 'com.bojue.course.event.EventBusIndexCore')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java/']
+            if (rootProject.ext.isApplication) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation rootProject.ext.dependencies.appcompat_v7
+    implementation rootProject.ext.dependencies.constraint_layout
+    implementation rootProject.ext.dependencies.junit
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    kapt rootProject.ext.dependencies.dagger_compiler
+    kapt rootProject.ext.dependencies.dagger_processor
+
+    kapt rootProject.ext.dependencies.eventbus_annotation_processor
+
+    kapt rootProject.ext.dependencies.arouter_compiler
+
+    implementation project(':core')
+    implementation project(':base')
+
+    implementation project(':user_export')
+    implementation project(':home_export')
+}

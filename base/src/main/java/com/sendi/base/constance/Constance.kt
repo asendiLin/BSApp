@@ -36,3 +36,10 @@ const val POSITION = "position"
  val shunfengche =5
  val peiban =6
  val other =7
+
+const val ORDER_LIST_PATH = "/order/list"
+const val ORDER_PUBLISH_PATH = "/order/publish"
+const val COMMUNITY_PATH = "/community/list"
+const val MYSELF_PATH = "/myself/page"
+
+const val HOME_ACTIVITY = "/home/home_activity"

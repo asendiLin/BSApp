@@ -16,6 +16,7 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.sendi.base.event.SettingEvent
 import com.bojue.core.ext.getViewModel
@@ -42,6 +43,7 @@ import kotlin.collections.ArrayList
  * data: 2019/5/10.
  * description:
  */
+@Route(path = MYSELF_PATH)
 class MyselfFragment : BaseFragment(), View.OnClickListener {
     private val myTag = "MyselfFragment"
 

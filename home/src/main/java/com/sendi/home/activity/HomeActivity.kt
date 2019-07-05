@@ -1,4 +1,4 @@
-package com.bojue.bsapp.activity
+package com.sendi.home.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,28 +6,35 @@ import android.view.View
 import android.widget.RadioGroup
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.bojue.bsapp.R
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bojue.core.common.BaseActivity
 import com.bojue.core.common.BaseFragment
-import com.sendi.community.fragment.CommunityFragment
-import com.sendi.myself.fragment.MyselfFragment
-import com.sendi.order.fragment.OrderListFragment
-import com.sendi.order.fragment.PublishOrderFragment
+import com.sendi.base.constance.*
+import com.sendi.home.R
 
 /**
  * 用于存放首页四个tab对应的Fragment
  */
-@Route(path = "/home/home_activity")
+@Route(path = HOME_ACTIVITY)
 class HomeActivity : BaseActivity() {
 
     private lateinit var mRgBottom: RadioGroup
     private lateinit var mTitleBar: View
-    private lateinit var mTvTitle : TextView
+    private lateinit var mTvTitle: TextView
 
     private var mCurrentIndex = 0
-    private var mCurrentFragment : Fragment? = null
+    private var mCurrentFragment: Fragment? = null
 
-    private val mFragments = arrayOf<BaseFragment>(OrderListFragment(), PublishOrderFragment(), CommunityFragment(), MyselfFragment())
+    //    private val mFragments = arrayOf<BaseFragment>(OrderListFragment(), PublishOrderFragment(), CommunityFragment(), MyselfFragment())
+    private val mFragments = Array(4) { i ->
+        when (i) {
+            ORDER_LIST_INDEX -> ARouter.getInstance().build(ORDER_LIST_PATH).navigation() as BaseFragment
+            ORDER_PUBLISH_INDEX -> ARouter.getInstance().build(ORDER_PUBLISH_PATH).navigation() as BaseFragment
+            COMMUNITY_INDEX -> ARouter.getInstance().build(COMMUNITY_PATH).navigation() as BaseFragment
+            MYSELF_INDEX -> ARouter.getInstance().build(MYSELF_PATH).navigation() as BaseFragment
+            else -> ARouter.getInstance().build(ORDER_LIST_PATH).navigation() as BaseFragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,46 +47,46 @@ class HomeActivity : BaseActivity() {
             when (checkedId) {
                 R.id.rb_order_list -> {
                     mCurrentIndex = ORDER_LIST_INDEX
-                    mTitleBar.visibility=View.VISIBLE
+                    mTitleBar.visibility = View.VISIBLE
                     mTvTitle.text = "订单"
                 }
                 R.id.rb_order_publish -> {
                     mCurrentIndex = ORDER_PUBLISH_INDEX
-                    mTitleBar.visibility=View.VISIBLE
+                    mTitleBar.visibility = View.VISIBLE
                     mTvTitle.text = "发布"
                 }
                 R.id.rb_community -> {
                     mCurrentIndex = COMMUNITY_INDEX
-                    mTitleBar.visibility=View.VISIBLE
+                    mTitleBar.visibility = View.VISIBLE
                     mTvTitle.text = "社区"
                 }
                 R.id.rb_myself -> {
                     mCurrentIndex = MYSELF_INDEX
-                    mTitleBar.visibility=View.GONE
+                    mTitleBar.visibility = View.GONE
                 }
             }
 
-            changeFragment(mCurrentFragment,mFragments[mCurrentIndex])
+            changeFragment(mCurrentFragment, mFragments[mCurrentIndex])
         }
 
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fl_home_content, OrderListFragment(), "HOME")
+        transaction.add(R.id.fl_home_content, mFragments[0], "HOME")
         transaction.commit()
     }
 
-    private fun changeFragment(fromFragment : Fragment? , toFragment: Fragment) {
-        if (fromFragment != toFragment){
+    private fun changeFragment(fromFragment: Fragment?, toFragment: Fragment) {
+        if (fromFragment != toFragment) {
             val transaction = supportFragmentManager.beginTransaction()
 
-            if (fromFragment!= null){
+            if (fromFragment != null) {
                 transaction.hide(fromFragment)
             }
 
-            if (!toFragment.isAdded){
-                transaction.add(R.id.fl_home_content,toFragment)
+            if (!toFragment.isAdded) {
+                transaction.add(R.id.fl_home_content, toFragment)
                 transaction.commit()
-            }else{
+            } else {
                 transaction.show(toFragment).commit()
             }
             mCurrentFragment = toFragment
