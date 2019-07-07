@@ -5,7 +5,7 @@ package com.sendi.base.constance
  * data: 2019/5/22.
  * description:
  */
-const val DEFAULT_URL = "http://asendi.natapp1.cc/"
+const val DEFAULT_URL = "http:///"
 //const val DEFAULT_URL = "http://119.23.78.201/"
 //const val DEFAULT_URL = "http://192.168.1.105/"
 
