@@ -8,7 +8,7 @@
 
 ## 使用框架
 
-Glide、EventBus、GreenDao、Retrfit、OkHttp、Gpuimage、Dagger2等
+Glide、EventBus、GreenDao、Retrfit、OkHttp、Gpuimage、Dagger2、ARouter等
 
 ## 尝试
 使用了协程，后面继续全面对使用协程进行改造
